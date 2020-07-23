@@ -51,6 +51,7 @@
 			<exclude-mapping path="/comPwFrm"/>
 			<exclude-mapping path="/rePwFrm"/>
 			<exclude-mapping path="/rePw"/>
+			<exclude-mapping path="/myInfo"/>
 			<beans:bean class="com.editube.util.SessionInterceptor"/>
 		</interceptor>
 	</interceptors>

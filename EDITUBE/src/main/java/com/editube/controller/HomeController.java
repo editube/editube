@@ -87,12 +87,12 @@ public class HomeController {
 	}
 	
 	
-	@PostMapping("findIdMatch")
-	public String findIdMatch(String name, String phonenum) {
-		String result = mServ.idFind(mname, mphonenum);
-		
-		return result;
-	}
+//	@PostMapping("findIdMatch")
+//	public String findIdMatch(String name, String phonenum) {
+//		String result = mServ.idFind(mname, mphonenum);
+//		
+//		return result;
+//	}
 	
 	@GetMapping("findPwFrm")
 	public String findPwFrm() {
@@ -108,6 +108,13 @@ public class HomeController {
 	public String comPwFrm() {
 		return "comPwFrm";
 	}
+	
+	@GetMapping("myInfo")
+	public String myInfo() {
+
+		return "myInfo";
+	}
+
 
 	//로그아웃 처리
 	@GetMapping("logout")

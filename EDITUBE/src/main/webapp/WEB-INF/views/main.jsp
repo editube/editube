@@ -24,7 +24,7 @@
   <link href="resources/css/landing-page.min.css?after" rel="stylesheet">
   
   <link href="resources/css/headerstyle.css" rel="stylesheet">
-  <link href="resources/css/footertyle.css" rel="stylesheet">
+    <link href="resources/css/footerStyle.css" rel="stylesheet">
 
 </head>
 <body>
@@ -80,12 +80,10 @@
     </div>
   </section>
 
-<header>
+<footer>
  	<jsp:include page="footer.jsp"></jsp:include>
-</header>
-  <!-- Bootstrap core JavaScript -->
-  <script src="resources/vendor/jquery/jquery.min.js"></script>
-  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</footer>
+
 
 </body>
 
