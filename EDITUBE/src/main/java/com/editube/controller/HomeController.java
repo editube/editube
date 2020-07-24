@@ -145,10 +145,47 @@ public class HomeController {
 		
 		return "writeCommuFrm";
 	}
+	@GetMapping("writecom")
+	public String writecom() {
+		
+		return "writecom";
+	}
+	@GetMapping("commuNav")
+	public String commuNav() {
+		
+		return "commuNav";
+	}
 	@GetMapping("editBoard")
 	public String editBoard() {
 		
 		return "editBoard";
+	}
+	
+	
+	@GetMapping("myEPage")
+	public String myEPage() {
+		
+		return "myEPage";
+	}
+	@GetMapping("myEPageCash")
+	public String myEPageCash() {
+		
+		return "myEPageCash";
+	}
+	@GetMapping("myEPagePf")
+	public String myEPagePf() {
+		
+		return "myEPagePf";
+	}
+	@GetMapping("myEPageReqM")
+	public String myEPageReqM() {
+		
+		return "myEPageReqM";
+	}
+	@GetMapping("myEPageSc")
+	public String myEPageSc() {
+		
+		return "myEPageSc";
 	}
 
 	//로그아웃 처리

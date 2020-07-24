@@ -59,6 +59,13 @@
 			<exclude-mapping path="/editBoard"/>
 			<exclude-mapping path="/commuContent"/>
 			<exclude-mapping path="/writeCommuFrm"/>
+			<exclude-mapping path="/writecom"/>
+			<exclude-mapping path="/commuNav"/>
+			<exclude-mapping path="/myEPage"/>
+			<exclude-mapping path="/myEPageCash"/>
+			<exclude-mapping path="/myEPagePf"/>
+			<exclude-mapping path="/myEPageReqM"/>
+			<exclude-mapping path="/myEPageSc"/>
 			<beans:bean class="com.editube.util.SessionInterceptor"/>
 		</interceptor>
 	</interceptors>

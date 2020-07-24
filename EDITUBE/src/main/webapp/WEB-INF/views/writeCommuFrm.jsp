@@ -16,7 +16,7 @@
    href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
    rel="stylesheet" />
 
-<link href="resources/css/sideBar.css" rel="stylesheet">
+<link href="resources/css/sideBar.css?after" rel="stylesheet">
 <link href="resources/css/writeCommuFrm.css?after" rel="stylesheet">
 <link href="resources/css/headerstyle.css?after" rel="stylesheet">
 <script

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap");
 body{
-	padding-top: 90px;
+	padding-top: 70px;
 }
 
 :root {
@@ -157,6 +157,21 @@ li.headerdrop {
 
 .dcont a:hover {
    background-color: #f1f1f1;
+}
+
+/* 로그인 처리 하는 부분 */
+
+div#suc {
+   display: none;
+   color: #fff;
+}
+
+div#bef {
+   display: block;
+   display: flex;
+   color: black;
+   margin-top: 15px;
+   font-size: 20px;
 }
 
 
