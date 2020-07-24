@@ -52,6 +52,13 @@
 			<exclude-mapping path="/rePwFrm"/>
 			<exclude-mapping path="/rePw"/>
 			<exclude-mapping path="/myInfo"/>
+			<exclude-mapping path="/myUPageSc"/>
+			<exclude-mapping path="/doubleBoard"/>
+			<exclude-mapping path="/youtuberBoard"/>
+			<exclude-mapping path="/commuBoard"/>
+			<exclude-mapping path="/editBoard"/>
+			<exclude-mapping path="/commuContent"/>
+			<exclude-mapping path="/writeCommuFrm"/>
 			<beans:bean class="com.editube.util.SessionInterceptor"/>
 		</interceptor>
 	</interceptors>

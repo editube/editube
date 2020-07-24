@@ -115,6 +115,41 @@ public class HomeController {
 		return "myInfo";
 	}
 
+	@GetMapping("myUPageSc")
+	public String myUPageSc() {
+		
+		return "myUPageSc";
+	}
+	@GetMapping("doubleBoard")
+	public String doubleBoard() {
+		
+		return "doubleBoard";
+	}
+	@GetMapping("youtuberBoard")
+	public String youtuberBoard() {
+		
+		return "youtuberBoard";
+	}
+	@GetMapping("commuBoard")
+	public String commuBoard() {
+		
+		return "commuBoard";
+	}
+	@GetMapping("commuContent")
+	public String commuContent() {
+		
+		return "commuContent";
+	}
+	@GetMapping("writeCommuFrm")
+	public String writeCommuFrm() {
+		
+		return "writeCommuFrm";
+	}
+	@GetMapping("editBoard")
+	public String editBoard() {
+		
+		return "editBoard";
+	}
 
 	//로그아웃 처리
 	@GetMapping("logout")

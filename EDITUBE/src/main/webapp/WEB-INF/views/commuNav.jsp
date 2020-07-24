@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="side">
+      <p>Community</p>
+      <a href="./noticeBoard">공지사항</a>
+      <a class="current" href="./commuBoard">자유게시판</a>
+      <a>합방하실분</a>
+      <a>섭외게시판</a>
+</div>

@@ -11,15 +11,15 @@
             </li>
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
-              <a href="#">Editer</a>
+              <a href="./editBoard">Editer</a>
             </li>
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
-              <a href="#">Youtuber</a>
+              <a href="./youtuberBoard">Youtuber</a>
             </li>
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
-              <a href="#">community</a>
+              <a href="./commuBoard">community</a>
             </li>
           </ul>
           <p class="text-muted small mb-4 mb-lg-0">&copy; Our Website Editube 2020. All Rights Reserved.</p>
