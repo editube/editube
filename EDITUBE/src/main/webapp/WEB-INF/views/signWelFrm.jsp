@@ -4,24 +4,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/login.css">
+<title>회원가입 완료</title>
 </head>
 <body>
-<section>
-	<div class="">
-		<img class="" src="resources/images/mainlogo.png">
-		<h3>EDITUBE</h3>
-		<h3>가입을 환영합니다.</h3>
-	</div>
-	<div class="content-login">
-		<form name="signPageFrm" class="login-form" action="memInsert" method="post" onsubmit="return check()">		
-			<input type="text" class="login-input" id="mid" title="이메일아이디"
-				name="m_id" autofocus placeholder="이메일아이디">
-			<input type="button" class="idcheck-btn" value="메인으로" onclick="location.href='./main'">
-			<input type="button" class="idcheck-btn" value="마이페이지" onclick="location.href='./myUPageSc'">
-			<input type="button" class="idcheck-btn" value="에디캐쉬 충전하기" onclick="location.href='./chargeCash'">			`
-		</form>
-	</div>
-	</section>
+<div class="wrap">
+<div class="container">
+    <div class="card"></div>
+    <div class="card">
+    <img src="resources/images/logo.png" width="100px" class="logo-center">
+        <h1 class="title">회원가입 완료
+			<p>EDITUBE 가입을 환영합니다</p>			
+		</h1>	
+        <form>
+            <div class="button-container"><button type="button" onclick="location.href='/'" style=width:240px;><span>메인으로</span></button></div>
+            <div class="button-container"><button type="button" onclick="location.href='myUPageSc'" style=width:240px;><span>마이 페이지</span></button></div>
+            <div class="button-container"><button type="button" onclick="location.href='chargeCash'" style=width:240px;><span>에디캐쉬 충전</span></button></div>
+        </form>
+    </div>
+</div>
+</div>		
 </body>
 </html>

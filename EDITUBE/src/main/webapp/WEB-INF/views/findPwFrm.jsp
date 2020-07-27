@@ -6,23 +6,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="resources/css/style.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/login.css">
+<title>비밀번호 찾기</title>
 </head>
 <body>
-	<div class="content-left">
-		<img class="top-left logo" src="resources/images/mainlogo.png"	onclick="gohome();">
-
-		<h3>비밀번호 찾기</h3>
-	</div>
-	<div class="content">
-		<form class="login-form" action="findPwMatch" method="post">
-			<input type="text" class="login-input" 	name="m_id" required autofocus placeholder="이메일 아이디">
-			<input type="button" class="idcheck-btn" value="인증번호" onclick="">
-			<input type="text" class="login-input" id="mid" title="인증번호" name="m_id" autofocus placeholder="인증번호">
-			<input type="text" name="m_name" class="login-input" title="이름" placeholder="이름">
-			<input type="submit" class="login-btn" value="비밀번호 찾기">
-		</form>
-	</div>
+<div class="wrap">
+	<div class="container">
+    <div class="card"></div>
+    <div class="card">    
+   		 <img src="resources/images/logo.png" width="100px" class="logo-center" onclick="gohome();">
+        <h1 class="title">비밀번호 찾기</h1>
+        <form>
+            <div id = right-btn>   
+            <span class="button-container">
+            	<button class="certification" style=width:60px;><span>인증번호</span></button>
+            </span> 
+            </div>
+            <div class="input-container"><input type="text" required/><label>이메일 아이디</label>
+                <span class="bar"></span>
+            </div>              
+            <div class="input-container"><input type="password" required/><label>인증번호</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container"><input type="text" required/><label>이름</label>
+                <div class="bar"></div>
+            </div>
+            <div class="button-container"><button type="button" onclick="location.href='rePwFrm'"style=width:240px;><span>비밀번호 찾기</span></button></div>    
+        </form>
+    </div>
+</div>
+</div>	
 </body>
 <script type="text/javascript">
 function check(){

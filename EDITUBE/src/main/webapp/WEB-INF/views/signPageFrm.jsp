@@ -7,6 +7,7 @@
 <title>회원 가입</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/login.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -21,38 +22,53 @@ $(document).ready(function(){
 </head>
 <body>
 <div class="wrap">
-	<header>
-	<jsp:include page="header.jsp"></jsp:include>
-	</header>
-	<section>
-	<div class="content-login">
-		<form name="signPageFrm" class="login-form" action="memInsert" method="post" onsubmit="return check()">		
-			<input type="text" class="login-input" id="mid" title="이메일아이디"
-				name="m_id" autofocus placeholder="이메일아이디">
-			<input type="button" class="idcheck-btn" value="중복확인" onclick="idcheck()">
-			<input type="button" class="idcheck-btn" value="인증번호" onclick="">
-			<input type="text" class="login-input" id="mid" title="인증번호"
-				name="m_id" autofocus placeholder="인증번호">
-			<input type="password" class="login-input" title="비밀번호"
-				name="m_pwd" placeholder="비밀번호">
-			<input type="password" class="login-input" title="비밀번호확인"
-				name="m_pwd" placeholder="비밀번호확인">
-			<input type="text" name="m_name" class="login-input" title="이름"
-				placeholder="이름">
-			<input type="text" name="m_birth" class="login-input" title="생년월일"
-				placeholder="생년월일">
-			<input type="text" name="m_nickname" class="login-input" title="닉네임"
-				placeholder="닉네임">
-				<input type="button" class="idcheck-btn" value="중복확인" onclick="nickcheck()">
-			<input type="text" name="m_phonenum" class="login-input" title="휴대폰번호"
-				placeholder="휴대폰번호">
-			<input type="submit" class="login-btn" value="가입">
-		</form>
-	</div>
-	</section>
-	<footer>
-	<jsp:include page="footer.jsp"></jsp:include>
-	</footer>
+	<div class="container">
+    <div class="card"></div>
+    <div class="card">
+   <img src="resources/images/logo.png" width="100px" class="logo-center" onclick="gohome();">
+        <h1 class="title">회원가입</h1>
+        <form name="signPageFrm" action="memInsert" method="post" onsubmit="return check()">
+            <div id = right-button>   
+            <span class="button-container">
+            	<input type="button" value="중복확인" onclick="idcheck()" style=width:60px;>
+            	<input type="button" value="인증번호" onclick="" style=width:60px;>    
+            </span> 
+            </div>
+            <div class="input-container"><input type="text" id="mid" name="m_id" required/><label>이메일 아이디</label>
+                <span class="bar"></span>
+            </div>  
+            <div class="input-container"><input type="text" required/><label>인증번호</label>
+                <span class="bar"></span>
+            </div>
+            <div class="input-container"><input type="password" name="m_password" required/><label>비밀번호</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container"><input type="password" required/><label>비밀번호 확인</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container"><input type="text" name="m_name" required/><label>이름</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container"><input type="text" name="m_birth" required/><label>생년월일</label>
+                <div class="bar"></div>
+            </div>
+            <div id="right-btn">
+            <span class="button-container">
+            	<input type="button" value="중복확인" onclick="nickcheck()" style=width:60px;>
+            </span>
+            </div>     
+            <div class="input-container"><input type="text" name="m_nickname" id="mnickname" required/><label>닉네임</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container"><input type="text" name="m_phonenum" required/><label>휴대폰 번호</label>
+                <div class="bar"></div>
+            </div>
+            <div class="button-container"><input type="submit" value="회원가입" style=width:240px;></div>    
+        </form>
+    </div>
+</div>
+
+
 </div>
 </body>
 <script type="text/javascript">
@@ -109,7 +125,48 @@ function idcheck(){
 		}
 	});
 }
-</script>
+
+function nickcheck(){
+	var nickname = $('#mnickname').val();
+	if(nickname == ""){
+		alert("닉네임을 입력하세요.");
+		$('#mnickname').focus();
+		return;
+	}
+	var ckObj = {"mnickname": nickname};
+	console.log(ckObj);
+	
+	$.ajax({
+		url: "nickCheck",
+		type: "get",
+		data: ckObj,
+		success: function(data){
+			if(data == "success"){
+				alert('사용 가능한 닉네임입니다.');
+			}
+			else{
+				alert('이미 등록된 닉네임입니다.');
+				$('#mnickname').val('');//입력 초기화
+				$('#mnickname').focus();//ID 부분에 포커스 주기
+			}
+		},
+		error: function(error){
+			console.log(error);
+		}
+	});
+}
+
+
+		function gohome() {
+			var id = '${mb.m_id}';
+
+			if (id == '') {
+				location.href = './';
+			} else if (id != '') {
+				location.href = './';
+			}
+		}
+	</script>
 </html>
 
 

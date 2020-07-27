@@ -1,17 +1,31 @@
 package com.editube.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.editube.controller.HomeController;
 import com.editube.dao.MemberDao;
 import com.editube.dto.MemberDto;
 
+import lombok.extern.java.Log;
+
 @Service
+@Log
 public class MemberService {
 	//로그인 처리에 필요한 요소들
 	//  DAO 객체, 세션 객체, ModelAndView 객체
@@ -32,12 +46,12 @@ public class MemberService {
 		String msg = null;//화면에 출력할 메시지
 		
 		//DB에서 해당 id의 password 가져오기.
-		String get_pw = mDao.getPwd(member.getM_id());
+		String get_pw = mDao.getPassword(member.getM_id());
 		
 		BCryptPasswordEncoder pwdEncoder = 
 				new BCryptPasswordEncoder();
 		
-		//로그인 처리
+		//로그인 처리			
 		if(get_pw != null) {
 			//아이디 있음.
 			if(pwdEncoder.matches(member.getM_password(), get_pw)) {
@@ -46,9 +60,8 @@ public class MemberService {
 				//로그인 한 회원의 정보를 가져오기.
 				member = mDao.getMemInfo(member.getM_id());
 				session.setAttribute("mb", member);
-				
 				//리다이렉트로 화면을 전환.
-				view = "redirect:list";//list는 uri.
+				view = "redirect:/";
 			}
 			else {
 				//패스워드 틀림.
@@ -97,13 +110,13 @@ public class MemberService {
 		
 		mv.setViewName(view);
 		return mv;
-	}
+	}	
 
 	public String logout() {
 		//세션 정보 지우기
 		session.invalidate();
 		
-		return "home";
+		return "main";
 	}
 
 	public String idCheck(String mid) {
@@ -112,6 +125,26 @@ public class MemberService {
 		try {
 			//cnt : 중복 id가 있을 경우 1, 없을 경우 0
 			int cnt = mDao.idCheck(mid);
+			
+			if(cnt == 1) {
+				result = "fail";
+			}
+			else {
+				result = "success";
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+	
+	public String nickCheck(String mnickname) {
+		String result = null;
+		
+		try {
+			//cnt : 중복 id가 있을 경우 1, 없을 경우 0
+			int cnt = mDao.nickCheck(mnickname);
 			
 			if(cnt == 1) {
 				result = "fail";

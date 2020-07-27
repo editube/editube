@@ -6,23 +6,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="resources/css/style.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/login.css">
+<title>아이디 찾기</title>
 </head>
 <body>
-	<div class="content-left">
-		<img class="top-left logo" src="resources/images/mainlogo.png"	onclick="gohome();">
-
-		<h3>ID 찾기</h3>
-	</div>
-	<div class="content">
-		<form class="login-form" action="findIdMatch" method="post">
-			<input type="text" class="login-input" 
-				name="m_name" required autofocus placeholder="이름">
-			<input type="password" class="login-input" 
-				name="m_phonenum" required placeholder="전화번호">
-			<input type="submit" class="login-btn" value="ID 찾기">
-		</form>
-	</div>
+<div class="wrap">
+<div class="container">
+    <div class="card"></div>
+    <div class="card">
+    	<img src="resources/images/logo.png" width="100px" class="logo-center">
+        <h1 class="title">아이디 찾기</h1>
+        <form>
+            <div class="input-container"><input type="text" required/><label>이름</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container"><input type="text" required/><label>전화번호</label>
+                <div class="bar"></div>
+            </div>
+            <div class="button-container"><button type="button" onclick="location.href='comIdFrm'" style=width:240px;><span>ID 찾기</span></button></div>
+        </form>
+    </div>
+</div>
+</div>	
+	
 </body>
 <script type="text/javascript">
 function check(){

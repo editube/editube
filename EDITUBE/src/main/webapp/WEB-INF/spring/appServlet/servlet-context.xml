@@ -43,6 +43,7 @@
 			<exclude-mapping path="/access"/>
 			<exclude-mapping path="/memInsert"/>
 			<exclude-mapping path="/idCheck"/>
+			<exclude-mapping path="/nickCheck"/>
 			<exclude-mapping path="/findIdFrm"/>
 			<exclude-mapping path="/findIdMatch"/>
 			<exclude-mapping path="/comIdFrm"/>
@@ -66,6 +67,7 @@
 			<exclude-mapping path="/myEPagePf"/>
 			<exclude-mapping path="/myEPageReqM"/>
 			<exclude-mapping path="/myEPageSc"/>
+			<exclude-mapping path="/signWelFrm"/>
 			<beans:bean class="com.editube.util.SessionInterceptor"/>
 		</interceptor>
 	</interceptors>

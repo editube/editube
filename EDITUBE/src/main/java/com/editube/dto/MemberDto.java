@@ -16,8 +16,8 @@ public class MemberDto {
 	private String m_birth;
 	private String m_password;
 	private String m_phonenum;
-	private int m_account;
-	private String m_accountname;
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Timestamp m_joindate;
+	private String m_oriName;
+	private String m_sysName;
 }

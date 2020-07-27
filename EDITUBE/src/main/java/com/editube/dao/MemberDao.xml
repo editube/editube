@@ -32,12 +32,17 @@
 	<insert id="memberInsert" 
 		parameterType="com.editube.dto.MemberDto">
 		INSERT INTO M
-		VALUES(#{m_id},#{m_pwd},#{m_name},#{m_birth},#{m_addr},#{m_phone},DEFAULT)
+		VALUES(#{m_nickname},#{m_id},DEFAULT,#{m_name},#{m_birth},#{m_password},#{m_phonenum},DEFAULT,DEFAULT,DEFAULT)
 	</insert>
 	
 	<select id="idCheck" parameterType="String"
 		resultType="Integer">
 		SELECT COUNT(*) FROM MINFO WHERE M_ID=#{mid}
+	</select>
+
+	<select id="nickCheck" parameterType="String"
+		resultType="Integer">
+		SELECT COUNT(*) FROM MINFO WHERE M_NICKNAME=#{mnickname}
 	</select>
 	
 </mapper>

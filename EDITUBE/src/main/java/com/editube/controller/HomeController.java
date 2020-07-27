@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -61,8 +62,7 @@ public class HomeController {
 	}
 
 	@PostMapping("memInsert")
-	public ModelAndView memInsert(MemberDto member,
-			RedirectAttributes rttr) {
+	public ModelAndView memInsert(MemberDto member,	RedirectAttributes rttr) {
 		logger.info("memInsert()");
 
 		//서비스에서 처리
@@ -71,10 +71,6 @@ public class HomeController {
 		return mv;
 	}
 	
-	@GetMapping("signWelFrm")
-	public String signWelFrm() {
-		return "signWelFrm";
-	}
 	
 	@GetMapping("comIdFrm")
 	public String comIdFrm() {
@@ -107,6 +103,10 @@ public class HomeController {
 	@GetMapping("comPwFrm")
 	public String comPwFrm() {
 		return "comPwFrm";
+	}
+	@GetMapping("signWelFrm")
+	public String signWelFrm() {
+		return "signWelFrm";
 	}
 	
 	@GetMapping("myInfo")
@@ -206,6 +206,17 @@ public class HomeController {
 
 		String result = mServ.idCheck(mid);
 
+		return result;
+	}
+	//닉네임 중복 체크 처리 메소드
+	@GetMapping(value = "nickCheck",
+			produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String nickCheck(String mnickname) {
+		logger.info("nickCheck() - mnickname : " + mnickname);
+		
+		String result = mServ.nickCheck(mnickname);
+		
 		return result;
 	}
 	

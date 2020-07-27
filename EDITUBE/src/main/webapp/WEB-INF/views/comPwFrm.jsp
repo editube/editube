@@ -6,13 +6,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="resources/css/style.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/login.css">
+<title>비밀번호 변경 완료</title>
 </head>
 <body>
-		<div class="content-login">
-			<p>고객님의 비밀번호 변경이 완료되었습니다.</p>
-			<input type="button" class="idcheck-btn" value="Login" onclick="location.href='./loginFrm'">
-		</div>
+<div class="wrap">
+<div class="container">
+    <div class="card"></div>
+    <div class="card">
+    <img src="resources/images/logo.png" width="100px" class="logo-center" onclick="gohome()">
+        <h1 class="title">비밀번호 변경 완료
+			<p>고객님의 비밀번호 변경이 완료되었습니다.</p>			
+		</h1>	
+        <form>
+        
+            <div class="button-container"><button type="button" onclick="location.href='./loginFrm'" style=width:240px;><span>로그인</span></button></div>
+        </form>
+    </div>
+</div>
+</div>		
 </body>
 <script type="text/javascript">
 function check(){

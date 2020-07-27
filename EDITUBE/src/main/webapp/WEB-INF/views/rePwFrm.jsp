@@ -6,21 +6,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="resources/css/style.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/login.css">
+<title>비밀번호 재설정</title>
 </head>
 <body>
-<div class="content-left">
-		<img class="top-left logo" src="resources/images/mainlogo.png"	onclick="gohome();">
-
-		<h3>비밀번호 찾기</h3>
+<div class="wrap">
+<div class="container">
+    <div class="card"></div>
+    <div class="card">
+    	<img src="resources/images/logo.png" width="100px" class="logo-center">
+        <h1 class="title">비밀번호 재설정</h1>
+        <form>
+            <div class="input-container"><input type="password" required/><label>비밀번호</label>
+                <div class="bar"></div>
+            </div>
+            <div class="input-container"><input type="password" required/><label>비밀번호 확인</label>
+                <div class="bar"></div>
+            </div>
+            <div class="button-container"><button type="button" onclick="location.href='comPwFrm'" style=width:240px;><span>비밀번호 변경</span></button></div>
+        </form>
+    </div>
 </div>
-<form name="rePwFrm" class="login-form" action="rePw" method="post"">		
-<input type="password" class="login-input" title="비밀번호"
-				name="m_pwd" placeholder="비밀번호">
-<input type="password" class="login-input" title="비밀번호확인"
-				name="m_pwd" placeholder="비밀번호확인">
-<input type="submit" class="login-btn" value="비밀번호 변경">				
-</form>				
+</div>		
 </body>
 <script type="text/javascript">
 function check(){
