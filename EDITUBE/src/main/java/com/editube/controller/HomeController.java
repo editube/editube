@@ -81,6 +81,10 @@ public class HomeController {
 	public String findIdFrm() {
 		return "findIdFrm";
 	}
+	@GetMapping("upPortfolio")
+	public String upPortfolio() {
+		return "upPortfolio";
+	}
 	
 	
 //	@PostMapping("findIdMatch")

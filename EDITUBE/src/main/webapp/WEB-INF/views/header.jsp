@@ -112,7 +112,7 @@ $(document).ready(function(){
 			<nav class="t_nav">
 				<ul id="userDrop">
 					<li class="headerdrop"><a href="#" class="headerbtn"><img
-							class="user-profile " src='${mb.m_oriname}' alt=""></a>
+							class="user-profile " src="resources/images/${mb.m_oriName}" alt=""></a>
 						<div class="dcont">
 							<a href="./myEPageSc" class="headerdropbox">  My Page</a> 
 							<a href="./myInfo">  계정설정</a>

@@ -68,6 +68,7 @@
 			<exclude-mapping path="/myEPageReqM"/>
 			<exclude-mapping path="/myEPageSc"/>
 			<exclude-mapping path="/signWelFrm"/>
+			<exclude-mapping path="/upPortfolio"/>
 			<beans:bean class="com.editube.util.SessionInterceptor"/>
 		</interceptor>
 	</interceptors>
