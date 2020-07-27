@@ -5,5 +5,5 @@
       <a href="./noticeBoard">공지사항</a>
       <a class="current" href="./commuBoard">자유게시판</a>
       <a>합방하실분</a>
-      <a>섭외게시hkhjhj판</a>
+      <a>섭외게시판</a>
 </div>
