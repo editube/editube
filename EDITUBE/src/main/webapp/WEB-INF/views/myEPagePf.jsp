@@ -51,7 +51,7 @@
 	</div>
 	<div class="btnWrap">
 		<div class="btnDiv">
-			<button type="button">수정</button>
+			<button type="button" onclick="location.href='./upPortfolio'">수정</button>
 			<button type="button">갱신</button>
 		</div>
 	</div>

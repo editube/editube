@@ -495,3 +495,118 @@ font-style: normal;
 	margin-right: 10px;
 	margin-top: 20px;
 }
+
+
+/*포트폴리옿 수정페이지*/
+
+.upPfCashWrap{
+	width:1400px;
+	margin: 0px auto;
+	height:1500px;
+}
+.upPfCashWrap .upPfaside{
+	float:left;
+	width: 300px;
+	height: 1500px;
+}
+.upPfCashWrap .upPfSection{
+	float:left;
+	width: 1100px;
+	height: 1500px;
+}
+
+.upPfSection .upPfTitleWrap{
+	width: 1100px;
+	height: 100px;
+	float: left;
+	border-bottom: 0.8px solid #dedfda;
+	background: #f9f9f9;
+}
+
+.upPfTitleWrap .upPfTitle{
+	width: 1000px;
+	margin :50px 0px 50px 50px;
+	height: 80px;
+	margin-top:20px;
+	border: none;
+	resize: none;
+	float:left;
+	font-family: 'NanumSquareRound';
+	font-size: 2em;
+}
+
+
+
+.upPfTitle:focus{
+	border: none;
+	outline: none;
+}
+.upPfSection .upPfContentWrap{
+	width: 1100px;
+	height: 1200px;
+	float: left;
+	border-top: 0.8px solid #dedfda;
+	border-bottom: 0.8px solid #dedfda;
+}
+
+.upPfContentWrap .upPfContent{
+	width: 1000px;
+	height: 1150px;
+	margin :50px 0px 50px 50px;
+	outline: none;
+	border: none;
+	resize: none;
+	font-family: 'NanumSquareRound';
+	font-size: 1.1em;
+}
+
+.upPfContent:focus{
+	border: none;
+	outline: none;
+}
+
+.upPfSection .pfCheckboxWrap{
+	width:50%;
+	height: 60px;
+	float: left;
+	border-top: 0.8px solid #dedfda;
+	text-align: center;
+}
+
+.pfCheckboxWrap .pfCheckbox{
+	margin-top:25px;
+}
+
+.upPfSection .linkboxWrap{
+	width: 50%;
+	height: 60px;
+	float: left;
+	border-top: 0.8px solid #dedfda;
+	text-align: center;
+}
+
+.linkboxWrap .linkbox{
+	margin-top:25px;
+}
+
+.linkbox textarea{
+	height: 15px;
+}
+.upPfSection .btnWrap{
+	width: 1100px;
+	height: 100px;
+	float: left;
+}
+.btnWrap .btnDiv{
+	width: 950px;
+	margin-left:75px;
+	margin-right:75px;
+	height: 100px;
+	float: left;
+}
+
+.btnWrap button{
+	float: right;
+	margin-right: 10px;
+	margin-top: 20px;
+}
