@@ -75,7 +75,19 @@
 }
 
 .editBoard {
+	border-collapse: separate;
 	border-spacing: 10px;
+}
+.card {
+	display: inline-block;
+	width: 90%;
+	max-width: 20rem;
+	margin: 1rem;
+	font-size: 1rem;
+	text-decoration: none;
+	overflow: hidden;
+	box-shadow: 0 0 3rem -1rem rgba(0,0,0,0.5);
+	transition: transform 0.1s ease-in-out, box-shadow 0.1s;
 }
 
 .card-image {
@@ -110,4 +122,10 @@
 .card:hover {
 	transform: translateY(-0.5rem) scale(1.0125);
 	box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,0.5);
+}
+
+td img {
+	vertical-align: top;
+	max-width: 100%;
+	table-layout: fixed;
 }
