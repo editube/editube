@@ -8,17 +8,17 @@ font-style: normal;
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 .MyPagenavwrap{
-	float:laft;
-	width: 300px;
-	height: 1500px;
-  	background: #f9f9f9;
-	
+   float:laft;
+   width: 300px;
+   height: 1500px;
+     background: #f9f9f9;
+   
 }
 .profileimagebox{
-	position:relative;
-	width:300px;
-	padding:20px;
-	height: 500px;
+   position:relative;
+   width:300px;
+   padding:20px;
+   height: 350px;
 }
 .sidebar {
   position:relative;
@@ -34,6 +34,7 @@ font-style: normal;
   transform: translateY(-50%);
   font-weight: bold;
   padding: 0 25px;
+  height: 20%;
 }
 
 .nav ul {
@@ -83,6 +84,16 @@ font-style: normal;
   line-height: 3em;
 }
 
+.MnavSub{
+   display: none;
+   height: 20%;
+   
+}
+
+.MnavMain:hover .MnavSub{
+   transition: all .5s ease;
+   display: block;
+}
 
 /* 이미지 관련 */
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
