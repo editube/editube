@@ -19,7 +19,7 @@
 	<aside class="sidebar">
     	<nav class="nav">
      		<ul>
-				<li class="active"><a href="#">유튜버모드로 변경</a></li>
+				<li class="active"><a href="./myUPageSc">유튜버모드로 변경</a></li>
 				<li><a href="./myEPageSc">찜한 유튜버</a></li>
 				<li class="MnavMain"><a>요청관리</a>
 					<ul class="MnavSub">

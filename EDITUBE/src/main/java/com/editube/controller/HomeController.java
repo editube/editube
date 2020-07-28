@@ -55,7 +55,17 @@ public class HomeController {
 
 		return mv;
 	}
-
+	
+	@GetMapping("myUPageCash")
+	public String myUPageCash() {
+		return "myUPageCash";
+	}
+	
+	@GetMapping("myUPageReqM")
+	public String myUPageReqM() {
+		return "myUPageReqM";
+	}
+	
 	@GetMapping("signPageFrm")
 	public String signPageFrm() {
 		return "signPageFrm";
