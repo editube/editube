@@ -198,54 +198,6 @@ html
 	overflow: hidden;
 	transition: 0.3s ease;
 }
-.card .button-container input {
-	outline: 0;
-	cursor: pointer;
-	position: relative;
-	display: inline-block;
-	background: 0;
-	width: 70px;
-	height: 40px;
-	border: 2px solid #e3e3e3;
-	padding: 20px 0;
-	font-size: 12px;
-	font-weight: 600;
-	line-height: 1px;
-	text-transform: uppercase;
-	overflow: hidden;
-	color: #f35b5b;
-	transition: 0.3s ease;
-}
-
-.card .button-container input:before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	display: block;
-	background: #ed2553;
-	width: 30px;
-	height: 30px;
-	border-radius: 100%;
-	margin: -15px 0 0 -15px;
-	opacity: 0;
-	transition: 0.3s ease;
-}
-
-.card .button-container input:hover, .card .button-container input:focus
-	{
-	border-color: #ed2553;
-	color: #ed2553;
-}
-
-.card .button-container input:active , .card .button-container input:focus 
-	{
-	color: #fff;
-}
-
-.card .button-container input:active:before, .card .button-container input:focus:before
-	{
-	opacity: 1;
-}
 
 .card .button-container button span {
 	position: relative;

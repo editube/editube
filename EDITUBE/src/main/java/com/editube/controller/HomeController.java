@@ -134,6 +134,11 @@ public class HomeController {
 		
 		return "youtuberBoard";
 	}
+	@GetMapping("writeUFrm")
+	public String writeUFrm() {
+		
+		return "writeUFrm";
+	}
 	@GetMapping("commuBoard")
 	public String commuBoard() {
 		
@@ -153,6 +158,11 @@ public class HomeController {
 	public String writecom() {
 		
 		return "writecom";
+	}
+	@GetMapping("writeContent")
+	public String writeContent() {
+		
+		return "writeContent";
 	}
 	@GetMapping("commuNav")
 	public String commuNav() {
