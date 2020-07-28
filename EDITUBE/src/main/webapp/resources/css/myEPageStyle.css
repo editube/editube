@@ -151,6 +151,28 @@ font-style: normal;
 	background: #f9f9f9;
 	text-align: center;
 }
+.myEPageReqMContentTitle > .nickMenu{
+	float:left;
+	width:475px;
+	height: 100px;
+	background: #f9f9f9;
+	text-align: center;
+}
+.myEPageReqMContentTitle > .adminMenu{
+	float:left;
+	width:475px;
+	height: 100px;
+	background: #f9f9f9;
+	text-align: center;
+}
+
+.myEPageReqMContentTitle > .statusMenu{
+	float:left;
+	width:550px;
+	height: 100px;
+	background: #f9f9f9;
+	text-align: center;
+}
 
 .dateMenu > p{
 	font-family: 'NanumSquareRound';
@@ -159,6 +181,27 @@ font-style: normal;
 	padding: 10px;
 }
 .contentMenu > p{
+	font-family: 'NanumSquareRound';
+	border-top :0.8px solid #dedfda;
+	border-bottom: 0.8px solid #dedfda;
+	padding: 10px;
+	margin-left: 10px;
+}
+.nickMenu > p{
+	font-family: 'NanumSquareRound';
+	border-top :0.8px solid #dedfda;
+	border-bottom: 0.8px solid #dedfda;
+	padding: 10px;
+	margin-left: 10px;
+}
+.adminMenu > p{
+	font-family: 'NanumSquareRound';
+	border-top :0.8px solid #dedfda;
+	border-bottom: 0.8px solid #dedfda;
+	padding: 10px;
+	margin-left: 10px;
+}
+.statusMenu > p{
 	font-family: 'NanumSquareRound';
 	border-top :0.8px solid #dedfda;
 	border-bottom: 0.8px solid #dedfda;
@@ -187,18 +230,55 @@ font-style: normal;
 	background: #f9f9f9;
 }
 
+.myEPageReqMIncontent > .inNickname{
+	float: left;
+	width: 475px;
+	height: 1150px;
+	background: #f9f9f9;
+}
+
+.myEPageReqMIncontent > .inAdmin{
+	float: left;
+	width: 475px;
+	height: 1150px;
+	background: #f9f9f9;
+}
+.myEPageReqMIncontent > .inAdmin .memOutbtn{
+	float: left;
+	background: #f9f9f9;
+	margin: 16px;
+}
+.myEPageReqMIncontent > .inStatus{
+	float: left;
+	width: 475px;
+	height: 1150px;
+	background: #f9f9f9;
+}
+.myEPageReqMIncontent > .inStatus .statusbtn{
+	float: left;
+	background: #f9f9f9;
+	margin: 16px;
+}
 .inDate > p {
 	font-family: 'NanumSquareRound';
 	font-size: 1.2em;
 	text-align: center;
 	height: 25px;
 }
-
-.inContent > p{
+.inContent > p {
 	font-family: 'NanumSquareRound';
 	font-size: 1.2em;
 	height: 25px;
 	line-height: 25px;
+	text-align: center;
+}
+
+.inNickname > p{
+	font-family: 'NanumSquareRound';
+	font-size: 1.2em;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
 }
 
 

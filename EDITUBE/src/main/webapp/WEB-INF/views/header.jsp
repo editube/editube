@@ -114,7 +114,7 @@ $(document).ready(function(){
 					<li class="headerdrop"><a href="#" class="headerbtn"><img
 							class="user-profile " src="resources/images/${mb.m_oriName}" alt=""></a>
 						<div class="dcont">
-							<a href="./myEPageSc" class="headerdropbox">  My Page</a> 
+							<a onclick ="mypage()" class="headerdropbox">  My Page</a> 
 							<a href="./myInfo">  계정설정</a>
 							<a href="./logout">  Logout</a>
 						</div></li>
@@ -133,6 +133,22 @@ $(document).ready(function(){
 				location.href = './';
 			} else if (id != '') {
 				location.href = './';
+			}
+		}
+		function mypage() {
+			var nickname = "${mb.m_nickname}";
+			var usertype = "${mb.m_usertype}";			
+			
+			if(usertype == 1){
+				if(nickname == '관리자'){
+					location.href = './mDeal'
+				}
+				else{
+					location.href = './myUPageSc'
+				}
+			}
+			if(usertype == 2){
+				location.href = './myEPageSc'
 			}
 		}
 	</script>

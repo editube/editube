@@ -28,12 +28,28 @@
 		resultType="com.editube.dto.MemberDto">
 		SELECT * FROM MINFO WHERE M_ID=#{id}
 	</select>
+	<select id="getMemInfoo" parameterType="String"
+		resultType="com.editube.dto.MemberDto">
+		SELECT * FROM M WHERE M_NICKNAME=#{nick}
+	</select>
 	
 	<insert id="memberInsert" 
 		parameterType="com.editube.dto.MemberDto">
 		INSERT INTO M
 		VALUES(#{m_nickname},#{m_id},DEFAULT,#{m_name},#{m_birth},#{m_password},#{m_phonenum},DEFAULT,DEFAULT,DEFAULT)
 	</insert>
+	
+	<update id="typechange" 
+		parameterType="String">
+		UPDATE M SET M_USERTYPE=2
+		WHERE M_NICKNAME=#{nick}		
+	</update>
+	
+	<update id="typechangee" 
+		parameterType="String">
+		UPDATE M SET M_USERTYPE=1
+		WHERE M_NICKNAME=#{nick}		
+	</update>
 	
 	<select id="idCheck" parameterType="String"
 		resultType="Integer">

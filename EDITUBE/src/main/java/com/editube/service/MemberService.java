@@ -158,6 +158,55 @@ public class MemberService {
 
 		return result;
 	}
+
+	public ModelAndView typechange(String nick, RedirectAttributes rttr) {
+		mv = new ModelAndView();
+		String view = null;
+		
+		try {
+			//member의 데이터를 DB 저장(insert)
+			mDao.typechange(nick);
+			
+			//MemberDto member = new MemberDto();
+			MemberDto member = (MemberDto)session.getAttribute("mb");
+			member.setM_usertype(2);
+			
+			//member = mDao.getMemInfoo(nick);
+			session.setAttribute("mb", member);
+			
+			//회원 등록 성공 -> 로그인 화면으로 전환
+			view = "redirect:myEPageSc";
+		} catch (Exception e) {
+			// 회원 등록 실패 -> 같은 화면에 실패 메시지 전달
+			//e.printStackTrace();
+			view = "redirect:myUPageSc";
+		}
+		
+		mv.setViewName(view);
+		return mv;
+	}
+	public ModelAndView typechangee(String nick, RedirectAttributes rttr) {
+		mv = new ModelAndView();
+		String view = null;
+		
+		try {
+			//member의 데이터를 DB 저장(insert)
+			mDao.typechangee(nick);
+			
+			MemberDto member = mDao.getMemInfoo(nick);
+			session.setAttribute("mb", member);
+			
+			//회원 등록 성공 -> 로그인 화면으로 전환
+			view = "redirect:myUPageSc";
+		} catch (Exception e) {
+			// 회원 등록 실패 -> 같은 화면에 실패 메시지 전달
+			//e.printStackTrace();
+			view = "redirect:myEPageSc";
+		}
+		
+		mv.setViewName(view);
+		return mv;
+	}
 	
 
 }

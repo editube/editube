@@ -124,6 +124,8 @@ ul#userDrop {
 
 a.headerdropbox:hover, .headerdrop:hover {
    background-color: #dbdbdb;
+   color: black;
+   cursor: pointer;
 }
 
 li.headerdrop {
