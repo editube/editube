@@ -72,6 +72,7 @@
 			<exclude-mapping path="/signWelFrm"/>
 			<exclude-mapping path="/upPortfolio"/>
 			<exclude-mapping path="/editContent"/>
+			<exclude-mapping path="/uContent"/>
 			<beans:bean class="com.editube.util.SessionInterceptor"/>
 		</interceptor>
 	</interceptors>

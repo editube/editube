@@ -37,7 +37,7 @@ public class HomeController {
 		
 		return "main";
 	}
-
+	
 	//로그인 화면 전환 메소드
 	@GetMapping("loginFrm")
 	public String loginFrm() {
@@ -54,6 +54,11 @@ public class HomeController {
 		mv = mServ.loginProc(member, rttr);
 
 		return mv;
+	}
+	
+	@GetMapping("uContent")
+	public String uContent() {
+		return "uContent";
 	}
 	
 	@GetMapping("myUPageCash")

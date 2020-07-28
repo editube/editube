@@ -89,7 +89,10 @@ body{
     background-size: 16px;
     background-position: 25px 50%;
     color: #7c7c7c;
-    
+}
+
+.search-bar input:focus {
+	outline: none;
 }
 
 .search-bar input::placeholder {
