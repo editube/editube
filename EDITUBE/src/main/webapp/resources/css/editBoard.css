@@ -1,8 +1,8 @@
 @charset "UTF-8";
 .dropdown-el {
+  margin-top: 10px;
   float:right;
   position: relative;
-  margin-top: 2em;
   min-height: 2em;
   max-height: 2em;
   overflow: hidden;
@@ -78,16 +78,19 @@
 	border-collapse: separate;
 	border-spacing: 10px;
 }
+
 .card {
 	display: inline-block;
 	width: 90%;
 	max-width: 20rem;
-	margin: 1rem;
+	margin-top: 50px;
+	margin-left: 20px;
 	font-size: 1rem;
 	text-decoration: none;
 	overflow: hidden;
 	box-shadow: 0 0 3rem -1rem rgba(0,0,0,0.5);
 	transition: transform 0.1s ease-in-out, box-shadow 0.1s;
+	float: left;
 }
 
 .card-image {
@@ -96,6 +99,10 @@
 	background: #fff center center no-repeat;
 	background-size: cover;
 	filter: blur(3px); /* blur the lowres image */
+	vertical-align: top;
+	max-width: 100%;
+	table-layout: fixed;
+	height: auto;
 }
 
 .card-image > img {
@@ -122,10 +129,4 @@
 .card:hover {
 	transform: translateY(-0.5rem) scale(1.0125);
 	box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,0.5);
-}
-
-td img {
-	vertical-align: top;
-	max-width: 100%;
-	table-layout: fixed;
 }
