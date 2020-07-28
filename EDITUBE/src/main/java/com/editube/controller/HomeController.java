@@ -61,6 +61,10 @@ public class HomeController {
 		return "myUPageCash";
 	}
 	
+	@GetMapping("editContent")
+	public String editContent() {
+		return "editContent";
+	}
 	@GetMapping("myUPageReqM")
 	public String myUPageReqM() {
 		return "myUPageReqM";
