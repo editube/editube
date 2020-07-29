@@ -44,7 +44,7 @@
             <div class="field">
                <textarea name="content" id="content" placeholder="내용을 입력하세요."></textarea>
             </div>
-            <div class="field">
+            <div class="btn-field">
                <button type="button" id=cancel
                   onclick="location.href='./commuBoard'">취소</button>
                <button type="submit">저장</button>
