@@ -12,6 +12,7 @@
 <link href="resources/css/sideBar.css?after" rel="stylesheet">
 <link href="resources/css/editBoard.css?after" rel="stylesheet">
 <link href="resources/css/headerstyle.css?after" rel="stylesheet">
+
 <script
    src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="resources/js/sideBar.js"></script>
@@ -20,13 +21,21 @@
 <!-- Bootstrap core CSS -->
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css"
    rel="stylesheet">
+<style type="text/css">
+.side {
+	padding: 8px 0 0 0;
+}
+</style>     
 </head>
 <body>
 <header>
 		<jsp:include page="header.jsp"></jsp:include>
 </header>
 <div class="all">
+<div class="side">
    <jsp:include page="editNav.jsp"></jsp:include>
+</div>
+<div class="wrap">   
 <table class="editBoard">
    <th><h3>게임방송 편집자 프로필</h3></th>
    <span class="dropdown-el">
@@ -36,14 +45,14 @@
     <input type="radio" name="sortType" id="sort-high"><label for="sort-high">평점순</label>
     <input type="radio" name="sortType" id="sort-brand"><label for="sort-brand">인기순</label>
   </span>
-   <tr class="tr">
+   <tr>
    <td>
    <div class="card">
    <a class="card-image" href="https://michellezauner.bandcamp.com/album/psychopomp-2" target="_blank" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-100.jpg);" data-image-full="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-500.jpg">
          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-100.jpg" alt="Psychopomp" />
    </a>
       <a class="card-description" href="https://michellezauner.bandcamp.com/album/psychopomp-2" target="_blank">
-         <h4>파리갬성으로 편집해드려요</h4>
+         <h2>파리갬성으로 편집해드려요</h2>
          <p>40,000원</p>
       </a>
    </div>      
@@ -65,7 +74,7 @@
          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-100.jpg" alt="Psychopomp" />
    </a>
       <a class="card-description" href="https://michellezauner.bandcamp.com/album/psychopomp-2" target="_blank">
-         <h4>파리갬성으로 편집해드려요</h4>
+         <h2>파리갬성으로 편집해드려요</h2>
          <p>40,000원</p>
       </a>
    </div>
@@ -105,8 +114,8 @@
    <td>
    </td>   
    </tr>
-   
 </table>
+</div>
 </div>
 <script type="text/javascript">
 $('.dropdown-el').click(function(e) {

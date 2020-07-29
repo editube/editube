@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .dropdown-el {
   margin-top: 10px;
+  margin-right: 50px;
   float:right;
   position: relative;
   min-height: 2em;
@@ -79,6 +80,7 @@
 	border-spacing: 10px;
 }
 
+
 .card {
 	display: inline-block;
 	width: 90%;
@@ -92,7 +94,10 @@
 	transition: transform 0.1s ease-in-out, box-shadow 0.1s;
 	float: left;
 }
-
+.card > a:hover {
+	text-decoration: none;
+	color: #535353;
+}
 .card-image {
 	display: block;
 	min-height: 20rem; /* layout hack */
@@ -111,7 +116,6 @@
 	opacity: 0; /* visually hide the img element */
 }
 .card-description {
-	
 	font-family: 'NanumSquareRound'; 
 	display: block;
 	padding: 1em 0.5em;
@@ -129,4 +133,10 @@
 .card:hover {
 	transform: translateY(-0.5rem) scale(1.0125);
 	box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,0.5);
+}
+.all{
+	width: 1400px;
+}
+.side {
+	width: 300px;
 }
