@@ -24,7 +24,7 @@
 		</div>
 		<div class="upPfContentWrap">
 			<textarea class="upPfContent" placeholder="내용" required></textarea>
-		</div>
+		  </div>
 		<div class="pfCheckboxWrap">
 			<div class="pfCheckbox">
 				카테고리 : 

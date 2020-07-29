@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.editube.controller.HomeController;
 import com.editube.dao.MemberDao;
 import com.editube.dto.MemberDto;
+import com.editube.dto.RequestDto;
 
 import lombok.extern.java.Log;
 
@@ -157,6 +158,70 @@ public class MemberService {
 		}
 
 		return result;
+	}
+
+	public ModelAndView getReqList(Integer status) {
+		mv = new ModelAndView();
+		MemberDto member = (MemberDto)session.getAttribute("mb");
+		RequestDto request = new RequestDto();
+		List<RequestDto> reqList = null;
+		String nickname = member.getM_nickname();
+		
+		Map<String, String> lmap = 
+				new HashMap<String, String>();
+		lmap.put("nickname", String.valueOf(nickname));
+		lmap.put("status", String.valueOf(status));
+		
+		if(status==null) {
+			reqList = mDao.getAllReqList(nickname);
+			for(int i=0; i<reqList.size();i++) {
+				request=reqList.get(i);
+				if(request.getRq_status()==1) {
+					request.setRq_msg(request.getRq_targetnickname()+"님이 편집을 요청했습니다.");
+				}
+				else if(request.getRq_status()==2){
+					request.setRq_msg(request.getRq_targetnickname()+"님에게 편집요청을 보냈습니다.");
+				}				
+				else if(request.getRq_status()==3){
+					request.setRq_msg(request.getRq_targetnickname()+"님과 거래중입니다.");
+				}
+				else if(request.getRq_status()==4){
+					request.setRq_msg(request.getRq_targetnickname()+"님과 거래가 완료됬습니다.");
+				}
+				else if(request.getRq_status()==5){
+					request.setRq_msg(request.getRq_targetnickname()+"님과 거래가 취소되었습니다.");
+				}
+			}
+			mv.addObject("reqList", reqList);
+		}
+		else {		
+			reqList = mDao.getReqList(lmap);
+			for(int i=0; i<reqList.size();i++) {
+				request=reqList.get(i);
+				if(request.getRq_status()==1) {
+					request.setRq_msg(request.getRq_targetnickname()+"님이 편집을 요청했습니다.");
+				}
+				else if(request.getRq_status()==2){
+					request.setRq_msg(request.getRq_targetnickname()+"님에게 편집요청을 보냈습니다.");
+				}				
+				else if(request.getRq_status()==3){
+					request.setRq_msg(request.getRq_targetnickname()+"님과 거래중입니다.");
+				}
+				else if(request.getRq_status()==4){
+					request.setRq_msg(request.getRq_targetnickname()+"님과 거래가 완료됬습니다.");
+				}
+				else if(request.getRq_status()==5){
+					request.setRq_msg(request.getRq_targetnickname()+"님과 거래가 취소되었습니다.");
+				}
+			}
+			mv.addObject("reqList", reqList);
+		}
+		
+
+		
+		mv.setViewName("myEPageReqM");   
+		
+		return mv;   
 	}
 	
 

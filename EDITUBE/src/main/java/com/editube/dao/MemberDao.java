@@ -1,8 +1,10 @@
 package com.editube.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.editube.dto.MemberDto;
+import com.editube.dto.RequestDto;
 
 public interface MemberDao {
 
@@ -16,4 +18,8 @@ public interface MemberDao {
 	public int idCheck(String mid);
 	//중복 nickname 확인 메소드
 	public int nickCheck(String mnickname);
+	
+	public List<RequestDto> getAllReqList(String nickname);
+	
+	public List<RequestDto> getReqList(Map<String, String> lmap);
 }

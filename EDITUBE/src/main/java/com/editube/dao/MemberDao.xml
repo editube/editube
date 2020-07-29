@@ -45,6 +45,15 @@
 		SELECT COUNT(*) FROM MINFO WHERE M_NICKNAME=#{mnickname}
 	</select>
 	
+	<select id="getAllReqList" parameterType="String"
+		resultType="com.editube.dto.RequestDto">
+		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname}
+	</select>
+	
+	<select id="getReqList" parameterType="HashMap"
+		resultType="com.editube.dto.RequestDto">
+		SELECT * FROM REQUEST WHERE rq_status = #{status} and rq_mnickname =#{nickname}
+	</select>
 </mapper>
 
 

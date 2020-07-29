@@ -200,11 +200,14 @@ public class HomeController {
 		
 		return "myEPagePf";
 	}
+	
 	@GetMapping("myEPageReqM")
-	public String myEPageReqM() {
+	public ModelAndView myEPageReqM(Integer status) {
+		mv=mServ.getReqList(status);
 		
-		return "myEPageReqM";
+		return mv;
 	}
+	
 	@GetMapping("myEPageSc")
 	public String myEPageSc() {
 		

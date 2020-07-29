@@ -24,11 +24,11 @@
 				<li class="MnavMain"><a>요청관리</a>
 					<ul class="MnavSub">
 						<li><a href="./myEPageReqM">전체내역</a></li>
-						<li><a href="./myEPageReqM">받은요청</a></li>
-						<li><a href="./myEPageReqM">보낸요청</a></li>
-						<li><a href="./myEPageReqM">진행 중</a></li>
-						<li><a href="./myEPageReqM">완료</a></li>
-						<li><a href="./myEPageReqM">거절 내역</a></li>
+						<li><a onclick="revReq(1)">받은요청</a></li>
+						<li><a onclick="revReq(2)">보낸요청</a></li>
+						<li><a onclick="revReq(3)">진행 중</a></li>
+						<li><a onclick="revReq(4)">완료</a></li>
+						<li><a onclick="revReq(5)">거절 내역</a></li>
 					</ul>
 				</li>
 				<li><a href="./myEPageCash">캐쉬 관리</a></li>
@@ -37,3 +37,10 @@
     	</nav>
   	</aside>
 </div>
+
+
+<script type="text/javascript">
+function revReq(num){
+ 	location.href='./myEPageReqM?status=' + num;
+ }
+</script>
