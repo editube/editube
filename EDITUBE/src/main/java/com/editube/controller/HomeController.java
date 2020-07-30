@@ -139,21 +139,8 @@ public class HomeController {
 		
 		return "writeUFrm";
 	}
-	@GetMapping("commuBoard")
-	public String commuBoard() {
-		
-		return "commuBoard";
-	}
-	@GetMapping("commuContent")
-	public String commuContent() {
-		
-		return "commuContent";
-	}
-	@GetMapping("writeCommuFrm")
-	public String writeCommuFrm() {
-		
-		return "writeCommuFrm";
-	}
+	
+	
 	@GetMapping("writecom")
 	public String writecom() {
 		
