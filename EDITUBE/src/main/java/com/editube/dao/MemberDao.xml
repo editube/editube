@@ -19,7 +19,7 @@
 
 <mapper namespace="com.editube.dao.MemberDao">
 	
-	<select id="getPassword" parameterType="String"
+	<select id="getPwd" parameterType="String"
 		resultType="String">
 		SELECT M_PASSWORD FROM M WHERE M_ID=#{id}
 	</select>
@@ -28,17 +28,34 @@
 		resultType="com.editube.dto.MemberDto">
 		SELECT * FROM MINFO WHERE M_ID=#{id}
 	</select>
-	
+	<select id="getMemInfoo" parameterType="String"
+		resultType="com.editube.dto.MemberDto">
+		SELECT * FROM M WHERE M_NICKNAME=#{nick}
+	</select>
 	<insert id="memberInsert" 
 		parameterType="com.editube.dto.MemberDto">
 		INSERT INTO M
-		VALUES(#{m_id},#{m_pwd},#{m_name},#{m_birth},#{m_addr},#{m_phone},DEFAULT)
+		VALUES(#{m_nickname},#{m_id},DEFAULT,#{m_name},#{m_birth},#{m_password},#{m_phonenum},DEFAULT,DEFAULT,DEFAULT)
 	</insert>
-	
+	<update id="typechange" 
+		parameterType="String">
+		UPDATE M SET M_USERTYPE=2
+		WHERE M_NICKNAME=#{nick}		
+	</update>
+	<update id="typechangee" 
+		parameterType="String">
+		UPDATE M SET M_USERTYPE=1
+		WHERE M_NICKNAME=#{nick}		
+	</update>
 	<select id="idCheck" parameterType="String"
 		resultType="Integer">
 		SELECT COUNT(*) FROM MINFO WHERE M_ID=#{mid}
 	</select>
+	<select id="nickCheck" parameterType="String"
+		resultType="Integer">
+		SELECT COUNT(*) FROM MINFO WHERE M_NICKNAME=#{mnickname}
+	</select>
+	
 	
 </mapper>
 

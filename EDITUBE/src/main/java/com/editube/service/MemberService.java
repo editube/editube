@@ -1,5 +1,7 @@
 package com.editube.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +50,7 @@ public class MemberService {
 				session.setAttribute("mb", member);
 				
 				//리다이렉트로 화면을 전환.
-				view = "redirect:list";//list는 uri.
+				view = "redirect:/";//list는 uri.
 			}
 			else {
 				//패스워드 틀림.
@@ -97,7 +99,7 @@ public class MemberService {
 		
 		mv.setViewName(view);
 		return mv;
-	}
+	}	
 
 	public String logout() {
 		//세션 정보 지우기
@@ -125,6 +127,74 @@ public class MemberService {
 
 		return result;
 	}
-	
 
+	public String nickCheck(String mnickname) {
+		String result = null;
+		
+		try {
+			//cnt : 중복 id가 있을 경우 1, 없을 경우 0
+			int cnt = mDao.nickCheck(mnickname);
+			
+			if(cnt == 1) {
+				result = "fail";
+			}
+			else {
+				result = "success";
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	public ModelAndView typechange(String nick, RedirectAttributes rttr) {
+		mv = new ModelAndView();
+		String view = null;
+		
+		try {
+			//member의 데이터를 DB 저장(insert)
+			mDao.typechange(nick);
+			
+			//MemberDto member = new MemberDto();
+			MemberDto member = (MemberDto)session.getAttribute("mb");
+			member.setM_usertype(2);
+			
+			//member = mDao.getMemInfoo(nick);
+			session.setAttribute("mb", member);
+			
+			//회원 등록 성공 -> 로그인 화면으로 전환
+			view = "redirect:myEPageSc";
+		} catch (Exception e) {
+			// 회원 등록 실패 -> 같은 화면에 실패 메시지 전달
+			//e.printStackTrace();
+			view = "redirect:myUPageSc";
+		}
+		
+		mv.setViewName(view);
+		return mv;
+	}
+
+	public ModelAndView typechangee(String nick, RedirectAttributes rttr) {
+		mv = new ModelAndView();
+		String view = null;
+		
+		try {
+			//member의 데이터를 DB 저장(insert)
+			mDao.typechangee(nick);
+			
+			MemberDto member = mDao.getMemInfoo(nick);
+			session.setAttribute("mb", member);
+			
+			//회원 등록 성공 -> 로그인 화면으로 전환
+			view = "redirect:myUPageSc";
+		} catch (Exception e) {
+			// 회원 등록 실패 -> 같은 화면에 실패 메시지 전달
+			//e.printStackTrace();
+			view = "redirect:myEPageSc";
+		}
+		
+		mv.setViewName(view);
+		return mv;
+	}
 }
