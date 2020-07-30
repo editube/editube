@@ -54,6 +54,11 @@
 		resultType="com.editube.dto.RequestDto">
 		SELECT * FROM REQUEST WHERE rq_status = #{status} and rq_mnickname =#{nickname}
 	</select>
+	
+	<update id="statusChange" parameterType="com.editube.dto.RequestDto">
+		UPDATE REQUEST SET RQ_STATUS = #{rq_status}
+		WHERE RQ_NUM=#{rq_num}
+	 </update>
 </mapper>
 
 

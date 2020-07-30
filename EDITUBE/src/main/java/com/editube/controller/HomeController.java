@@ -201,6 +201,13 @@ public class HomeController {
 		return "myEPagePf";
 	}
 	
+	@GetMapping("statusChange")
+	public ModelAndView statusChange(Integer rnum,Integer unum) {
+		mv=mServ.statusChange(rnum, unum);
+		
+		return mv;
+	}
+	
 	@GetMapping("myEPageReqM")
 	public ModelAndView myEPageReqM(Integer status) {
 		mv=mServ.getReqList(status);

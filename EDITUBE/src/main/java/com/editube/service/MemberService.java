@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -222,6 +223,27 @@ public class MemberService {
 		mv.setViewName("myEPageReqM");   
 		
 		return mv;   
+	}
+
+	@Transactional
+	public ModelAndView statusChange(Integer rnum, Integer unum) {
+		mv = new ModelAndView();
+		MemberDto mDto = (MemberDto)session.getAttribute("mb");
+		RequestDto rDto = new RequestDto();
+		String view = null;
+		
+		rDto.setRq_num(rnum);
+		rDto.setRq_status(unum);
+		
+		try {
+			mDao.statusChange(rDto);
+			view= "redirect:myEPageReqM";
+		} catch (Exception e) {
+			view= "redirect:myEPageReqM";
+		}
+		
+		mv.setViewName(view);
+		return mv;
 	}
 	
 

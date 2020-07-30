@@ -18,8 +18,10 @@ public interface MemberDao {
 	public int idCheck(String mid);
 	//중복 nickname 확인 메소드
 	public int nickCheck(String mnickname);
-	
+	//마이페이지 요청관리(전체메뉴)
 	public List<RequestDto> getAllReqList(String nickname);
-	
+	//마이페이지 요청관리(서브메뉴)
 	public List<RequestDto> getReqList(Map<String, String> lmap);
+	//마이페이지 요청버튼관리
+	public void statusChange(RequestDto rDto);
 }
