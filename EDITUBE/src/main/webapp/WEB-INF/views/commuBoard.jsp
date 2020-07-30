@@ -30,7 +30,9 @@
 
 </head>
 <body>
+<header>
    <jsp:include page="header.jsp"></jsp:include>
+</header>   
    <div class="all">
       <jsp:include page="commuNav.jsp"></jsp:include>
       <div class="ucontent">

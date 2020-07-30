@@ -53,7 +53,9 @@
 
 </head>
 <body>
+<header>
 	<jsp:include page="header.jsp"></jsp:include>
+</header>
 	<div class="all">
 		<jsp:include page="youtubeNav.jsp"></jsp:include>
 		<div id="page-wrapper" class="clearfix">

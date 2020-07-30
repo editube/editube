@@ -39,6 +39,7 @@ body{
    width: 1400px;
    margin: 0 auto;
    height: 70px;
+   z-index: 600;
 }
 
 .header-left {
@@ -344,12 +345,12 @@ li.clearfix{
 	 background: white;
 	 width: 320px;
 	 position: absolute;
-	 top:60px;
 	 right:8%;
 	 border-radius: 3px;
 	 padding: 20px;
 	 display: none;
 	 z-index: 450;
+	 margin-top: 60px;
 }
 
 

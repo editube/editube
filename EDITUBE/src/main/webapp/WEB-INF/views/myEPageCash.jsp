@@ -39,6 +39,10 @@
 		</select>
 		<input type="button" class="CashDateBtn" value="조회">
 		</p>
+		<div>
+		<input type="button" onclick="location.href='./chargeCash'" class="CashCharge" value="캐시충전">
+		<input type="button" onclick="location.href='./cashTransform'" class="CashCharge" value="캐시환전">
+		</div>
 	</div>
 	<div class="myEPageCashContentWrap">
 		<div class="myEPageCashContentTitle">

@@ -74,6 +74,8 @@
 			<exclude-mapping path="/mDeal"/>
 			<exclude-mapping path="/typechange"/>
 			<exclude-mapping path="/typechangee"/>
+			<exclude-mapping path="/chargeCash"/>
+			<exclude-mapping path="/cashTransform"/>
 			<beans:bean class="com.editube.util.SessionInterceptor"/>
 		</interceptor>
 	</interceptors>

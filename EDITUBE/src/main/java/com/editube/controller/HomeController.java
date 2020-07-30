@@ -207,6 +207,20 @@ public class HomeController {
 		return "mDeal";
 	}
 	
+	@GetMapping("chargeCash")
+	public String chargeCash() {
+		
+		return "chargeCash";
+	}
+	
+	@GetMapping("cashTransform")
+	public String cashTransform() {
+		
+		return "cashTransform";
+	}
+	
+	
+	
 	@GetMapping("typechange")
 	public ModelAndView typechange(String nick,	RedirectAttributes rttr) {
 		logger.info("typechange()");

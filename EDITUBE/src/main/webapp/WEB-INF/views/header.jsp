@@ -180,14 +180,8 @@ $(document).ready(function(){
     
    </div><!-- mesege end -->
    
-   
-   
-   
-   
   </div> <!--end shopping-cart -->
 </div> <!--end container -->
-       
-       
        
          <nav class="t_nav">
             <ul id="userDrop">
