@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 
 <html>
 <head>
@@ -45,9 +44,9 @@ $(document).ready(function(){
 		<div id="page-wrapper" class="clearfix">
 			<h1>Write</h1>
 
-			<form name="writeCommuFrm" action="writeCom" method="post"
+			<form name="writeCommuFrm" action="writeCom" method="post" enctype="multipart/form-data"
 				id="file-form">
-
+				<input type="hidden" name="cbnickname" value="${mb.m_nickname}">
 				<div class="field">
 					<input type="text" name="cbtitle" id="filename" autofocus
 						placeholder="제목을 입력하세요." required>

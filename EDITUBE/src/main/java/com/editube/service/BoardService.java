@@ -83,7 +83,7 @@ public class BoardService {
 		
 		try {
 			cbDao.boardInsert(board);
-			view="redirect:commuContent";
+			view="redirect:commuContent?cbnum=" + board.getCbnum();
 		}catch(Exception e){
 			view="redirect:writeCommuFrm";
 		}

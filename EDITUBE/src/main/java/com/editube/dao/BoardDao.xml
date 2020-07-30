@@ -28,6 +28,6 @@
 	SELECT CBOARD_SEQ.NEXTVAL FROM DUAL
 	</selectKey>
 	INSERT INTO CB
-	VALUES(${cbnum},#{cbnickname},#{cbcontents},#{cbtitle},DEFAULT)
+	VALUES(${cbnum},#{cbnickname},#{cbcontent},#{cbtitle},DEFAULT)
 	</insert>
 </mapper>

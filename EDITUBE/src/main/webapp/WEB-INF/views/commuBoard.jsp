@@ -66,7 +66,7 @@ $(document).ready(function(){
 					<div class="data-row">
 						<div class="u-bnum p-10">${cbitem.cbnum}</div>
 						<div class="u-title p-60">
-							<a href="contents?bnum=${cbitem.cbnum}"> ${cbitem.cbtitle}</a>
+							<a href="commuContent?cbnum=${cbitem.cbnum}"> ${cbitem.cbtitle}</a>
 						</div>
 						<div class="u-name p-15">${cbitem.cbnickname}</div>
 						<div class="u-date p-15">${cbitem.cbdate}</div>

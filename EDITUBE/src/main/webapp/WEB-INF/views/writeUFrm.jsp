@@ -79,27 +79,27 @@
 				</div>
 				<div class="checkBox">
 				<div class="cpack">
-					<input class="ckb" id="check1" type="checkbox" name="check"
+					<input class="ckb" id="check1" type="radio" name="check"
 						> <label id="che" for="check1">게임 방송</label>
 				</div>
 				<div class="cpack">
-					<input class="ckb" id="check2" type="checkbox" name="check"
+					<input class="ckb" id="check2" type="radio" name="check"
 						> <label id="che" for="check2">먹방</label>
 				</div>
 				<div class="cpack">
-					<input class="ckb" id="check3" type="checkbox" name="check"
+					<input class="ckb" id="check3" type="radio" name="check"
 						> <label id="che" for="check3">브이로그</label>
 				</div>
 				<div class="cpack">
-					<input class="ckb" id="check4" type="checkbox" name="check"
+					<input class="ckb" id="check4" type="radio" name="check"
 						> <label id="che" for="check4">뷰티</label>
 				</div>
 				<div class="cpack">
-					<input class="ckb" id="check5" type="checkbox" name="check"
+					<input class="ckb" id="check5" type="radio" name="check"
 						> <label id="che" for="check5">음악 방송</label>
 				</div>
 				<div class="cpack">
-					<input class="ckb" id="check6" type="checkbox" name="check"
+					<input class="ckb" id="check6" type="radio" name="check"
 						> <label id="che" for="check6">기타</label>
 				</div>
 				</div>

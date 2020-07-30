@@ -31,7 +31,7 @@ $(document).ready(function(){
 	$('#upbtn').hide();
 	$('#delbtn').hide();
 	var mnickname = '${mb.mnickname}';
-	var cbmnickname = '${board.cbmnickname}';
+	var cbmnickname = '${board.cbnickname}';
 	
 	if(mnickname==cbmnickname){
 		$('#upbtn').show();
@@ -67,7 +67,7 @@ $(document).ready(function(){
          <table>
             <tr height="30">
                <td bgcolor="red" align="center">작성자</td>
-               <td width="150">${board.cbmnickname}</td>
+               <td width="150">${board.cbnickname}</td>
                <td bgcolor="red" align="center">작성일</td>
                <td width="200">${board.cbdate}</td>
             </tr>
@@ -77,7 +77,7 @@ $(document).ready(function(){
             </tr>
             <tr height="200">
                <td bgcolor="red" align="center">내용</td>
-               <td colspan="5">${board.cbcontents}</td>
+               <td colspan="5">${board.cbcontent}</td>
             </tr>
             <tr>
                <td colspan="6" align="right">
@@ -85,7 +85,7 @@ $(document).ready(function(){
                   <button class="btn-write" id="upbtn"
                      onclick="location.hrdf='./upCommuFrm?bnum=${board.cbnum}'">수정</button>
                   <button class="btn-write" id="delbtn"
-                     onclick="goDelete(${board.cbnum},'${mb.cbmnickname}','${board.cbmnickname}')">삭제</button>
+                     onclick="goDelete(${board.cbnum},'${mb.cbnickname}','${board.cbnickname}')">삭제</button>
                </td>
             </tr>
          </table>
@@ -125,7 +125,7 @@ $(document).ready(function(){
                   name="r_contents" id="comment" placeholder="댓글을 적어주세요"
                   style="resize: none"></textarea>
                <input class="btn-write" type="button" value="댓글전송"
-                  onclick="replyInsert(${board.bnum})"
+                  onclick="replyInsert(${board.cbnum})"
                   style="width: 100%; margin-bottom: 30px">
             </form>
          </div>
