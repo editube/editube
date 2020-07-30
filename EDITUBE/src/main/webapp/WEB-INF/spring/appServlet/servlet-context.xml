@@ -58,6 +58,7 @@
 			<exclude-mapping path="/youtuberBoard"/>
 			<exclude-mapping path="/commuBoard"/>
 			<exclude-mapping path="/editBoard"/>
+			<exclude-mapping path="/editContent"/>
 			<exclude-mapping path="/commuContent"/>
 			<exclude-mapping path="/writeCommuFrm"/>
 			<exclude-mapping path="/writecom"/>
@@ -69,6 +70,10 @@
 			<exclude-mapping path="/myEPageSc"/>
 			<exclude-mapping path="/signWelFrm"/>
 			<exclude-mapping path="/upPortfolio"/>
+			<exclude-mapping path="/writeUFrm"/>
+			<exclude-mapping path="/mDeal"/>
+			<exclude-mapping path="/typechange"/>
+			<exclude-mapping path="/typechangee"/>
 			<beans:bean class="com.editube.util.SessionInterceptor"/>
 		</interceptor>
 	</interceptors>

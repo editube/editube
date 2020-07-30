@@ -164,6 +164,16 @@ public class HomeController {
 		
 		return "editBoard";
 	}
+	@GetMapping("editContent")
+	public String editContent() {
+		
+		return "editContent";
+	}
+	@GetMapping("writeUFrm")
+	public String writeUFrm() {
+		
+		return "writeUFrm";
+	}
 	
 	
 	@GetMapping("myEPage")
@@ -190,6 +200,30 @@ public class HomeController {
 	public String myEPageSc() {
 		
 		return "myEPageSc";
+	}
+	@GetMapping("mDeal")
+	public String mDeal() {
+		
+		return "mDeal";
+	}
+	
+	@GetMapping("typechange")
+	public ModelAndView typechange(String nick,	RedirectAttributes rttr) {
+		logger.info("typechange()");
+
+		//서비스에서 처리
+		mv = mServ.typechange(nick, rttr);
+
+		return mv;
+	}
+	@GetMapping("typechangee")
+	public ModelAndView typechangee(String nick,	RedirectAttributes rttr) {
+		logger.info("typechangee()");
+		
+		//서비스에서 처리
+		mv = mServ.typechangee(nick, rttr);
+		
+		return mv;
 	}
 
 	//로그아웃 처리
@@ -223,5 +257,6 @@ public class HomeController {
 		
 		return result;
 	}
+	
 	
 }

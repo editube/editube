@@ -29,10 +29,10 @@ $(document).ready(function(){
                <div class="container">
                   <nav id="Hmenu">
 
-                     <input type="checkbox" id="toggle-nav" /> <label
-                        id="toggle-nav-label" for="toggle-nav"><img id="xicon"
-                        src="resources/images/xicon.png"></label>
-
+                     <input type="checkbox" id="toggle-nav" /> 
+                     <label id="toggle-nav-label" for="toggle-nav">
+                     	<img id="xicon" src="resources/images/xicon.png">
+                     </label>
                      <div class="box">
 
                         <ul>
@@ -71,12 +71,9 @@ $(document).ready(function(){
                               <li><a href="./commuBoard">Free Board</a></li>
                               <li><a href="./commuBoard">Together</a></li>
                               <li><a href="./commuBoard">Casting</a></li>
-
                            </ul>
-
                         </ul>
                      </div>
-
                   </nav>
                </div>
             </div>
@@ -96,7 +93,7 @@ $(document).ready(function(){
 
 
       <div class="search-bar">
-         <input type="text" placeholder="Search..." />
+         <input type="text" placeholder="Search..."/>
       </div>
 
       <div id="bef">
@@ -104,28 +101,112 @@ $(document).ready(function(){
             <a href="./loginFrm">Login</a> &nbsp; / &nbsp; <a href="./signPageFrm">Sign Up</a>
          </div>
       </div>
+      
+         
       <div class="user-settings" id="suc">
-         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+         
+       <a href="#" id="cart">  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
             fill="currentColor" stroke="currentColor" stroke-width="1.5"
             stroke-linecap="round" stroke-linejoin="round" style="width: 35px; float: left;">
-    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" /></svg>
+            
+            <img src="resources/images/bell.png" alt="" style="width: 35px; float: left;">
+            
+         </svg>
+       </a>
+       
+<div class="container">
+  <div class="shopping-cart">
+    <div class="shopping-cart-header">
+      <a href="#" id="toggle1"> 
+   			 <span id="badge1">알림</span>
+   	  </a>
+   	  <a href="#" id="toggle2"> 
+   			 <span id="badge2">1:1문의</span>
+   	  </a>
+    </div>
+  
+  	<div class="mesege">
+  
+    <ul class="shopping-cart-items">
+      <li class="clearfix">
+        <span class="item-name">"파리갬성박성기"</span>
+        <span class="item-price">님 으로부터 알림 도착</span>
+       </li>
+
+     
+       <li class="clearfix">
+        <span class="item-name">"사다리싫어하는정혜명"</span>
+        <span class="item-price">님 으로부터 알림 도착</span>
+       </li>
+      </li>
+
+    
+       <li class="clearfix">
+        <span class="item-name">"먹방요정심형용"</span>
+        <span class="item-price">님 으로부터 알림 도착</span>
+       </li>
+      </li>
+    </ul>
+
+    <a href="./myEPageReqM" class="button">전체보기</a>
+    
+   </div><!-- mesege end -->
+   
+   
+   <div class="mesege2">
+  
+    <ul class="shopping-cart-items">
+      <li class="clearfix">
+        <span class="item-name">"위즈덤"</span>
+        <span class="item-price">님 으로부터 메세지 도착</span>
+       </li>
+
+     
+       <li class="clearfix">
+        <span class="item-name">"두빵댕"</span>
+        <span class="item-price">님 으로부터 메세지 도착</span>
+       </li>
+      </li>
+
+    
+       <li class="clearfix">
+        <span class="item-name">"먹방요정심형용"</span>
+        <span class="item-price">님 으로부터 메세지 도착</span>
+       </li>
+      </li>
+    </ul>
+
+    <a href="./myEPageReqM" class="button">전체보기</a>
+    
+   </div><!-- mesege end -->
+   
+   
+   
+   
+   
+  </div> <!--end shopping-cart -->
+</div> <!--end container -->
+       
+       
+       
          <nav class="t_nav">
             <ul id="userDrop">
-               <li class="headerdrop"><a href="#" class="headerbtn"><img
-                     class="user-profile " src="resources/images/${mb.m_oriName}" alt=""></a>
-                  <div class="dcont">
-                     <a onclick ="mypage()" class="headerdropbox">  My Page</a> 
-                     <a href="./myInfo">  계정설정</a>
-                     <a href="./logout">  Logout</a>
-                  </div></li>
+            	<li class="headerdrop">
+            		<a href="#" class="headerbtn">
+            			<img class="user-profile " src="resources/images/${mb.m_oriName}" alt="">
+					</a>
+            	<div class="dcont">
+                    <a onclick ="mypage()" class="headerdropbox"> My Page</a> 
+                    <a href="./myInfo"> 계정설정</a>
+                    <a href="./logout"> Logout</a>
+                </div>
+               </li>
             </ul>
          </nav>
       </div>
 </div>
 
-   </div>
-
-   <script >
+   <script>
       function gohome() {
          var id = '${mb.m_id}';
 
@@ -151,4 +232,55 @@ $(document).ready(function(){
             location.href = './myEPageSc'
          }
       }
+      
+      
+      (function(){
+    	  $("#cart").on("click", function() {
+    	    $(".shopping-cart").fadeToggle("fast");
+    	  })
+    	  
+    	})();
+      
+      
+      
+      (function(){
+    	  $("#toggle1").on("click", function() {
+    	    $(".mesege").fadeIn();
+    	    $("#badge1").css("background-color", "#0a4bd3");
+    	    $("#badge2").css("background-color", "#6394f8");
+    	  });
+    	  
+    	})();
+      
+      
+      (function(){
+    	  $("#toggle2").on("click", function() {
+    	    $(".mesege2").fadeIn();
+    	    $("#badge1").css("background-color", "#6394f8");
+    	    $("#badge2").css("background-color", "#0a4bd3");
+    	  });
+    	  
+    	})();
+      
+      
+      (function(){
+    	  $("#toggle2").on("click", function() {
+    	    $(".mesege").hide();
+    	  });
+    	  
+    	})();
+      
+      
+      (function(){
+    	  $("#toggle1").on("click", function() {
+    	    $(".mesege2").hide();
+    	  });
+    	  
+    	})();
+      
+      
+           
+      
+      
+       
    </script>

@@ -92,6 +92,7 @@ font-style: normal;
 
 .MnavMain:hover .MnavSub{
 	display: block;
+	cursor: pointer;
 }
 
 /* 이미지 관련 */

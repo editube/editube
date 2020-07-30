@@ -15,6 +15,7 @@ body {
 }
 
 .side {
+	z-index:1;
     width: 17%;
     min-width: 300px;
     height: 100%;

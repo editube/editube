@@ -19,9 +19,9 @@
 	<aside class="sidebar">
     	<nav class="nav">
      		<ul>
-				<li class="active"><a href="#">유튜버모드로 변경</a></li>
+				<li class="active"><a onclick="typechangee()" style="cursor: pointer; color: black;">유튜버모드로 변경</a></li>
 				<li><a href="./myEPageSc">찜한 유튜버</a></li>
-				<li class="MnavMain"><a>요청관리</a>
+				<li class="MnavMain"><a href="./myEPageReqM">요청관리</a>
 					<ul class="MnavSub">
 						<li><a href="./myEPageReqM">전체내역</a></li>
 						<li><a href="./myEPageReqM">받은요청</a></li>
@@ -37,3 +37,14 @@
     	</nav>
   	</aside>
 </div>
+<script >
+		function typechangee() {
+			var usertype = "${mb.m_usertype}";	
+			var nickname = "${mb.m_nickname}";
+			console.log(usertype);
+			
+			if(usertype == 2){
+					location.href = './typechangee?nick='+nickname;
+				}
+		}
+	</script>

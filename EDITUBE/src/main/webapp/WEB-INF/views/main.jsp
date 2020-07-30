@@ -23,7 +23,7 @@
   <!-- Custom styles for this template -->
   <link href="resources/css/landing-page.min.css?after" rel="stylesheet">
   
-  <link href="resources/css/headerstyle.css" rel="stylesheet">
+  <link href="resources/css/headerstyle.css?after" rel="stylesheet">
     <link href="resources/css/footerStyle.css" rel="stylesheet">
 
 </head>
