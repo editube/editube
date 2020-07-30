@@ -202,8 +202,8 @@ public class HomeController {
 	}
 	
 	@GetMapping("statusChange")
-	public ModelAndView statusChange(Integer rnum,Integer unum) {
-		mv=mServ.statusChange(rnum, unum);
+	public ModelAndView statusChange(Integer rnum, Integer myNum, String rtnick, Integer targetNum) {
+		mv=mServ.statusChange(rnum, myNum, rtnick, targetNum);
 		
 		return mv;
 	}

@@ -7,7 +7,8 @@ import java.sql.Timestamp;
 public class RequestDto {
 	private int rq_num;
 	private int rq_status;
-	private int rq_content;
+	private int rq_type;
+	private int rq_targetstatus;
 	private String rq_mnickname;
 	private String rq_targetnickname;
 	private Timestamp rq_date;

@@ -163,9 +163,9 @@ public class MemberService {
 
 	public ModelAndView getReqList(Integer status) {
 		mv = new ModelAndView();
-		MemberDto member = (MemberDto)session.getAttribute("mb");
 		RequestDto request = new RequestDto();
 		List<RequestDto> reqList = null;
+		MemberDto member = (MemberDto)session.getAttribute("mb");
 		String nickname = member.getM_nickname();
 		
 		Map<String, String> lmap = 
@@ -177,20 +177,13 @@ public class MemberService {
 			reqList = mDao.getAllReqList(nickname);
 			for(int i=0; i<reqList.size();i++) {
 				request=reqList.get(i);
-				if(request.getRq_status()==1) {
-					request.setRq_msg(request.getRq_targetnickname()+"님이 편집을 요청했습니다.");
+				if(request.getRq_mnickname().equals(member.getM_nickname())) {
+					InsertMsg(request.getRq_status());
+					request.setRq_msg(request.getRq_targetnickname()+InsertMsg(request.getRq_status()));					
 				}
-				else if(request.getRq_status()==2){
-					request.setRq_msg(request.getRq_targetnickname()+"님에게 편집요청을 보냈습니다.");
-				}				
-				else if(request.getRq_status()==3){
-					request.setRq_msg(request.getRq_targetnickname()+"님과 거래중입니다.");
-				}
-				else if(request.getRq_status()==4){
-					request.setRq_msg(request.getRq_targetnickname()+"님과 거래가 완료됬습니다.");
-				}
-				else if(request.getRq_status()==5){
-					request.setRq_msg(request.getRq_targetnickname()+"님과 거래가 취소되었습니다.");
+				else {
+					InsertMsg(request.getRq_targetstatus());
+					request.setRq_msg(request.getRq_mnickname()+InsertMsg(request.getRq_targetstatus()));		
 				}
 			}
 			mv.addObject("reqList", reqList);
@@ -199,41 +192,64 @@ public class MemberService {
 			reqList = mDao.getReqList(lmap);
 			for(int i=0; i<reqList.size();i++) {
 				request=reqList.get(i);
-				if(request.getRq_status()==1) {
-					request.setRq_msg(request.getRq_targetnickname()+"님이 편집을 요청했습니다.");
+				if(request.getRq_mnickname().equals(member.getM_nickname())) {
+					InsertMsg(request.getRq_status());
+					request.setRq_msg(request.getRq_targetnickname()+InsertMsg(request.getRq_status()));					
 				}
-				else if(request.getRq_status()==2){
-					request.setRq_msg(request.getRq_targetnickname()+"님에게 편집요청을 보냈습니다.");
-				}				
-				else if(request.getRq_status()==3){
-					request.setRq_msg(request.getRq_targetnickname()+"님과 거래중입니다.");
-				}
-				else if(request.getRq_status()==4){
-					request.setRq_msg(request.getRq_targetnickname()+"님과 거래가 완료됬습니다.");
-				}
-				else if(request.getRq_status()==5){
-					request.setRq_msg(request.getRq_targetnickname()+"님과 거래가 취소되었습니다.");
+				else {
+					InsertMsg(request.getRq_targetstatus());
+					request.setRq_msg(request.getRq_mnickname()+InsertMsg(request.getRq_targetstatus()));		
 				}
 			}
 			mv.addObject("reqList", reqList);
 		}
 		
-
-		
 		mv.setViewName("myEPageReqM");   
 		
 		return mv;   
 	}
-
+	
+	public String InsertMsg(Integer num) {
+		String msg =null;
+		
+		if(num==1) {
+			msg="님이 거래를 요청했습니다.";
+		}
+		else if(num==2){
+			msg="님에게 거래요청을 보냈습니다.";
+		}				
+		else if(num==3){
+			msg="님과 거래중입니다.";
+		}
+		else if(num==4){
+			msg="님의 완료요청을 대기중입니다.";
+		}
+		else if(num==5){
+			msg="님의 완료요청이 도착했습니다.";
+		}
+		else if(num==6){
+			msg="님과의 거래가 취소요청중 입니다.";
+		}
+		else if(num==7){
+			msg="님과의 거래가 완료됬습니다.";
+		}
+		else if(num==8){
+			msg="님과의 거래가 취소되었습니다.";	
+		}
+		return msg;
+	}
+	
 	@Transactional
-	public ModelAndView statusChange(Integer rnum, Integer unum) {
+	public ModelAndView statusChange(Integer rnum, Integer myNum, String rtnick, Integer targetNum) {
 		mv = new ModelAndView();
-		MemberDto mDto = (MemberDto)session.getAttribute("mb");
 		RequestDto rDto = new RequestDto();
 		String view = null;
+		MemberDto mDto = (MemberDto)session.getAttribute("mb");
 		
+		rDto.setRq_targetnickname(rtnick);
 		rDto.setRq_num(rnum);
-		rDto.setRq_status(unum);
+		rDto.setRq_status(myNum);
+		rDto.setRq_targetstatus(targetNum);
 		
 		try {
 			mDao.statusChange(rDto);

@@ -47,16 +47,16 @@
 	
 	<select id="getAllReqList" parameterType="String"
 		resultType="com.editube.dto.RequestDto">
-		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname}
+		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname} or rq_targetnickname= #{nickname}
 	</select>
 	
 	<select id="getReqList" parameterType="HashMap"
 		resultType="com.editube.dto.RequestDto">
-		SELECT * FROM REQUEST WHERE rq_status = #{status} and rq_mnickname =#{nickname}
+		SELECT * FROM REQUEST WHERE rq_status = #{status} and (rq_mnickname =#{nickname} or rq_targetnickname=#{nickname})
 	</select>
 	
 	<update id="statusChange" parameterType="com.editube.dto.RequestDto">
-		UPDATE REQUEST SET RQ_STATUS = #{rq_status}
+		UPDATE REQUEST SET RQ_STATUS = #{rq_status}, RQ_TARGETSTATUS = #{rq_targetstatus}
 		WHERE RQ_NUM=#{rq_num}
 	 </update>
 </mapper>

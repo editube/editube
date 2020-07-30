@@ -39,24 +39,43 @@
 					<div class="inDate">${reqItem.rq_date}</div>
 					<div class="inContent">${reqItem.rq_msg}</div>
 					<div class="reqBtn">
-					 ㅜ	<!-- 관리자와의 요청대기중 상태 필요-->
+					  	<!-- 관리자와의 요청대기중 상태 필요-->
 						<c:if test="${reqItem.rq_status == 1}">
 							<button type="button" class="btnReq1" 
-							onclick="statusChange('${reqItem.rq_targetnickname}', 1, ${reqItem.rq_num})">수락</button>
+							onclick="statusChange('${reqItem.rq_targetnickname}', 1, ${reqItem.rq_num}
+							, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">수락</button>
 							<button type="button" class="btnReq2"
-							onclick="statusChange('${reqItem.rq_targetnickname}', 2, ${reqItem.rq_num})">거절</button>
+							onclick="statusChange('${reqItem.rq_targetnickname}', 2, ${reqItem.rq_num}
+							, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">거절</button>
 						</c:if>
 						<c:if test="${reqItem.rq_status == 2}">
 							<button type="button" class="btnSend1" disabled="disabled">대기중</button>
 							<button type="button" class="btnSend2"
-							onclick="statusChange('${reqItem.rq_targetnickname}', 3, ${reqItem.rq_num})">취소</button>
+							onclick="statusChange('${reqItem.rq_targetnickname}', 3, ${reqItem.rq_num}
+							, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">취소</button>
 						</c:if>
 						<c:if test="${reqItem.rq_status == 3}">
 							<button type="button" class="btnIng1">1:1문의</button>
 							<button type="button" class="btnIng2"
-							onclick="statusChange('${reqItem.rq_targetnickname}', 4, ${reqItem.rq_num})">취소</button>
+							onclick="statusChange('${reqItem.rq_targetnickname}', 4, ${reqItem.rq_num}
+							, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">취소</button>
 							<button type="button" class="btnIng3"
-							onclick="statusChange('${reqItem.rq_targetnickname}', 5, ${reqItem.rq_num})">완료요청</button>
+							onclick="statusChange('${reqItem.rq_targetnickname}', 5, ${reqItem.rq_num}
+							, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">완료요청</button>
+						</c:if>
+						<c:if test="${reqItem.rq_status == 4}">
+							<button type="button" disabled="disabled">대기중</button>
+						</c:if>
+						<c:if test="${reqItem.rq_status == 5}">
+							<button type="button" class="comReq1" 
+							onclick="statusChange('${reqItem.rq_targetnickname}', 6, ${reqItem.rq_num}
+							, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">수락</button>
+							<button type="button" class="comReq2"
+							onclick="statusChange('${reqItem.rq_targetnickname}', 7, ${reqItem.rq_num}
+							, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">거절</button>
+						</c:if>
+						<c:if test="${reqItem.rq_status == 6}">
+							<button type="button" disabled="disabled">대기중</button>
 						</c:if>
 					</div>
 			</c:forEach>
@@ -66,68 +85,157 @@
 	</div>
 </body>
 <script type="text/javascript">
-function statusChange(nick,snum, rnum){
-	console.log(nick,snum, rnum);
+function statusChange(rtnick,snum, rnum, mnick, rnick){
+	console.log(rtnick,snum, rnum, mnick, rnick);
 	
-	var unum=0;
+	var myNum=0;
+	var targetNum=0;
 	
-	if(snum == 1){
-		unum=3;
-		var stc1 = confirm("정말로진짜로 '"+nick+"'님의 요청을 수락하시겠습니까?");
-		if(stc1 == true){
-			alert("수락되었습니다.");
-			location.href='./statusChange?rnum=' + rnum + "&unum=" + unum;
+	if(mnick==rnick){
+			
+		if(snum == 3){
+			myNum=8;
+			targetNum=8;
+			var stc = confirm("정말로진짜로 '"+rtnick+"'님에게 보낸요청을 취소하시겠습니까?");
+			if(stc == true){
+				alert("보낸요청이 취소되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
-		else{
-			alert("취소되었습니다.");
+		
+		if(snum == 4){
+			myNum=6;
+			targetNum=6;
+			var stc = confirm("정말로진짜로 진행중인 거래를 취소하시겠습니까?");
+			if(stc == true){
+				alert("취소요청이 완료되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum; 
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
-	}
-	
-	if(snum == 2){
-		unum=5;
-		var stc2 = confirm("정말로진짜로 '"+nick+"'님의 요청을 거절하시겠습니까?");
-		if(stc2 == true){
-			alert("거절되었습니다.");
-			location.href='./statusChange?rnum=' + rnum + "&unum=" + unum;
+		
+		if(snum == 5){
+			myNum=4;
+			targetNum=5;
+			var stc = confirm("거래 완료 요청을 진행하시겠습니까?");
+			if(stc == true){
+				alert("완료요청이 완료되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
-		else{
-			alert("취소되었습니다.");
+		
+		if(snum == 6){
+			myNum=7;
+			targetNum=7;
+			var stc = confirm("거래 완료 요청을 수락하시겠습니까?");
+			if(stc == true){
+				alert("거래가 완료되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
-	}
-	
-	if(snum == 3){
-		unum=5;
-		var stc3 = confirm("정말로진짜로 '"+nick+"'님에게 보낸요청을 취소하시겠습니까?");
-		if(stc3 == true){
-			alert("보낸요청이 취소되었습니다.");
-			location.href='./statusChange?rnum=' + rnum + "&unum=" + unum;
+		
+		if(snum == 7){
+			myNum=3;
+			targetNum=3;
+			var stc = confirm("거래 완료 요청을 '거절' 하시겠습니까?");
+			if(stc == true){
+				alert("완료요청이 '거절' 되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
-		else{
-			alert("취소되었습니다.");
+		
+	}else if(mnick==rtnick){
+		
+		if(snum == 1){
+			myNum=3;
+			targetNum=3;
+			var stc = confirm(rnick+"님의 요청을 수락하시겠습니까");
+			if(stc == true){
+				alert("수락되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
-	}
-	
-	if(snum == 4){
-		unum=5;
-		var stc4 = confirm("정말로진짜로 진행중인 거래를 취소하시겠습니까?");
-		if(stc4 == true){
-			alert("취소요청이 완료되었습니다.");
-			location.href='./statusChange?rnum=' + rnum + "&unum=" + unum;
+		
+		if(snum == 2){
+			myNum=8;
+			targetNum=8;
+			var stc = confirm(rnick+"님의 요청을 거절하시겠습니까");
+			if(stc == true){
+				alert("수락되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
-		else{
-			alert("취소되었습니다.");
+		
+		if(snum == 4){
+			myNum=6;
+			targetNum=6;
+			var stc = confirm(rnick+"님과의 거래를 취소하시겠습니까");
+			if(stc == true){
+				alert("취소요청이 완료되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
-	}
-	
-	if(snum == 5){
-		unum=4;
-		var stc5 = confirm("거래 완료 요청을 진행하시겠습니까?");
-		if(stc5 == true){
-			alert("완료요청이 완료되었습니다.");
-			location.href='./statusChange?rnum=' + rnum + "&unum=" + unum;
+		
+		if(snum == 5){
+			myNum=5;
+			targetNum=4;
+			var stc = confirm(rnick+"님에게 거래완료 요청을 보내시겠습니까?");
+			if(stc == true){
+				alert("완료 요청이 전송되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
-		else{
-			alert("취소되었습니다.");
+		
+		if(snum == 6){
+			myNum=7;
+			targetNum=7;
+			var stc = confirm("거래를 완료하시겠습니까?");
+			if(stc == true){
+				alert("거래서 성공적으로 완료되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
+		}
+		
+		if(snum == 7){
+			myNum=3;
+			targetNum=3;
+			var stc = confirm("완료요청을 거절하시겠습니까?");
+			if(stc == true){
+				alert("완료요청을 거절하셨습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
 		}
 	}
 }
