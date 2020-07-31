@@ -53,6 +53,7 @@
 			<exclude-mapping path="/rePwFrm"/>
 			<exclude-mapping path="/rePw"/>
 			<exclude-mapping path="/myInfo"/>
+			<exclude-mapping path="/myInfoUp"/>
 			<exclude-mapping path="/myUPageSc"/>
 			<exclude-mapping path="/doubleBoard"/>
 			<exclude-mapping path="/youtuberBoard"/>
@@ -74,6 +75,18 @@
 			<exclude-mapping path="/mDeal"/>
 			<exclude-mapping path="/typechange"/>
 			<exclude-mapping path="/typechangee"/>
+			<exclude-mapping path="/myUPageReqM"/>
+			<exclude-mapping path="/mMember"/>
+			<exclude-mapping path="/mWarning"/>
+			<exclude-mapping path="/mWarningFrm"/>
+			<exclude-mapping path="/email"/>
+			
+			
+			<exclude-mapping path="/ulist"/>
+			<exclude-mapping path="/ucontents"/>
+			<exclude-mapping path="/uboardWrite"/>
+			
+			
 			<beans:bean class="com.editube.util.SessionInterceptor"/>
 		</interceptor>
 	</interceptors>

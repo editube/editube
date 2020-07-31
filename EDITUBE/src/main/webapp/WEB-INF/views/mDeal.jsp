@@ -30,6 +30,10 @@
              value="거절"
         onclick="document.querySelector('#confirm-modal').close()"
       >
+      <input type="button"
+             value="취소"
+        onclick="document.querySelector('#confirm-modal').close()"
+      >
     </div>
   </div>
 </dialog>

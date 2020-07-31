@@ -19,15 +19,44 @@
 <link href="resources/css/sideBar.css?after" rel="stylesheet">
 <link href="resources/css/writeCommuFrm.css?after" rel="stylesheet">
 <link href="resources/css/headerstyle.css?after" rel="stylesheet">
-
-<script
-   src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="resources/js/sideBar.js"></script>
-
 <!-- Bootstrap core CSS -->
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css"
    rel="stylesheet">
 
+<script
+   src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="resources/js/sideBar.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#upbtn').hide();
+	$('#delbtn').hide();
+	var mnickname = '${mb.mnickname}';
+	var cbmnickname = '${board.cbnickname}';
+	
+	if(mnickname==cbmnickname){
+		$('#upbtn').show();
+		$('#delbtn').show();		
+	}
+		var chk = "${check}";
+		
+		if(chk=="1"){
+			alert("본인의 글만 수정 가능합니다.");
+			location.reload(true);
+		}
+		if(chk=="2"){
+			alert("수정을 완료했습니다.");
+			location.reload(true);
+		}
+		if(chk=="3"){
+			alert("수정을 실패했습니다.");
+			location.reload(true);
+		}
+		if(chk=="4"){
+			alert("삭제 실패");
+			location.reload(true);
+		}
+	});
+</script>
 </head>
 <body>
    <jsp:include page="header.jsp"></jsp:include>
@@ -38,29 +67,25 @@
          <table>
             <tr height="30">
                <td bgcolor="red" align="center">작성자</td>
-               <td width="150">누군지 맞춰봐용</td>
-               <!-- ${board.mname} -->
-               <td bgcolor="red" align="center">날짜</td>
-               <td width="200">비밀~</td>
-               <!-- ${board.bdate} -->
+               <td width="150">${board.cbnickname}</td>
+               <td bgcolor="red" align="center">작성일</td>
+               <td width="200">${board.cbdate}</td>
             </tr>
             <tr height="30">
                <td bgcolor="red" align="center">제목</td>
-               <td colspan="5">내일은 금요일~</td>
-               <!-- ${board.btitle} -->
+               <td colspan="5">${board.cbtitle}</td>
             </tr>
             <tr height="200">
                <td bgcolor="red" align="center">내용</td>
-               <td colspan="5">오늘은 목요일~</td>
-               <!-- ${board.bcontents} -->
+               <td colspan="5">${board.cbcontent}</td>
             </tr>
             <tr>
                <td colspan="6" align="right">
                   <button class="btn-sub" onclick="location.href='./commuBoard'">목록</button>
                   <button class="btn-write" id="upbtn"
-                     onclick="location.hrdf='./updateFrm?bnum=${board.bnum}'">수정</button>
+                     onclick="location.hrdf='./upCommuFrm?bnum=${board.cbnum}'">수정</button>
                   <button class="btn-write" id="delbtn"
-                     onclick="goDelete(${board.bnum},'${mb.m_id }','${board.bid}')">삭제</button>
+                     onclick="goDelete(${board.cbnum},'${mb.cbnickname}','${board.cbnickname}')">삭제</button>
                </td>
             </tr>
          </table>
@@ -100,7 +125,7 @@
                   name="r_contents" id="comment" placeholder="댓글을 적어주세요"
                   style="resize: none"></textarea>
                <input class="btn-write" type="button" value="댓글전송"
-                  onclick="replyInsert(${board.bnum})"
+                  onclick="replyInsert(${board.cbnum})"
                   style="width: 100%; margin-bottom: 30px">
             </form>
          </div>

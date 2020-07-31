@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.editube.dao.BoardDao">
+	
+	<select id="getUList" parameterType="HashMap"
+		resultType="com.editube.dto.UBoardDto">
+		<![CDATA[
+		SELECT * FROM UBLIST_1
+		WHERE RONUM >= (${pageNum}*${cnt})-(${cnt}-1)
+			AND RONUM <= ${pageNum}*${cnt}
+		]]>
+	</select>
+	
+	<select id="getUBoardCount" resultType="Integer">
+		SELECT COUNT(*) FROM UBLIST_1
+	</select>
+	
+	<update id="viewUpdate" parameterType="Integer">
+		UPDATE UB SET UB_VIEWS = UB_VIEWS+1
+		WHERE UB_NUM = #{ubnum}
+	</update>
+	
+	<select id="getuContents" parameterType="Integer"
+		resultType="com.editube.dto.UBoardDto">
+		SELECT * FROM UBLIST_1
+		WHERE UBNUM = #{ubnum}
+	</select>
+
+
+	<insert id="uboardInsert" 
+		parameterType="com.editube.dto.UBoardDto"
+		useGeneratedKeys="true"
+		keyProperty="ubnum">
+		<selectKey keyProperty="ubnum"
+			resultType="int" order="BEFORE">
+			SELECT UBOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO B
+		VALUES(${ubnum},#{ubnickname},#{ubcontent},#{ubtitle},DEFAULT,#{ubdeadline},#{ubstatus},#{ubpositiontype},#{ubcost},#{ubview},#{msysname},#{moriname})
+	</insert>
+</mapper>
+
+
+
+
+
+

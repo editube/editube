@@ -3,13 +3,13 @@
 <div class="MyPagenavwrap">
 	<div class="profileimagebox">
 		<figure class="snip0067 red">
-	  		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/pr-sample2.jpg" alt="sample8" />
+	  		<img src="resources/images/${mb.m_oriName}" alt="sample8" />
 	 		<figcaption>
 	    		<h2>파리갬성P박S성G기</h2>
 	  			<p>프로필사진을 변경하시겠습니까?</p>
 	    		<div class="icons">
-	    			<a href="#"><i class="ion-ios-home"></i></a>
-	    			<a href="#"><i class="ion-email-unread"></i></a>
+	    			<a href="./myInfo"><i class="ion-ios-home"><img alt="수정" src="../resources/images/연필.png"></i></a>
+	    		
 	    		</div>
 	  		</figcaption>
 	  		<div class="position">파리갬성P박S성G기</div>

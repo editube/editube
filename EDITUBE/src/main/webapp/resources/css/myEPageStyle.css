@@ -25,10 +25,6 @@ font-style: normal;
 	transition: filter 1s;
 }
 
-
-
-
-
 .card-list {
 	display: block;
 	margin: 1rem auto;
@@ -337,16 +333,16 @@ font-style: normal;
 .myEPageCashSection > .myEPageCashSearch{
 	width:1100px;
 	float:left;
-	height: 125px;
+	height: 150px;
 	background: #f9f9f9;
 }
 
 .myEPageCashSearch > p{
-	width:60%;
+	width:80%;
 	font-family: 'NanumSquareRound';
 	font-size: 1.5em;
 	font-weight: bold;
-	margin-bottom: 80px;
+	margin-bottom: 30px;
 	border-top :0.8px solid #dedfda;
 	border-bottom: 0.8px solid #dedfda;
 	padding: 10px;

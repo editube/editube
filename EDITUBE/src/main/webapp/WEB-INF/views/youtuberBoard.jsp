@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 
@@ -39,7 +40,9 @@
 
 </head>
 <body>
+<header>
 	<jsp:include page="header.jsp"></jsp:include>
+	</header>
 	<div class="all">
 		<jsp:include page="youtubeNav.jsp"></jsp:include>
 		<div class="ucontent">
@@ -76,15 +79,15 @@
 					<div class="u-findate p-10">마감일</div>
 				</div>
 
-				<c:forEach var="bitem" items="${bList}">
+				<c:forEach var="bitem" items="${ubList}">
 					<div class="data-row">
-						<div class="u-name p-15">${bitem.bnum}</div>
+						<div class="u-name p-15">${bitem.ubnickname}</div>
 						<div class="u-title p-50">
-							<a href="contents?bnum=${bitem.bnum}"> ${bitem.btitle}</a>
+							<a href="contents?bnum=${bitem.ubnum}"> ${bitem.ubcontent}</a>
 						</div>
-						<div class="u-price p-15">${bitem.mname}</div>
-						<div class="u-date p-10">${bitem.bdate}</div>
-						<div class="u-date p-10">${bitem.bdate}</div>
+						<div class="u-price p-15">${bitem.ubcost}</div>
+						<div class="u-date p-10">${bitem.ubtimepart}</div>
+						<div class="u-date p-10"><fmt:formatDate value="${bitem.ubdeadline}" pattern="yyyy-MM-dd" /></div>
 					</div>
 				</c:forEach>
 			</div>

@@ -19,5 +19,6 @@ public interface MemberDao {
 	public int nickCheck(String mnickname);
 	
 	public void typechange(String nick);
+	
 	public void typechangee(String nick);
 }

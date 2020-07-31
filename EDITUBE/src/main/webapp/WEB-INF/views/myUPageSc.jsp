@@ -38,27 +38,27 @@
 		<a class="card-image" href="./editContent" target="_blank" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-100.jpg);" data-image-full="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-500.jpg">
 			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-100.jpg" alt="Psychopomp" />
 		</a>
-		<a class="card-description" href="https://michellezauner.bandcamp.com/album/psychopomp-2" target="_blank">
+		<a class="card-description" href="./editContent" target="_blank">
 			<h2>지각쟁이조서호</h2>
 			<p>50,000원</p>
 		</a>
 	</li>
 	
 	<li class="card">
-		<a class="card-image" href="https://inlovewithaghost.bandcamp.com/album/lets-go" target="_blank" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/lets-go-100.jpg);" data-image-full="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/lets-go-500.jpg">
+		<a class="card-image" href="./editContent" target="_blank" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/lets-go-100.jpg);" data-image-full="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/lets-go-500.jpg">
 			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/lets-go-100.jpg" alt="let's go" />
 		</a>
-		<a class="card-description" href="https://inlovewithaghost.bandcamp.com/album/lets-go" target="_blank">
+		<a class="card-description" href="./editContent" target="_blank">
 			<h2>5연벙 김지혜</h2>
 			<p>3,000원</p>
 		</a>
 	</li>
 	
 	<li class="card">
-		<a class="card-image" href="https://vulfpeck.bandcamp.com/album/the-beautiful-game" target="_blank" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/beautiful-game-100.jpg);" data-image-full="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/beautiful-game-500.jpg">
+		<a class="card-image" href="./editContent" target="_blank" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/beautiful-game-100.jpg);" data-image-full="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/beautiful-game-500.jpg">
 			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/beautiful-game-100.jpg" alt="The Beautiful Game" />
 		</a>
-		<a class="card-description" href="https://vulfpeck.bandcamp.com/album/the-beautiful-game" target="_blank">
+		<a class="card-description" href="./editContent" target="_blank">
 			<h2>먹방요정 심혀ㅑㅇ용</h2>
 			<p>90,000원</p>
 		</a>
