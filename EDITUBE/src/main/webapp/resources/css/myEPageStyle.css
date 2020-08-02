@@ -628,3 +628,143 @@ font-style: normal;
 	margin-right: 10px;
 	margin-top: 20px;
 }
+
+
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 50px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: gray;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: yellow;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #09f;
+}
+/*여기서부터 모달박스*/
+.rat {
+	 position: fixed;
+	 top: 0;
+	 left: 0;
+	 bottom: 0;
+	 right: 0;
+	 width: 360px;
+	 padding: 0;
+	 font-family: Roboto, sans-serif;
+	 border: transparent;
+	 box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+	 opacity: 0;
+	 animation: show-modal 0.6s forwards;
+}
+ .rat::backdrop {
+	 background: rgba(0, 0, 0, 0.4);
+	 backdrop-filter: blur(3px);
+}
+ .rat .rat-content {
+	 display: grid;
+	 place-items: center;
+}
+ .rat .rat-title {
+	 margin: 0;
+	 padding: 1rem 0;
+}
+
+ .rat .rat-options {
+	 padding: 1rem 0;
+}
+ .rat .rat-options .option {
+	 width: 3rem;
+	 height: 3rem;
+	 background: transparent;
+	 border: 1px solid;
+}
+ .rat .rat-options .option::before {
+	 position: absolute;
+	 content: "";
+	 top: 4px;
+	 left: 4px;
+	 right: 4px;
+	 bottom: 4px;
+	 background: currentColor;
+	 border-radius: inherit;
+}
+ .rat .rat-options .option:hover {
+	 filter: brightness(1.75);
+}
+ .rat .rat-options .confirm {
+	 margin-right: 3rem;
+	 color: #4a89dc;
+}
+ .rat .rat-options .cancel {
+	 color: #da4453;
+}
+ @keyframes show-modal {
+	 to {
+		 opacity: 1;
+	}
+}
+ @keyframes open-description {
+	 to {
+		 height: 210px;
+	}
+}
+
+.rat-TextWrap .ra_content {
+	width:250px;
+	height: 150px;
+	resize: none;
+}

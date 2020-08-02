@@ -47,18 +47,25 @@
 	
 	<select id="getAllReqList" parameterType="String"
 		resultType="com.editube.dto.RequestDto">
-		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname} or rq_targetnickname= #{nickname}
+		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname} or rq_targetnickname= #{nickname} ORDER BY #{rq_date}
 	</select>
 	
 	<select id="getReqList" parameterType="HashMap"
 		resultType="com.editube.dto.RequestDto">
 		SELECT * FROM REQUEST WHERE rq_status = #{status} and (rq_mnickname =#{nickname} or rq_targetnickname=#{nickname})
+		ORDER BY #{rq_date}
 	</select>
 	
 	<update id="statusChange" parameterType="com.editube.dto.RequestDto">
 		UPDATE REQUEST SET RQ_STATUS = #{rq_status}, RQ_TARGETSTATUS = #{rq_targetstatus}
 		WHERE RQ_NUM=#{rq_num}
 	 </update>
+	 
+	 <insert id="InsertRatFrm" 
+		parameterType="com.editube.dto.RatingDto">
+		INSERT INTO RATING
+		VALUES(RATING_SEQ.NEXTVAL,#{m_nickname},#{ra_score},#{ra_content},#{ra_nickname})
+	</insert>
 </mapper>
 
 

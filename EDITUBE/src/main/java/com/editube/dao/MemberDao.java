@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.editube.dto.MemberDto;
+import com.editube.dto.RatingDto;
 import com.editube.dto.RequestDto;
 
 public interface MemberDao {
@@ -24,4 +25,6 @@ public interface MemberDao {
 	public List<RequestDto> getReqList(Map<String, String> lmap);
 	//마이페이지 요청버튼관리
 	public void statusChange(RequestDto rDto);
+	//평점등록하기
+	public void InsertRatFrm(RatingDto raDto);
 }

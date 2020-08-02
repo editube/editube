@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.editube.dto.MemberDto;
+import com.editube.dto.RatingDto;
 import com.editube.service.MemberService;
 
 @Controller
@@ -112,6 +113,14 @@ public class HomeController {
 //		
 //		return result;
 //	}
+	
+	@GetMapping("InsertRatFrm")
+	public ModelAndView InsertRatFrm(RatingDto rating, RedirectAttributes rttr) {
+		
+		mv = mServ.InsertRatFrm(rating, rttr);
+		
+		return mv;
+	}
 	
 	@GetMapping("findPwFrm")
 	public String findPwFrm() {

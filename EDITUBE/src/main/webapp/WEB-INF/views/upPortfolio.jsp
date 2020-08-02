@@ -44,7 +44,7 @@
 		</div>
 		<div class="btnWrap">
 			<div class="btnDiv">
-				<button type="submit">완료</button>
+				<button type="submit">올리기</button>
 				<button type="reset">취소</button>
 			</div>
 		</div>

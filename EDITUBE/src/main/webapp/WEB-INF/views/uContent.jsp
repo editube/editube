@@ -29,7 +29,7 @@
 				<div class="pfInfoThree"><p>마감기한 : <span>20-08-03</span> 까지</p></div>
 				<div class="pfInfoFour"><h2>5,000원</h2></div>
 				<div class="pfInfoFive">
-					<button type="button" class="btn1">요청하기</button>
+					<button type="button" class="btn1" onclick="dealReq()">요청하기</button>
 					<button type="button" class="btn2">목록으로</button>
 					<button type="button" class="btn3">찜하기</button>
 				</div>
@@ -51,4 +51,9 @@
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+function dealReq(){
+	
+}
+</script>
 </html>

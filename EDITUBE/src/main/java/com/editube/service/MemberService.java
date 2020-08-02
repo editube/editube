@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.editube.controller.HomeController;
 import com.editube.dao.MemberDao;
 import com.editube.dto.MemberDto;
+import com.editube.dto.RatingDto;
 import com.editube.dto.RequestDto;
 
 import lombok.extern.java.Log;
@@ -256,6 +257,29 @@ public class MemberService {
 			view= "redirect:myEPageReqM";
 		} catch (Exception e) {
 			view= "redirect:myEPageReqM";
+		}
+		
+		mv.setViewName(view);
+		return mv;
+	}
+
+	@Transactional
+	public ModelAndView InsertRatFrm(RatingDto rating, RedirectAttributes rttr) {
+		mv = new ModelAndView();
+		RatingDto raDto = new RatingDto();
+		String view = null;
+		log.info("boardInsert - filecheck: " + 
+			rating.getM_nickname()+
+			rating.getRa_content()+
+			rating.getRa_nickname()+
+			rating.getRa_score()
+		);
+		
+		try {
+			mDao.InsertRatFrm(rating);
+			view= "redirect:myEPageReqM";
+		}catch (Exception e) {
+			view="redirect:myEPageReqM";
 		}
 		
 		mv.setViewName(view);
