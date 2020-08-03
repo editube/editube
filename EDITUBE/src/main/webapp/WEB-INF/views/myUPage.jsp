@@ -19,7 +19,7 @@
 	<aside class="sidebar">
     	<nav class="nav">
      		<ul>
-				<li class="active"><a  onclick="typechange()" style="cursor: pointer; color: black;" >에디터 모드로 변경</a></li>
+				<li class="active"><a  href="./myEPageSc" >에디터 모드로 변경</a></li>
 				<li><a href="./myUPageSc">찜한 에디터</a></li>
 				<li class="MnavMain"><a>요청관리</a>
 					<ul class="MnavSub">
@@ -36,13 +36,3 @@
     	</nav>
   	</aside>
 </div>
-	<script >
-		function typechange() {
-			var usertype = "${mb.m_usertype}";	
-			var nickname = "${mb.m_nickname}";
-			
-			if(usertype == 1){
-					location.href = './typechange?nick='+nickname;
-				}
-		}
-	</script>

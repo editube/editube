@@ -28,28 +28,12 @@
 		resultType="com.editube.dto.MemberDto">
 		SELECT * FROM MINFO WHERE M_ID=#{id}
 	</select>
-	<select id="getMemInfoo" parameterType="String"
-		resultType="com.editube.dto.MemberDto">
-		SELECT * FROM M WHERE M_NICKNAME=#{nick}
-	</select>
 	
 	<insert id="memberInsert" 
 		parameterType="com.editube.dto.MemberDto">
 		INSERT INTO M
 		VALUES(#{m_nickname},#{m_id},DEFAULT,#{m_name},#{m_birth},#{m_password},#{m_phonenum},DEFAULT,DEFAULT,DEFAULT)
 	</insert>
-	
-	<update id="typechange" 
-		parameterType="String">
-		UPDATE M SET M_USERTYPE=2
-		WHERE M_NICKNAME=#{nick}		
-	</update>
-	
-	<update id="typechangee" 
-		parameterType="String">
-		UPDATE M SET M_USERTYPE=1
-		WHERE M_NICKNAME=#{nick}		
-	</update>
 	
 	<select id="idCheck" parameterType="String"
 		resultType="Integer">
@@ -61,6 +45,27 @@
 		SELECT COUNT(*) FROM MINFO WHERE M_NICKNAME=#{mnickname}
 	</select>
 	
+	<select id="getAllReqList" parameterType="String"
+		resultType="com.editube.dto.RequestDto">
+		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname} or rq_targetnickname= #{nickname} ORDER BY #{rq_date}
+	</select>
+	
+	<select id="getReqList" parameterType="HashMap"
+		resultType="com.editube.dto.RequestDto">
+		SELECT * FROM REQUEST WHERE rq_status = #{status} and (rq_mnickname =#{nickname} or rq_targetnickname=#{nickname})
+		ORDER BY #{rq_date}
+	</select>
+	
+	<update id="statusChange" parameterType="com.editube.dto.RequestDto">
+		UPDATE REQUEST SET RQ_STATUS = #{rq_status}, RQ_TARGETSTATUS = #{rq_targetstatus}
+		WHERE RQ_NUM=#{rq_num}
+	 </update>
+	 
+	 <insert id="InsertRatFrm" 
+		parameterType="com.editube.dto.RatingDto">
+		INSERT INTO RATING
+		VALUES(RATING_SEQ.NEXTVAL,#{m_nickname},#{ra_score},#{ra_content},#{ra_nickname})
+	</insert>
 </mapper>
 
 

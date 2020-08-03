@@ -35,12 +35,12 @@
 <ul class="card-list">
 	
 	<li class="card">
-		<a class="card-image" href="https://michellezauner.bandcamp.com/album/psychopomp-2" target="_blank" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-100.jpg);" data-image-full="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-500.jpg">
+		<a class="card-image" href="./uContent" target="_blank" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-100.jpg);" data-image-full="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-500.jpg">
 			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/310408/psychopomp-100.jpg" alt="Psychopomp" />
 		</a>
 		<a class="card-description" href="https://michellezauner.bandcamp.com/album/psychopomp-2" target="_blank">
-			<h2>브이로그전문유튜버~</h2>
-			<p>50,000원</p>
+			<h2>파리갬성으로 편집해드려요</h2>
+			<p>40,000원</p>
 		</a>
 	</li>
 	

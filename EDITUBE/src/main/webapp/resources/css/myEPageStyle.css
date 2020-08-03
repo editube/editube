@@ -25,6 +25,10 @@ font-style: normal;
 	transition: filter 1s;
 }
 
+
+
+
+
 .card-list {
 	display: block;
 	margin: 1rem auto;
@@ -147,28 +151,6 @@ font-style: normal;
 	background: #f9f9f9;
 	text-align: center;
 }
-.myEPageReqMContentTitle > .nickMenu{
-	float:left;
-	width:475px;
-	height: 100px;
-	background: #f9f9f9;
-	text-align: center;
-}
-.myEPageReqMContentTitle > .adminMenu{
-	float:left;
-	width:475px;
-	height: 100px;
-	background: #f9f9f9;
-	text-align: center;
-}
-
-.myEPageReqMContentTitle > .statusMenu{
-	float:left;
-	width:550px;
-	height: 100px;
-	background: #f9f9f9;
-	text-align: center;
-}
 
 .dateMenu > p{
 	font-family: 'NanumSquareRound';
@@ -177,27 +159,6 @@ font-style: normal;
 	padding: 10px;
 }
 .contentMenu > p{
-	font-family: 'NanumSquareRound';
-	border-top :0.8px solid #dedfda;
-	border-bottom: 0.8px solid #dedfda;
-	padding: 10px;
-	margin-left: 10px;
-}
-.nickMenu > p{
-	font-family: 'NanumSquareRound';
-	border-top :0.8px solid #dedfda;
-	border-bottom: 0.8px solid #dedfda;
-	padding: 10px;
-	margin-left: 10px;
-}
-.adminMenu > p{
-	font-family: 'NanumSquareRound';
-	border-top :0.8px solid #dedfda;
-	border-bottom: 0.8px solid #dedfda;
-	padding: 10px;
-	margin-left: 10px;
-}
-.statusMenu > p{
 	font-family: 'NanumSquareRound';
 	border-top :0.8px solid #dedfda;
 	border-bottom: 0.8px solid #dedfda;
@@ -213,68 +174,49 @@ font-style: normal;
 
 .myEPageReqMIncontent > .inDate{
 	float: left;
-	width: 150px;
-	height: 1150px;
+	width: 125px;
+	padding-left: 25px;
+	height: 50px;
 	background: #f9f9f9;
 }
 
 
 .myEPageReqMIncontent > .inContent{
 	float: left;
-	width: 950px;
-	height: 1150px;
+	width: 700px;
+	padding-left: 25px;
+	height: 50px;
 	background: #f9f9f9;
 }
 
-.myEPageReqMIncontent > .inNickname{
+.myEPageReqMIncontent > .reqBtn{
 	float: left;
-	width: 475px;
-	height: 1150px;
+	width: 225px;
+	height: 50px;
 	background: #f9f9f9;
 }
 
-.myEPageReqMIncontent > .inAdmin{
-	float: left;
-	width: 475px;
-	height: 1150px;
-	background: #f9f9f9;
+.reqBtn .btnReq{
 }
-.myEPageReqMIncontent > .inAdmin .memOutbtn{
-	float: left;
-	background: #f9f9f9;
-	margin: 16px;
+
+.reqBtn .btnIng{
 }
-.myEPageReqMIncontent > .inStatus{
-	float: left;
-	width: 475px;
-	height: 1150px;
-	background: #f9f9f9;
+
+.reqBtn .btnSend{
 }
-.myEPageReqMIncontent > .inStatus .statusbtn{
-	float: left;
-	background: #f9f9f9;
-	margin: 16px;
-}
+
 .inDate > p {
 	font-family: 'NanumSquareRound';
 	font-size: 1.2em;
 	text-align: center;
 	height: 25px;
 }
-.inContent > p {
-	font-family: 'NanumSquareRound';
-	font-size: 1.2em;
-	height: 25px;
-	line-height: 25px;
-	text-align: center;
-}
 
-.inNickname > p{
+.inContent > p{
 	font-family: 'NanumSquareRound';
 	font-size: 1.2em;
 	height: 25px;
 	line-height: 25px;
-	text-align: center;
 }
 
 
@@ -333,16 +275,16 @@ font-style: normal;
 .myEPageCashSection > .myEPageCashSearch{
 	width:1100px;
 	float:left;
-	height: 150px;
+	height: 125px;
 	background: #f9f9f9;
 }
 
 .myEPageCashSearch > p{
-	width:80%;
+	width:60%;
 	font-family: 'NanumSquareRound';
 	font-size: 1.5em;
 	font-weight: bold;
-	margin-bottom: 30px;
+	margin-bottom: 80px;
 	border-top :0.8px solid #dedfda;
 	border-bottom: 0.8px solid #dedfda;
 	padding: 10px;
@@ -570,4 +512,259 @@ font-style: normal;
 	float: right;
 	margin-right: 10px;
 	margin-top: 20px;
+}
+
+
+/*포트폴리옿 수정페이지*/
+
+.upPfCashWrap{
+	width:1400px;
+	margin: 0px auto;
+	height:1500px;
+}
+.upPfCashWrap .upPfaside{
+	float:left;
+	width: 300px;
+	height: 1500px;
+}
+.upPfCashWrap .upPfSection{
+	float:left;
+	width: 1100px;
+	height: 1500px;
+}
+
+.upPfSection .upPfTitleWrap{
+	width: 1100px;
+	height: 100px;
+	float: left;
+	border-bottom: 0.8px solid #dedfda;
+	background: #f9f9f9;
+}
+
+.upPfTitleWrap .upPfTitle{
+	width: 1000px;
+	margin :50px 0px 50px 50px;
+	height: 80px;
+	margin-top:20px;
+	border: none;
+	resize: none;
+	float:left;
+	font-family: 'NanumSquareRound';
+	font-size: 2em;
+}
+
+
+
+.upPfTitle:focus{
+	border: none;
+	outline: none;
+}
+.upPfSection .upPfContentWrap{
+	width: 1100px;
+	height: 1200px;
+	float: left;
+	border-top: 0.8px solid #dedfda;
+	border-bottom: 0.8px solid #dedfda;
+}
+
+.upPfContentWrap .upPfContent{
+	width: 1000px;
+	height: 1150px;
+	margin :50px 0px 50px 50px;
+	outline: none;
+	border: none;
+	resize: none;
+	font-family: 'NanumSquareRound';
+	font-size: 1.1em;
+}
+
+.upPfContent:focus{
+	border: none;
+	outline: none;
+}
+
+.upPfSection .pfCheckboxWrap{
+	width:50%;
+	height: 60px;
+	float: left;
+	border-top: 0.8px solid #dedfda;
+	text-align: center;
+}
+
+.pfCheckboxWrap .pfCheckbox{
+	margin-top:25px;
+}
+
+.upPfSection .linkboxWrap{
+	width: 50%;
+	height: 60px;
+	float: left;
+	border-top: 0.8px solid #dedfda;
+	text-align: center;
+}
+
+.linkboxWrap .linkbox{
+	margin-top:25px;
+}
+
+.linkbox textarea{
+	height: 15px;
+}
+.upPfSection .btnWrap{
+	width: 1100px;
+	height: 100px;
+	float: left;
+}
+.btnWrap .btnDiv{
+	width: 950px;
+	margin-left:75px;
+	margin-right:75px;
+	height: 100px;
+	float: left;
+}
+
+.btnWrap button{
+	float: right;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+
+
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 50px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: gray;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: yellow;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #09f;
+}
+/*여기서부터 모달박스*/
+.rat {
+	 position: fixed;
+	 top: 0;
+	 left: 0;
+	 bottom: 0;
+	 right: 0;
+	 width: 360px;
+	 padding: 0;
+	 font-family: Roboto, sans-serif;
+	 border: transparent;
+	 box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+	 opacity: 0;
+	 animation: show-modal 0.6s forwards;
+}
+ .rat::backdrop {
+	 background: rgba(0, 0, 0, 0.4);
+	 backdrop-filter: blur(3px);
+}
+ .rat .rat-content {
+	 display: grid;
+	 place-items: center;
+}
+ .rat .rat-title {
+	 margin: 0;
+	 padding: 1rem 0;
+}
+
+ .rat .rat-options {
+	 padding: 1rem 0;
+}
+ .rat .rat-options .option {
+	 width: 3rem;
+	 height: 3rem;
+	 background: transparent;
+	 border: 1px solid;
+}
+ .rat .rat-options .option::before {
+	 position: absolute;
+	 content: "";
+	 top: 4px;
+	 left: 4px;
+	 right: 4px;
+	 bottom: 4px;
+	 background: currentColor;
+	 border-radius: inherit;
+}
+ .rat .rat-options .option:hover {
+	 filter: brightness(1.75);
+}
+ .rat .rat-options .confirm {
+	 margin-right: 3rem;
+	 color: #4a89dc;
+}
+ .rat .rat-options .cancel {
+	 color: #da4453;
+}
+ @keyframes show-modal {
+	 to {
+		 opacity: 1;
+	}
+}
+ @keyframes open-description {
+	 to {
+		 height: 210px;
+	}
+}
+
+.rat-TextWrap .ra_content {
+	width:250px;
+	height: 150px;
+	resize: none;
 }

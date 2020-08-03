@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.editube.controller.HomeController;
 import com.editube.dao.MemberDao;
 import com.editube.dto.MemberDto;
+import com.editube.dto.RatingDto;
+import com.editube.dto.RequestDto;
 
 import lombok.extern.java.Log;
 
@@ -159,54 +162,129 @@ public class MemberService {
 		return result;
 	}
 
-	public ModelAndView typechange(String nick, RedirectAttributes rttr) {
+	public ModelAndView getReqList(Integer status) {
 		mv = new ModelAndView();
+		RequestDto request = new RequestDto();
+		List<RequestDto> reqList = null;
+		MemberDto member = (MemberDto)session.getAttribute("mb");
+		String nickname = member.getM_nickname();
+		
+		Map<String, String> lmap = 
+				new HashMap<String, String>();
+		lmap.put("nickname", String.valueOf(nickname));
+		lmap.put("status", String.valueOf(status));
+		
+		if(status==null) {
+			reqList = mDao.getAllReqList(nickname);
+			for(int i=0; i<reqList.size();i++) {
+				request=reqList.get(i);
+				if(request.getRq_mnickname().equals(member.getM_nickname())) {
+					InsertMsg(request.getRq_status());
+					request.setRq_msg(request.getRq_targetnickname()+InsertMsg(request.getRq_status()));					
+				}
+				else {
+					InsertMsg(request.getRq_targetstatus());
+					request.setRq_msg(request.getRq_mnickname()+InsertMsg(request.getRq_targetstatus()));		
+				}
+			}
+			mv.addObject("reqList", reqList);
+		}
+		else {		
+			reqList = mDao.getReqList(lmap);
+			for(int i=0; i<reqList.size();i++) {
+				request=reqList.get(i);
+				if(request.getRq_mnickname().equals(member.getM_nickname())) {
+					InsertMsg(request.getRq_status());
+					request.setRq_msg(request.getRq_targetnickname()+InsertMsg(request.getRq_status()));					
+				}
+				else {
+					InsertMsg(request.getRq_targetstatus());
+					request.setRq_msg(request.getRq_mnickname()+InsertMsg(request.getRq_targetstatus()));		
+				}
+			}
+			mv.addObject("reqList", reqList);
+		}
+		
+		mv.setViewName("myEPageReqM");   
+		
+		return mv;   
+	}
+	
+	public String InsertMsg(Integer num) {
+		String msg =null;
+		
+		if(num==1) {
+			msg="님이 거래를 요청했습니다.";
+		}
+		else if(num==2){
+			msg="님에게 거래요청을 보냈습니다.";
+		}				
+		else if(num==3){
+			msg="님과 거래중입니다.";
+		}
+		else if(num==4){
+			msg="님의 완료요청을 대기중입니다.";
+		}
+		else if(num==5){
+			msg="님의 완료요청이 도착했습니다.";
+		}
+		else if(num==6){
+			msg="님과의 거래가 취소요청중 입니다.";
+		}
+		else if(num==7){
+			msg="님과의 거래가 완료됬습니다.";
+		}
+		else if(num==8){
+			msg="님과의 거래가 취소되었습니다.";	
+		}
+		return msg;
+	}
+	
+	@Transactional
+	public ModelAndView statusChange(Integer rnum, Integer myNum, String rtnick, Integer targetNum) {
+		mv = new ModelAndView();
+		RequestDto rDto = new RequestDto();
 		String view = null;
+		MemberDto mDto = (MemberDto)session.getAttribute("mb");
+		
+		rDto.setRq_targetnickname(rtnick);
+		rDto.setRq_num(rnum);
+		rDto.setRq_status(myNum);
+		rDto.setRq_targetstatus(targetNum);
 		
 		try {
-			//member의 데이터를 DB 저장(insert)
-			mDao.typechange(nick);
-			
-			//MemberDto member = new MemberDto();
-			MemberDto member = (MemberDto)session.getAttribute("mb");
-			member.setM_usertype(2);
-			
-			//member = mDao.getMemInfoo(nick);
-			session.setAttribute("mb", member);
-			
-			//회원 등록 성공 -> 로그인 화면으로 전환
-			view = "redirect:myEPageSc";
+			mDao.statusChange(rDto);
+			view= "redirect:myEPageReqM";
 		} catch (Exception e) {
-			// 회원 등록 실패 -> 같은 화면에 실패 메시지 전달
-			//e.printStackTrace();
-			view = "redirect:myUPageSc";
+			view= "redirect:myEPageReqM";
 		}
 		
 		mv.setViewName(view);
 		return mv;
 	}
-	public ModelAndView typechangee(String nick, RedirectAttributes rttr) {
+
+	@Transactional
+	public ModelAndView InsertRatFrm(RatingDto rating, RedirectAttributes rttr) {
 		mv = new ModelAndView();
+		RatingDto raDto = new RatingDto();
 		String view = null;
+		log.info("boardInsert - filecheck: " + 
+			rating.getM_nickname()+
+			rating.getRa_content()+
+			rating.getRa_nickname()+
+			rating.getRa_score()
+		);
 		
 		try {
-			//member의 데이터를 DB 저장(insert)
-			mDao.typechangee(nick);
-			
-			MemberDto member = mDao.getMemInfoo(nick);
-			session.setAttribute("mb", member);
-			
-			//회원 등록 성공 -> 로그인 화면으로 전환
-			view = "redirect:myUPageSc";
-		} catch (Exception e) {
-			// 회원 등록 실패 -> 같은 화면에 실패 메시지 전달
-			//e.printStackTrace();
-			view = "redirect:myEPageSc";
+			mDao.InsertRatFrm(rating);
+			view= "redirect:myEPageReqM";
+		}catch (Exception e) {
+			view="redirect:myEPageReqM";
 		}
 		
 		mv.setViewName(view);
 		return mv;
 	}
 	
-	
+
 }
