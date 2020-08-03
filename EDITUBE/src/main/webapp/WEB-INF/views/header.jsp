@@ -3,7 +3,6 @@
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <script type="text/javascript">
 $(document).ready(function(){
    var mnickname = '${mb.m_nickname}';
@@ -126,29 +125,16 @@ $(document).ready(function(){
     </div>
   
   	<div class="mesege">
-  
-    <ul class="shopping-cart-items">
-      <li class="clearfix">
-        <span class="item-name">"파리갬성박성기"</span>
-        <span class="item-price">님 으로부터 알림 도착</span>
-       </li>
-
-     
-       <li class="clearfix">
-        <span class="item-name">"사다리싫어하는정혜명"</span>
-        <span class="item-price">님 으로부터 알림 도착</span>
-       </li>
-      </li>
-
-    
-       <li class="clearfix">
-        <span class="item-name">"먹방요정심형용"</span>
-        <span class="item-price">님 으로부터 알림 도착</span>
-       </li>
-      </li>
-    </ul>
-
-    <a href="./myEPageReqM" class="button">전체보기</a>
+		<c:forEach var="reqItem" items="reqList">
+		    <ul class="shopping-cart-items">
+		      <li class="clearfix">
+		        <span class="item-name"></span>
+		        <span class="item-price">님 으로부터 알림 도착</span>
+		       </li>
+		    </ul>
+		</c:forEach>
+	
+	    <a href="./myEPageReqM" class="button">전체보기</a>
     
    </div><!-- mesege end -->
    

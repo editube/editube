@@ -50,3 +50,34 @@
   <!-- Bootstrap core JavaScript -->
   <script src="resources/vendor/jquery/jquery.min.js"></script>
   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+  var socket = null;
+  $(document).ready( function() {
+      connectWS();	
+  });
+  function connectWS() {
+      console.log("tttttttttttttt")
+      var ws = new WebSocket("ws://localhost");
+      socket = ws;
+      ws.onopen = function () {
+          console.log('Info: connection opened.');
+      };
+      ws.onmessage = function (event) {
+          console.log("ReceiveMessage:", event.data+'\n');
+          let $socketAlert = $('div#socketAlert');
+          $socketAlert.html(event.data);
+          $socketAlert.css('display', 'block');
+          
+          setTimeout( function() {
+          	$socketAlert.css('display', 'none');
+          }, 3000);
+      };
+      ws.onclose = function (event) { 
+          console.log('Info: connection closed.');
+          //setTimeout( function(){ connect(); }, 1000); // retry connection!!
+      };
+      ws.onerror = function (err) { console.log('Error:', err); };
+  }
+  </script>  
+  
