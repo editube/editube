@@ -31,7 +31,7 @@ $(document).ready(function(){
             <div class="input-container"><input type="password" name="m_password" required><label>비밀번호 확인</label>
                 <div class="bar"></div>
             </div>
-            <div class="button-container"><input type="submit" value="확인" style=width:240px;></div>
+            <div class="button-container"><input type="submit" value="확인" class="bts" style=width:240px;></div>
             <div>
             <span><br></span>
             </div>

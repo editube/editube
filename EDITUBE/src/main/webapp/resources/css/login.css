@@ -181,7 +181,60 @@ html
    text-align: center;
 }
 
-.card .button-container button {
+.card .button-container button{
+   outline: 0;
+   cursor: pointer;
+   position: relative;
+   display: inline-block;
+   background: 0;
+   width: 70px;
+   height: 40px;
+   border: 2px solid #e3e3e3;
+   padding: 20px 0;
+   font-size: 12px;
+   font-weight: 600;
+   line-height: 1px;
+   text-transform: uppercase;
+   overflow: hidden;
+   transition: 0.3s ease;
+}
+
+.card .button-container .bts{
+   outline: 0;
+   cursor: pointer;
+   position: relative;
+   display: inline-block;
+   background: 0;
+   width: 70px;
+   height: 40px;
+   border: 2px solid #e3e3e3;
+   padding: 20px 0;
+   font-size: 12px;
+   font-weight: 600;
+   line-height: 1px;
+   text-transform: uppercase;
+   overflow: hidden;
+   transition: 0.3s ease;
+}
+.card .button-container .bt{
+   outline: 0;
+   cursor: pointer;
+   position: relative;
+   display: inline-block;
+   background: 0;
+   width: 70px;
+   height: 40px;
+   border: 2px solid #e3e3e3;
+   padding: 20px 0;
+   font-size: 12px;
+   font-weight: 600;
+   line-height: 1px;
+   text-transform: uppercase;
+   overflow: hidden;
+   transition: 0.3s ease;
+}
+
+.card .button-container .buttons{
    outline: 0;
    cursor: pointer;
    position: relative;
@@ -207,8 +260,46 @@ html
    color: #f35b5b;
    transition: 0.3s ease;
 }
+.card .button-container .bts span {
+   position: relative;
+   z-index: 1;
+   color: #f35b5b;
+   transition: 0.3s ease;
+}
+.card .button-container .bt span {
+   position: relative;
+   z-index: 1;
+   color: #f35b5b;
+   transition: 0.3s ease;
+}
 
 .card .button-container button:before {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   display: block;
+   background: #ed2553;
+   width: 30px;
+   height: 30px;
+   border-radius: 100%;
+   margin: -15px 0 0 -15px;
+   opacity: 0;
+   transition: 0.3s ease;
+}
+.card .button-container .bts:before {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   display: block;
+   background: #ed2553;
+   width: 30px;
+   height: 30px;
+   border-radius: 100%;
+   margin: -15px 0 0 -15px;
+   opacity: 0;
+   transition: 0.3s ease;
+}
+.card .button-container .bt:before {
    position: absolute;
    top: 50%;
    left: 50%;
@@ -238,6 +329,46 @@ html
 }
 
 .card .button-container button:active:before, .card .button-container button:focus:before
+   {
+   opacity: 1;
+}
+
+.card .button-container .bts:hover, .card .button-container .bts:focus
+   {
+   border-color: #ed2553;
+}
+
+.card .button-container .bts:hover span, .card .button-container .bts:focus span
+   {
+   color: #ed2553;
+}
+
+.card .button-container .bts:active span, .card .button-container .bts:focus span
+   {
+   color: #fff;
+}
+
+.card .button-container .bts:active:before, .card .button-container .bts:focus:before
+   {
+   opacity: 1;
+}
+
+.card .button-container .bt:hover, .card .button-container .bt:focus
+   {
+   border-color: #ed2553;
+}
+
+.card .button-container .bt:hover span, .card .button-container .bt:focus span
+   {
+   color: #ed2553;
+}
+
+.card .button-container .bt:active span, .card .button-container .bt:focus span
+   {
+   color: #fff;
+}
+
+.card .button-container .bt:active:before, .card .button-container .bt:focus:before
    {
    opacity: 1;
 }

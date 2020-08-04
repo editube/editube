@@ -1,5 +1,9 @@
 package com.editube.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.editube.dto.MemberDto;
 
 public interface MemberDao {
@@ -18,4 +22,12 @@ public interface MemberDao {
 	public void typechange(String nick);
 	public void typechangee(String nick);
 	public MemberDto getMemInfoo(String nick);
+	public void changepass(Map<String,Object> rmap);
+	public void deleterp(String nk);
+	public void fileInsert(Map<String, String> fmap);
+	public void fileDelete(String nick);
+	public MemberDto Idfind(Map<String,String> rmap);
+	public MemberDto pwfind(String mid);
+	public void pwch(HashMap<String, Object> rmap);
+	public MemberDto getMemIn(String mr);
 }

@@ -307,7 +307,7 @@ html {
 	cursor: pointer;
 }
 
-.card .button-container #Storage {
+.card .button-container #Storage, .btn-file, #filedel {
 	outline: 0;
 	cursor: pointer;
 	position: relative;
@@ -358,6 +358,98 @@ html {
 	{
 	opacity: 1;
 }
+
+.card .button-container #filedel:before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: block;
+	background: #ed2553;
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	margin: -15px 0 0 -15px;
+	opacity: 0;
+	transition: 0.3s ease;
+}
+
+.card .button-container #filedel:hover, .card .button-container #filedel:focus
+	{
+	border-color: #ed2553;
+}
+
+.card .button-container #filedel:hover span, .card .button-container #filedel:focus span
+	{
+	color: #ed2553;
+}
+
+.card .button-container #filedel:active span, .card .button-container #filedel:focus span
+	{
+	color: #fff;
+}
+
+.card .button-container #filedel:active:before, .card .button-container #filedel:focus:before
+	{
+	opacity: 1;
+}
+
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type=file] {
+	outline: 0;
+	cursor: pointer;
+	position: relative;
+	display: inline-block;
+	background: 0;
+	width: 40px;
+	height: 40px;
+	border: 2px solid #e3e3e3;
+	padding: 20px 0;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1px;
+	text-transform: uppercase;
+	overflow: hidden;
+	transition: 0.3s ease;
+}
+
+.card .button-container .btn-file:before{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: block;
+	background: #ed2553;
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	margin: -15px 0 0 -15px;
+	opacity: 0;
+	transition: 0.3s ease;
+}
+
+.card .button-container .btn-file:hover, .card .button-container .btn-file:focus
+	{
+	border-color: #ed2553;
+}
+
+.card .button-container .btn-file:hover span, .card .button-container .btn-file:focus span
+	{
+	color: #ed2553;
+}
+
+.card .button-container .btn-file:active span, .card .button-container .btn-file:focus span
+	{
+	color: #fff;
+}
+
+.card .button-container .btn-file:active:before, .card .button-container .btn-file:focus:before
+	{
+	opacity: 1;
+}
+
 
 .pop-layer .pop-container {
 	padding: 20px 25px;
@@ -428,6 +520,11 @@ html {
 	margin-top: 15px;
 }
 
+.user-profile img {
+	width: 350px;
+	height: 280px;
+}
+
 .title {
 	position: relative;
 	z-index: 1;
@@ -490,10 +587,10 @@ html {
 	border: 1px solid #D9D9D9;
 	border-radius: 3px;
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
-	resize:none;
-	margin-bottom:20px;
+	resize: none;
+	margin-bottom: 20px;
 }
 
-.s_title{
-	font-size:2rem;
+.s_title {
+	font-size: 2rem;
 }

@@ -28,10 +28,17 @@
 		resultType="com.editube.dto.MemberDto">
 		SELECT * FROM MINFO WHERE M_ID=#{id}
 	</select>
+	
+	<select id="getMemIn" parameterType="String"
+		resultType="com.editube.dto.MemberDto">
+		SELECT * FROM MINFO WHERE M_ID=#{mr}
+	</select>
+	
 	<select id="getMemInfoo" parameterType="String"
 		resultType="com.editube.dto.MemberDto">
 		SELECT * FROM M WHERE M_NICKNAME=#{nick}
 	</select>
+	
 	<insert id="memberInsert" 
 		parameterType="com.editube.dto.MemberDto">
 		INSERT INTO M
@@ -53,14 +60,31 @@
 	</select>
 	<select id="nickCheck" parameterType="String"
 		resultType="Integer">
-		SELECT COUNT(*) FROM MINFO WHERE M_NICKNAME=#{mnickname}
+		SELECT COUNT(*) FROM MINFO WHERE M_NICKNAME=#{m_nickname}
+	</select>
+	<update id="changepass" parameterType="HashMap">
+		UPDATE MEMBER SET M_PASSWORD=#{cpassword} WHERE M_ID=#{m}
+	</update>
+	<delete id="deleterp" parameterType="String">
+		DELETE FROM MEMBER WHERE M_NICKNAME=#{nk}
+	</delete>
+	<update id="fileInsert" parameterType="HashMap">
+		UPDATE MEMBER SET M_ORINAME=#{oriFileName}, M_SYSNAME=#{sysFileName} WHERE M_ID=#{m}
+	</update>
+	
+	<update id="fileDelete" parameterType="String">
+		UPDATE MEMBER SET M_ORINAME='기본이미지.png', M_SYSNAME='기본이미지.png' WHERE M_NICKNAME=#{nick}
+	</update>
+	
+	<select id="Idfind" parameterType="HashMap" resultType="com.editube.dto.MemberDto">
+		SELECT M_ID FROM MEMBER WHERE M_NAME=#{name} AND M_PHONENUM=#{phonenum} 
 	</select>
 	
+	<select id="pwfind" parameterType="String" resultType="com.editube.dto.MemberDto">
+		SELECT * FROM MEMBER WHERE M_ID=#{mid}
+	</select>
 	
+	<update id="pwch" parameterType="HashMap">
+		UPDATE MEMBER SET M_PASSWORD=#{pwcheck} WHERE M_ID=#{m}
+	</update>
 </mapper>
-
-
-
-
-
-

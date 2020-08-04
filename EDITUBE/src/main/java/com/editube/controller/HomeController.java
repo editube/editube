@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -243,12 +244,12 @@ public class HomeController {
 		@PostMapping(value = "email" ,produces="application/json;charset=utf-8")
 		@ResponseBody
 		public Map<String, String> mailSending(String email) throws IOException {
-			System.out.println(email);
 	        Random r = new Random();
 	        int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
 	        
 	        String setfrom = "1223seho@gmail.com";
 	        String tomail = email; // 받는 사람 이메일
+	        System.out.println(email);
 	        String title = "회원가입 인증 이메일 입니다."; // 제목
 	        String content =
 	        
@@ -297,6 +298,93 @@ public class HomeController {
 	        return rmap;
 	        
 	    }
+		
+		
+		//계정 설정 비밀번호 인증
+		@PostMapping(value = "Infopwcheck")
+		public ModelAndView InfoCheck(MemberDto member,RedirectAttributes rttr) {
+			 ModelAndView mv = new ModelAndView();
+			mv=mServ.InfoCh(member, rttr);
+			return mv;
+		}
+		
+		//계정 설정에서 비밀번호 변경
+		@PostMapping("passcheck")
+		public ModelAndView passcheck(String cpassword,RedirectAttributes rttr) {
+			mv = new ModelAndView();//화면으로 데이터 전송.;
+			System.out.println(cpassword);
+			mv=mServ.passChange(cpassword,rttr);
+			return mv;
+		}
+		
+		//회원탈퇴
+		@GetMapping("delete")
+		public String delete(String nk,RedirectAttributes rttr) {
+			String view=mServ.delete(nk,rttr);
+			System.out.println(nk);
+			
+			return view;
+		}
+		//사진 수정
+		@PostMapping(value = "fileup", produces="application/text; charset=utf-8")
+		@ResponseBody
+		public String fileup(MultipartHttpServletRequest multi) throws IllegalStateException, IOException{
+			String view=mServ.fileup(multi);
+			return view;
+		}
+		//사진 삭제
+		@PostMapping(value = "filedel", produces="application/text; charset=utf-8")
+		@ResponseBody
+		public String filedel() {
+			String view=mServ.filedel();
+			return view;
+		}
+		
+		//ID찾기
+		@PostMapping("findId")
+		public ModelAndView findId(String name, String phonenum,RedirectAttributes rttr) {
+			mv=new ModelAndView();
+			System.out.println(name);
+			System.out.println(phonenum);
+			mv = mServ.findId(name, phonenum,rttr);
+			return mv;
+		}
+		
+		//PW찾기
+		@PostMapping("pwfind")
+		public ModelAndView pwfind(String name, String mid,RedirectAttributes rttr) {
+			mv=new ModelAndView();
+			System.out.println(name);
+			System.out.println(mid);
+			mv = mServ.pwfind(name, mid,rttr);
+			return mv;
+		}
+		
+		//PW변경
+		@PostMapping("pwch")
+		public String pwch(String pw, String pwcheck,RedirectAttributes rttr) {
+		String view=null;
+		System.out.println(pw);
+		System.out.println(pwcheck);
+		view = mServ.pwch(pw, pwcheck,rttr);
+		return view;
+		}
+		
+		//아이디 찾기 후 비밀번호 찾기
+		@GetMapping("fpw")
+		public String fpw() {
+		String view = mServ.fpw();
+		return view;
+		}
+		
+		//아이디 찾기 후 로그인
+		@GetMapping("jo")
+		public String jo() {
+		//세션에 저장된 로그인 정보(회원 정보) 삭제
+		//첫번째 페이지로 이동.
+		String view = mServ.jo();
+		return view;
+		}
 
 	
 }

@@ -6,13 +6,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="resources/css/style.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/login.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>비밀번호 변경 완료</title>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var msg = "${msg}";
+		console.log(msg);
+		if (msg != "") {
+			alert(msg);
+			location.reload(true);
+		}
+	});
+</script>
 </head>
 <body>
-		<div class="content-login">
-			<p>고객님의 비밀번호 변경이 완료되었습니다.</p>
-			<input type="button" class="idcheck-btn" value="Login" onclick="location.href='./loginFrm'">
-		</div>
+<div class="wrap">
+<div class="container">
+    <div class="card"></div>
+    <div class="card">
+    <img src="resources/images/logo.png" width="100px" class="logo-center" onclick="gohome()">
+        <h1 class="title">비밀번호 변경 완료
+			<p>고객님의 비밀번호 변경이 완료되었습니다.</p>			
+		</h1>	
+        <form>
+        
+            <div class="button-container"><button type="button" onclick="location.href='./loginFrm'" style=width:240px;><span>로그인</span></button></div>
+        </form>
+    </div>
+</div>
+</div>		
 </body>
 <script type="text/javascript">
 function check(){
@@ -34,10 +57,8 @@ function check(){
 	//모든 input에 입력이 다 되었을 경우.
 	return true;//action이 실행됨.
 }
-
 function gohome() {
 	var id = '${mb.m_id}';
-
 	if (id == '') {
 		location.href = './';
 	} else if (id != '') {

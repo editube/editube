@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/myInfoUp.css">
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="resources/js/myInfoUp.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -30,39 +30,41 @@
 				<img src="resources/images/logo.png" width="100px"
 					class="logo-center" onclick="gohome();">
 				<div>
-					<img class="user-profile" src="resources/images/아이유.jpg" alt="">
+					<img id="imgurl" class="user-profile" src="/resources/images/${mb.m_oriName}">
 				</div>
 				<div class="button-container">
-					<input id="Storage" type="submit" value="사진 수정"
-						style="width: 200px;"> <input id="Storage" type="submit"
-						value="사진 삭제" style="width: 200px;">
+					<form id="fileUp">
+					<label class="btn btn-default btn-file" style="width: 200px">파일수정
+						<input id="file" type="file"  name="file"
+							style="width: 200px;display:none;">
+					</label>
+					</form>
+					<input id="filedel" type="button" value="사진 삭제" onclick="filedel()"
+						style="width: 200px;">
 				</div>
 				<div class="input-container">
-					아이디 : <input type="text" id="mid" name="m_id" disabled
-						value="1223seho" required /> <span class="bar"></span>
+					<p>아이디:${mb.m_id}</p>
 				</div>
 				<div class="input-container">
-					이름 : <input type="text" id="mname" name="m_name" disabled
-						value="조서호" required /> <span class="bar"></span>
+					<p>이름:${mb.m_name}</p>
 				</div>
 				<div class="input-container">
-					생년월일 : <input type="text" id="mbirth" name="m_birth" disabled
-						value="1996-12-23" required /> <span class="bar"></span>
+					<p>생년월일:${mb.m_birth}</p>
 				</div>
 				<div class="input-container">
-					닉네임 : <input type="text" id="mnick" name="m_nick" disabled
-						value="장마" required /> <span class="bar"></span>
+					<p>닉네임:${mb.m_nickname}</p>
 				</div>
 
-				<form name="myInfoUp" action="main" method="post"
+				<form name="myInfoUp" action="passcheck" method="post"
 					onsubmit="return check()">
 					<div class="input-container">
-						<input type="password" name="m_password" required /><label>비밀번호
+						<input type="password" name="m_password" id="pw1"/><label>비밀번호
 							변경</label>
 						<div class="bar"></div>
 					</div>
 					<div class="input-container">
-						<input type="password" required /><label>비밀번호 확인</label>
+						<input type="password" name="cpassword" id="pw2"/><label>비밀번호
+							확인</label>
 						<div class="bar"></div>
 					</div>
 					<div class="button-container">
@@ -102,7 +104,7 @@
 
 								<div class="button-container">
 									<input id="Storage" type="button" value="회원 탈퇴"
-										style="width: 240px;">
+										onclick="goDelete('${mb.m_nickname}')" style="width: 240px;">
 								</div>
 
 								<div class="btn-r">
@@ -119,90 +121,61 @@
 
 </body>
 <script type="text/javascript">
-	function check() {
-		//form 태그의 내용을 전부 가져오기
-		var frm = document.signPageFrm;
 
-		//submit 버튼을 뺀 나머지 input태그의 개수
-		var length = frm.length - 1;
-
-		//input 태그 중에 입력이 안된 요소를 확인
-		for (var i = 0; i < length; i++) {
-			if (frm[i].value == "" || frm[i].value == null) {
-				alert(frm[i].title + " 입력!");
-				frm[i].focus();
-				return false;//action이 실행 안됨.
-			}
+function filedel(){
+	
+	$.ajax({
+		type : 'POST',
+		url : 'filedel',
+		success:function(data){
+			$('#imgurl').attr("src",data);
+		},
+		error: function(error){
+			console.log(error);
 		}
-		//모든 input에 입력이 다 되었을 경우.
-		return true;//action이 실행됨.
-	}
+	});
+};
 
-	//아이디 중복 여부 확인 함수
-	//이 함수의 ajax를 실행하기 위해서 
-	//인터셉터 대상에서 제외해야 함.
-	//servlet-context.xml에 exclude-mapping을 처리.
-	function idcheck() {
-		var id = $('#mid').val();
-		if (id == "") {
-			alert("아이디를 입력하세요.");
-			$('#mid').focus();
-			return;
-		}
-		var ckObj = {
-			"mid" : id
-		};
-		console.log(ckObj);
-
+$("#file").on('change',function(){
+	//Form 전체를 넘겨주는 방식
+	var formData = new FormData();
+	formData.append("file",$("#file")[0].files[0]);
+	console.log(formData);
 		$.ajax({
-			url : "idCheck",
-			type : "get",
-			data : ckObj,
-			success : function(data) {
-				if (data == "success") {
-					alert('사용 가능한 ID입니다.');
-				} else {
-					alert('이미 등록된 ID입니다.');
-					$('#mid').val('');//입력 초기화
-					$('#mid').focus();//ID 부분에 포커스 주기
-				}
+			type : 'POST',
+			url :'fileup',
+			processData : false, //필수
+			contentType:false, //필수
+			data : formData,
+			success:function(data){
+			console.log(data);
+			$('#imgurl').attr("src",data);
 			},
-			error : function(error) {
-				console.log(error);
-			}
-		});
-	}
-
-	function nickcheck() {
-		var nickname = $('#mnickname').val();
-		if (nickname == "") {
-			alert("닉네임을 입력하세요.");
-			$('#mnickname').focus();
-			return;
+		error: function(error){
+		console.log(error);
 		}
-		var ckObj = {
-			"mnickname" : nickname
-		};
-		console.log(ckObj);
-
-		$.ajax({
-			url : "nickCheck",
-			type : "get",
-			data : ckObj,
-			success : function(data) {
-				if (data == "success") {
-					alert('사용 가능한 닉네임입니다.');
-				} else {
-					alert('이미 등록된 닉네임입니다.');
-					$('#mnickname').val('');//입력 초기화
-					$('#mnickname').focus();//ID 부분에 포커스 주기
-				}
-			},
-			error : function(error) {
-				console.log(error);
-			}
 		});
+});
+
+function check(){
+	var pass1=$('#pw1').val();
+	console.log(pass1);
+	var pass2=$('#pw2').val();
+	console.log(pass2);
+	if(pass1 == "" 
+        || pass2 == null){
+		return true;
 	}
+	else{
+		if(pass1==pass2){
+			return true;
+		}else{
+			alert('비밀번호가 일치하지 않습니다')
+			return false;
+		}
+	}
+}
+
 
 	function gohome() {
 		var id = '${mb.m_id}';
@@ -240,6 +213,7 @@
 				left : 0
 			});
 		}
+	
 
 		$el.find('a.btn-layerClose').click(function() {
 			isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
@@ -250,7 +224,19 @@
 			$('.dim-layer').fadeOut();
 			return false;
 		});
-
 	}
+		
+		function goDelete(nk){
+			var del = confirm("정말로 탈퇴 하시겠습니까?");
+			if(del == true){
+				location.href='./delete?nk='+nk;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
+		}
+		
+
+
 </script>
 </html>

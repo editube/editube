@@ -6,18 +6,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="resources/css/style.css">
-<title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/login.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>아이디 찾기 완료</title>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var msg = "${msg}";
+		console.log(msg);
+		if (msg != "") {
+			alert(msg);
+			location.reload(true);
+		}
+	});
+</script>
 </head>
 <body>
-	<section>
-		<div class="content-login">
-		<img class="top-left logo" src="resources/images/mainlogo.png">
-			<p>고객님의 아이디는</p>
-			${mb.m_id}
-			<p>입니다.</p>
-			<input type="button" class="idcheck-btn" value="비밀번호 찾기" onclick="location.href='./findPwFrm'"> 
-			<input type="button" class="idcheck-btn" value="Login" onclick="location.href='./loginFrm'"> `
-		</div>
-	</section>
+<div class="wrap">
+<div class="container">
+    <div class="card"></div>
+    <div class="card">
+    <img src="resources/images/logo.png" width="100px" class="logo-center">
+        <h1 class="title">아이디 찾기 완료
+			<p>고객님의 아이디는 ${mb.m_id} 입니다.</p>			
+		</h1>	
+        <form>
+            <div class="button-container"><button type="button" onclick="location.href='fpw'" style=width:240px;><span>비밀번호 찾기</span></button></div>
+            <div class="button-container"><button type="button" onclick="location.href='jo'" style=width:240px;><span>로그인</span></button></div>
+        </form>
+    </div>
+</div>
+</div>	
 </body>
 </html>
