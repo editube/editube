@@ -14,13 +14,16 @@
     <div class="card">
     	<img src="resources/images/logo.png" width="100px" class="logo-center" onclick="gohome();">
         <h1 class="title">Editube Cash Charge</h1>
-        <form action="access" method="post">
-            <div class="input-container"><input type="text" id="money" name="" required autofocus><label>충전할 금액</label>
+        <form action="cashCharging" name="cash" method="post">
+            <div class="input-container">
+            	<input type="hidden" name="ca_mnickname" value="${mb.m_nickname}">
+            	<input type="text" id="money" name="ca_incash" required autofocus>
+            	<label>충전할 금액</label>
                 <div class="bar"></div>
             </div>
           
             <div class="button-container">
-            <button type="button" onclick="location.href='myEPageCash'" style=width:240px;><span>캐시 충전</span></button>
+            <button type="submit" style="width: 240px"><span>캐시 충전</span></button>
             </div>
             <div>
             <span><br></span>
@@ -31,4 +34,4 @@
 </div>	 
 
      
-   </html>
+</html>

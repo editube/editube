@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,40 +10,52 @@
 <link href="resources/css/headerstyle.css?after" rel="stylesheet">
 <link href="resources/css/myEPageNav.css?after" rel="stylesheet">
 <link href="resources/css/myEPageStyle.css?after" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
+<script type="text/javascript">
+$(document).ready(function(){
+	var chk = "${msg}";
+	
+	if(chk != ""){
+		alert(chk);
+		location.reload(true);
+	}
+});
+</script>
+
 <body>
-<header>
-<jsp:include page="header.jsp"></jsp:include>
-</header>
-<div class="myEPageCashWrap">
-<aside class="myEPageCashaside">
-<jsp:include page="myEPage.jsp"></jsp:include>
-</aside>
-<div class="myEPageCashSection">
-<div class="myEPageCashTitle">
-	<div class="CashTitleName">
-		<p>캐쉬 관리</p>
-	</div>
-	<div class="myCash">
-		<p>50,000 원</p>
-		<p>보유 캐쉬</p>
-	</div>
-	</div>
+	<header>
+		<jsp:include page="header.jsp"></jsp:include>
+	</header>
+	<div class="myEPageCashWrap">
+	<aside class="myEPageCashaside">
+		<jsp:include page="myUPage.jsp"></jsp:include>
+	</aside>
+	<div class="myEPageCashSection">
+	<div class="myEPageCashTitle">
+		<div class="CashTitleName">
+			<p>캐쉬 관리</p>
+		</div>
+		<div class="myCash">
+			<p id="cash">${mb.m_mycash}원</p>
+			<p>보유 캐쉬</p>
+		</div>
+		</div>
+		
 	<div class="myEPageCashSearch">
+	<form action="cashSearch" method="get">
 		<p>
-		날짜조회 
-		<input type="date" name="CashDatestart"> 부터
-		<input type="date" name="CashDateend"> 까지 
-		<select>
-			<option value="전체내역">전체내역</option>
-			<option value="입금내역">입금내역</option>
-			<option value="출금내역">출금내역</option>
-		</select>
-		<input type="button" class="CashDateBtn" value="조회">
+			날짜조회 
+			<input type="date" name="sDate"> 부터
+			<input type="date" name="eDate"> 까지 
+		
+			<button type="submit" class="CashDateBtn">조회</button>
 		</p>
+	</form>
 		<div>
-		<input type="button" onclick="location.href='./chargeCash'" class="CashCharge" value="캐시충전">
-		<input type="button" onclick="location.href='./cashTransform'" class="CashCharge" value="캐시환전">
+		 
+			<input type="button" onclick="location.href='./chargeCash'" class="CashCharge" value="캐시충전">
+			<input type="button" onclick="location.href='./cashTransform'" class="CashCharge" value="캐시환전">
 		</div>
 	</div>
 	<div class="myEPageCashContentWrap">
@@ -49,19 +63,41 @@
 			<div class="CashdateMenu"><p>날짜</p></div>
 			<div class="CashcontentMenu"><p>내역</p></div>
 		</div>
-		<div class="myEPageCashIncontent">
+					
+		<div class="myEPageCashIncontent">	
+	
+			
 			<div class="CashinDate">
-			<p>2020-06-08</p>
-			<p>2020-06-09</p>
-			<p>2020-06-10</p>
+			<c:forEach var="cashItem" items="${cashList}">
+				<div class="inDate">${cashItem.ca_date}</div>
+			</c:forEach>
 			</div>
+			
 			<div class="CashinContent">
-			<p>에디 튜브 캐쉬 50,000원 충전완료</p>
-			<p>'파리갬성P박S성G기'님에게 편집요청으로 50,000원 지급</p>
-			<p>에디 튜브 캐쉬 50,000원 충전완료</p>
-</div>
-</div>
-</div>
+			<c:forEach var="cashItem" items="${cashList}">
+			
+				<c:if test="${cashItem.ca_type == 1}">
+					<div class="cashRe">${cashItem.ca_incash}원을 충전하였습니다.</div>
+				</c:if>
+					
+				<c:if test="${cashItem.ca_type == 2}">
+					<div class="cashRe">${cashItem.ca_outcash}원을 환전하였습니다.</div>
+				</c:if>
+				
+				<c:if test="${cashItem.ca_type == 3}">
+					<div class="cashRe">${cashItem.ca_targetnickname}님에게 ${cashItem.ca_outcash}원을 지급하였습니다.</div>
+				</c:if>
+				
+				<c:if test="${cashItem.ca_type == 4}">
+					<div class="cashRe">${cashItem.ca_targetnickname}님에게 ${cashItem.ca_incash}원을 받았습니다.</div>
+				</c:if>
+				
+			</c:forEach>
+			</div>
+			
+			
+		</div>
+		</div>	
 
 </div>
 </div>

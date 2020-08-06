@@ -12,7 +12,7 @@
 	    		
 	    		</div>
 	  		</figcaption>
-	  		<div class="position">파리갬성P박S성G기</div>
+	  		<div class="position">${mb.m_nickname}</div>
 		</figure>
 	</div>
 
@@ -24,15 +24,23 @@
 				<li class="MnavMain"><a>요청관리</a>
 					<ul class="MnavSub">
 						<li><a href="./myUPageReqM">전체내역</a></li>
-						<li><a href="./myUPageReqM">받은요청</a></li>
-						<li><a href="./myUPageReqM">보낸요청</a></li>
-						<li><a href="./myUPageReqM">진행 중</a></li>
-						<li><a href="./myUPageReqM">완료</a></li>
-						<li><a href="./myUPageReqM">거절 내역</a></li>
+						<li><a onclick="revReq(1)">받은요청</a></li>
+						<li><a onclick="revReq(2)">보낸요청</a></li>
+						<li><a onclick="revReq(3)">진행 중</a></li>
+						<li><a onclick="revReq(4)">완료</a></li>
+						<li><a onclick="revReq(5)">거절 내역</a></li>
 					</ul>
 				</li>
-				<li><a href="./myUPageCash">캐쉬 관리</a></li>
+				<li><a href="./cashList">캐쉬 관리</a></li>
 			</ul>
     	</nav>
   	</aside>
 </div>
+
+
+
+<script type="text/javascript">
+function revReq(num){
+ 	location.href='./myUPageReqM?status=' + num;
+ }
+</script>

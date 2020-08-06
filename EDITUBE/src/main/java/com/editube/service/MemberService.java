@@ -2,6 +2,7 @@ package com.editube.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +22,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.editube.controller.HomeController;
 import com.editube.dao.MemberDao;
+import com.editube.dto.CashDateDto;
+import com.editube.dto.CashDto;
 import com.editube.dto.MemberDto;
 import com.editube.dto.RatingDto;
 import com.editube.dto.RequestDto;
 import com.editube.util.LoginUser;
+import com.editube.util.Paging;
 
 import lombok.extern.java.Log;
 
@@ -40,6 +44,11 @@ public class MemberService {
 	private HttpSession session;
 	
 	private ModelAndView mv;
+	
+	private int listCount = 5;
+	private int pageCount = 2;
+	
+	int MyCash = 0;
 	
 	//로그인 처리용 메소드
 	public ModelAndView loginProc(MemberDto member, 
@@ -208,7 +217,7 @@ public class MemberService {
 		return mv;
 	}
 
-	public ModelAndView getReqList(Integer status) {
+	public ModelAndView getReqList(Integer status,Integer PageNum) {
 		mv = new ModelAndView();
 		RequestDto request = new RequestDto();
 		List<RequestDto> reqList = null;
@@ -250,8 +259,12 @@ public class MemberService {
 			}
 			mv.addObject("reqList", reqList);
 		}
-		
-		mv.setViewName("myEPageReqM");   
+		System.out.println("zzzzzzzzzzzzzzzzzzzzz"+PageNum);
+		if(PageNum==1) {
+			mv.setViewName("myUPageReqM");
+		}else {
+			mv.setViewName("myEPageReqM");
+		}
 		
 		return mv;   
 	}
@@ -376,5 +389,194 @@ public class MemberService {
 
 
 	
+	
+	
+	//지혜부분
+	@Transactional
+	public ModelAndView chargingList(CashDto cash, RedirectAttributes rttr) {
+		mv = new ModelAndView();
+		String view = null;
 
+		try {
+			mDao.chargingList(cash);
+			
+			cash.setM_mycash(getMyCash(cash));	
+				
+			mDao.countMyCash(cash);
+			
+			view = "redirect:myUPageCash";
+			rttr.addFlashAttribute("msg", "캐쉬충전 성공");
+			
+		} catch (Exception e) {
+			
+			view = "redirect:myUPageCash";
+			rttr.addFlashAttribute("msg", "충전 실패");
+		}
+		
+		mv.setViewName(view);
+		return mv;
+	}
+	
+	public ModelAndView changemoney(CashDto cash, RedirectAttributes rttr) {
+		mv = new ModelAndView();
+		String view = null;
+
+		try {
+			mDao.changemoney(cash);
+			
+			cash.setM_mycash(getMyCash(cash));	
+			
+			mDao.countMyCash(cash);
+			
+			view = "redirect:myUPageCash";
+			rttr.addFlashAttribute("msg", "캐쉬 환급 완료");
+			
+		} catch (Exception e) {
+			
+			view = "redirect:myUPageCash";
+			rttr.addFlashAttribute("msg", "캐쉬 환급 실패");
+		}
+		
+		mv.setViewName(view);
+		return mv;
+	}
+	
+	public int getMyCash(CashDto cash) {
+		
+		int totalInCash = 0;
+		int totalOutCash = 0;
+		
+		Integer tic = mDao.getTotalInCash(cash);
+		Integer toc = mDao.getTotalOutCash(cash);
+		
+		totalInCash = (tic==null)? 0: tic;
+		totalOutCash = (toc==null)? 0: toc;
+
+		System.out.println("전체지출 : " + totalOutCash);
+		System.out.println("전체수입 : " + totalInCash);
+		
+		MyCash = totalInCash - totalOutCash;
+		System.out.println("보유캐쉬 : " + MyCash);
+						
+		return MyCash;
+	}
+	
+	public ModelAndView getCashList(Integer pageNum, String nick) {
+		log.info("getCashList() - pageNum : " + pageNum);
+		CashDto cDto = new CashDto();
+		mv = new ModelAndView();
+		MemberDto member = (MemberDto)session.getAttribute("mb");
+					
+		int num = (pageNum == null) ? 1 : pageNum;
+
+		//맵을 만들어서 페이지번호와 글목록 개수를 저장
+		Map<String, String> lmap = 
+				new HashMap<String, String>();
+		lmap.put("pageNum", String.valueOf(num));
+		lmap.put("cnt", String.valueOf(listCount));
+		lmap.put("nick", String.valueOf(member.getM_nickname()));		
+		
+		List<CashDto> cashList = mDao.getCashList(lmap);
+		
+		for(int i = 0 ; i<cashList.size(); i++) {
+			cDto = cashList.get(i);
+			if(cDto.getCa_incash()==0) {
+				if(cDto.getCa_targetnickname()==null) {
+					cDto.setCa_type(2);
+				}
+				else {
+					cDto.setCa_type(3);
+				}
+			}else {
+				if(cDto.getCa_targetnickname()==null) {
+					cDto.setCa_type(1);
+				}
+				else {
+					cDto.setCa_type(4);
+				}
+			}
+		}
+		mv.addObject("cashList", cashList);
+
+		String paging = getCashPaging(num);
+		mv.addObject("paging", paging);
+
+		//세션에 페이지 번호 저장.
+		session.setAttribute("pageNum", num);
+
+		//view name을 지정!
+		mv.setViewName("myUPageCash");
+
+		return mv;
+	}
+	
+	private String getCashPaging(int num) {
+		//전체 캐시 거래내역 개수 구하기
+		int maxNum = mDao.getCashCount();
+		String listName = "cashList";//게시판 uri
+
+		Paging paging = new Paging(maxNum, num, 
+				listCount, pageCount, listName);
+
+		String pagingHtml = paging.makePaging();
+
+		return pagingHtml;
+	}
+
+	
+	public ModelAndView cashSearch(Integer pageNum, CashDateDto cd) {
+		log.info("cashSearch() - pageNum : " + pageNum);
+		CashDto cDto = new CashDto();
+		mv = new ModelAndView();
+		
+		MemberDto member = (MemberDto)session.getAttribute("mb");
+					
+		int num = (pageNum == null) ? 1 : pageNum;
+
+		//맵을 만들어서 페이지번호와 글목록 개수를 저장
+		Map<String, String> lmap = 
+				new HashMap<String, String>();
+		lmap.put("pageNum", String.valueOf(num));
+		lmap.put("cnt", String.valueOf(listCount));
+		lmap.put("nick", String.valueOf(member.getM_nickname()));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		int d = cd.getEDate().getDate() + 1;
+		cd.getEDate().setDate(d);
+		lmap.put("sDate", sdf.format(cd.getSDate()));
+		lmap.put("eDate", sdf.format(cd.getEDate()));
+				
+		
+		List<CashDto> cashList = mDao.cashSearch(lmap);
+		
+		for(int i = 0 ; i<cashList.size(); i++) {
+			cDto = cashList.get(i);
+			if(cDto.getCa_incash()==0) {
+				if(cDto.getCa_targetnickname()==null) {
+					cDto.setCa_type(2);
+				}
+				else {
+					cDto.setCa_type(3);
+				}
+			}else {
+				if(cDto.getCa_targetnickname()==null) {
+					cDto.setCa_type(1);
+				}
+				else {
+					cDto.setCa_type(4);
+				}
+			}
+		}
+		mv.addObject("cashList", cashList);
+
+		String paging = getCashPaging(num);
+		mv.addObject("paging", paging);
+
+		//세션에 페이지 번호 저장.
+		session.setAttribute("pageNum", num);
+
+		//view name을 지정!
+		mv.setViewName("myUPageCash");
+
+		return mv;
+	}
 }

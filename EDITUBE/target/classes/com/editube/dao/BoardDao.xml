@@ -104,6 +104,7 @@
 	<select id="chkReq" parameterType="Integer" resultType="com.editube.dto.RequestDto">
 		SELECT * FROM REQUEST WHERE rq_bnum = #{ubnum}
 	</select>
+
 </mapper>
 
 

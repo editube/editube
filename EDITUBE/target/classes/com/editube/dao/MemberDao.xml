@@ -32,7 +32,7 @@
 	<insert id="memberInsert" 
 		parameterType="com.editube.dto.MemberDto">
 		INSERT INTO M
-		VALUES(#{m_nickname},#{m_id},DEFAULT,#{m_name},#{m_birth},#{m_password},#{m_phonenum},DEFAULT,DEFAULT,DEFAULT)
+		VALUES(#{m_nickname},#{m_id},DEFAULT,#{m_name},#{m_birth},#{m_password},#{m_phonenum},DEFAULT,DEFAULT,DEFAULT,DEFAULT)
 	</insert>
 	
 	<select id="idCheck" parameterType="String"
@@ -47,13 +47,13 @@
 	
 	<select id="getAllReqList" parameterType="String"
 		resultType="com.editube.dto.RequestDto">
-		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname} or rq_targetnickname= #{nickname} ORDER BY rq_date
+		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname} or rq_targetnickname= #{nickname} ORDER BY rq_date DESC
 	</select>
 	
 	<select id="getReqList" parameterType="HashMap"
 		resultType="com.editube.dto.RequestDto">
 		SELECT * FROM REQUEST WHERE rq_status = #{status} and (rq_mnickname =#{nickname} or rq_targetnickname=#{nickname})
-		ORDER BY rq_date
+		ORDER BY rq_date DESC
 	</select>
 	
 	<update id="statusChange" parameterType="com.editube.dto.RequestDto">
@@ -87,6 +87,46 @@
 		SELECT * FROM request WHERE rq_targetstatus = #{num}
 	</select>
 
+	<insert parameterType="com.editube.dto.CashDto" id="chargingList">
+	INSERT INTO CASH VALUES(DEFAULT, #{ca_mnickname}, NULL, #{ca_incash}, NULL) 
+	</insert>
+	
+	<insert parameterType="com.editube.dto.CashDto" id="changemoney">
+	INSERT INTO CASH VALUES(DEFAULT, #{ca_mnickname}, NULL, NULL, #{ca_outcash}) 
+	</insert>
+	
+	<select resultType="Integer" parameterType="String" id="getTotalInCash">
+	SELECT SUM(CA_INCASH) FROM CASH WHERE CA_MNICKNAME=#{ca_mnickname} 
+	</select>
+
+	<select resultType="Integer" parameterType="String" id="getTotalOutCash">
+	SELECT SUM(CA_OUTCASH) FROM CASH WHERE CA_MNICKNAME=#{ca_mnickname}
+	</select>
+
+	<update parameterType="com.editube.dto.CashDto" id="countMyCash">
+	UPDATE MEMBER SET M_MYCASH=#{m_mycash}WHERE M_NICKNAME=#{ca_mnickname} 
+	</update>
+
+	<select resultType="Integer" id="getCashCount">
+	SELECT COUNT(*) FROM CA 
+	</select>
+
+	<select resultType="com.editube.dto.CashDto" parameterType="HashMap" id="getCashList">
+	<![CDATA[
+		SELECT * FROM CASHLIST
+		WHERE CASHNUM >= (${pageNum}*${cnt})-(${cnt}-1)
+		AND CASHNUM <= ${pageNum}*${cnt} AND CA_MNICKNAME=#{nick}
+	]]>
+	</select>
+
+	<select resultType="com.editube.dto.CashDto" parameterType="HashMap" id="cashSearch">
+	<![CDATA[	
+		SELECT * FROM CASHLIST
+		WHERE CASHNUM >= (${pageNum}*${cnt})-(${cnt}-1)
+		AND CASHNUM <= ${pageNum}*${cnt} AND CA_MNICKNAME=#{nick}
+		AND	CA_DATE BETWEEN #{sDate} AND #{eDate}
+	]]>
+	</select>
 </mapper>
 
 

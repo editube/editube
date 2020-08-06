@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.editube.dto.CashDateDto;
+import com.editube.dto.CashDto;
 import com.editube.dto.MemberDto;
 import com.editube.dto.RatingDto;
 import com.editube.service.MemberService;
@@ -85,10 +87,7 @@ public class HomeController {
 	public String editContent() {
 		return "editContent";
 	}
-	@GetMapping("myUPageReqM")
-	public String myUPageReqM() {
-		return "myUPageReqM";
-	}
+
 	
 	@GetMapping("signPageFrm")
 	public String signPageFrm() {
@@ -231,11 +230,72 @@ public class HomeController {
 		return mv;
 	}
 	
-	@GetMapping("myEPageReqM")
-	public ModelAndView myEPageReqM(Integer status) {
-		mv=mServ.getReqList(status);
+	@GetMapping("myUPageReqM")
+	public ModelAndView myUPageReqM(Integer status) {
+		mv=mServ.getReqList(status, 1);
 		
 		return mv;
+	}
+	
+	@GetMapping("myEPageReqM")
+	public ModelAndView myEPageReqM(Integer status) {
+		mv=mServ.getReqList(status, 2);
+		
+		return mv;
+	}
+	
+	@PostMapping("cashCharging")
+	public ModelAndView cashCharging(CashDto cash,
+			RedirectAttributes rttr) {
+		logger.info("cashCharging()");
+		
+		//서비스에서 처리
+		mv = mServ.chargingList(cash, rttr);
+		
+		return mv;
+	}
+	
+	@PostMapping("changemoney")
+	public ModelAndView changemoney(CashDto cash,
+			RedirectAttributes rttr) {
+		logger.info("changemoney()");
+		
+		//서비스에서 처리
+		mv = mServ.changemoney(cash, rttr);
+		
+		return mv;
+	}
+	
+	@GetMapping("cashList")
+	public ModelAndView cashList(Integer pageNum, String nick) {
+		logger.info("cashList()");
+		
+		//서비스에서 처리
+		mv = mServ.getCashList(pageNum, nick);
+		
+		return mv;
+	}
+	
+	@GetMapping("cashSearch")
+	public ModelAndView cashSearch(CashDateDto cd) {
+		logger.info("cashSearch()");
+		Integer pageNum = null; 
+		//서비스에서 처리
+		mv = mServ.cashSearch(pageNum, cd);
+		
+		return mv;
+	}
+	
+	@GetMapping("chargeCash")
+	public String chargeCash() {
+		
+		return "chargeCash";
+	}
+	
+	@GetMapping("cashTransform")
+	public String cashTransform() {
+		
+		return "cashTransform";
 	}
 	
 	@GetMapping("goReq")

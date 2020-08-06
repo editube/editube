@@ -20,4 +20,5 @@ public class MemberDto {
 	private Timestamp m_joindate;
 	private String m_oriName;
 	private String m_sysName;
+	private int m_mycash;
 }
