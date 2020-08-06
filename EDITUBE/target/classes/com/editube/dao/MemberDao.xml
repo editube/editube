@@ -87,4 +87,18 @@
 	<update id="pwch" parameterType="HashMap">
 		UPDATE MEMBER SET M_PASSWORD=#{pwcheck} WHERE M_ID=#{m}
 	</update>
+	
+	<select id="allmem" parameterType="String" resultType="com.editube.dto.MemberDto">
+		SELECT M_NICKNAME, M_JOINDATE FROM MEMBER WHERE M_NICKNAME not in(#{nick})
+	</select>
+	
+	<delete id="mdelete" parameterType="String">
+		DELETE FROM MEMBER WHERE M_NICKNAME=#{m_nickname}
+	</delete>
+	
+	<select id="searchmem" parameterType="HashMap" resultType="com.editube.dto.MemberDto">
+	<![CDATA[   
+		SELECT M_NICKNAME, M_JOINDATE FROM MEMBER WHERE M_JOINDATE>=#{sDate} AND M_JOINDATE<=#{eDate}
+	]]>
+	</select>
 </mapper>

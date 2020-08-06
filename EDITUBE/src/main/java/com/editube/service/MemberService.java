@@ -2,16 +2,24 @@ package com.editube.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
+import javax.inject.Inject;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,11 +27,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.editube.dao.MemberDao;
 import com.editube.dto.MemberDto;
+import com.editube.dto.memsearchDto;
 
 @Service
 public class MemberService {
 	//로그인 처리에 필요한 요소들
 	//  DAO 객체, 세션 객체, ModelAndView 객체
+	@Inject //서비스를 호출하기 위해서 의존성을 주입
+	JavaMailSender mailSender;     //메일 서비스를 사용하기 위해 의존성을 주입함.
+	MemberService memberservice; //서비스를 호출하기 위해 의존성을 주입
 	@Autowired
 	private MemberDao mDao;
 
@@ -331,11 +343,15 @@ public class MemberService {
 
 	public String filedel() {
 		String view=null;
+		MemberDto member=new MemberDto();
 		Map<String,String> fmap=new HashMap<String,String>();
 		MemberDto m = (MemberDto)session.getAttribute("mb");
+		String mr = m.getM_id();
 		String nick = m.getM_nickname();
 		System.out.println(nick);
 		mDao.fileDelete(nick);
+		member=mDao.getMemIn(mr);
+		session.setAttribute("mb",member);
 		
 		view="resources/images/기본이미지.png";
 		return view;
@@ -439,5 +455,113 @@ public class MemberService {
 		return "loginFrm";
 	}
 
+	public Map<String, String> sendmail(String email) throws IOException{
+		  Random r = new Random();
+		  int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
+        
+          String setfrom = "1223seho@gmail.com";
+          String tomail = email; // 받는 사람 이메일
+          System.out.println(email);
+          String title = "에디튜브 인증 이메일 입니다."; // 제목
+          String content =
+          
+          System.getProperty("line.separator")+ //한줄씩 줄간격을 두기위해 작성
+          
+          System.getProperty("line.separator")+
+                  
+          "안녕하세요 회원님 저희 홈페이지를 찾아주셔서 감사합니다"
+          
+          +System.getProperty("line.separator")+
+          
+          System.getProperty("line.separator")+
+  
+          " 인증번호는 " +dice+ " 입니다. "
+          
+          +System.getProperty("line.separator")+
+          
+          System.getProperty("line.separator")+
+          
+          "받으신 인증번호를 홈페이지에 입력해 주시면 다음으로 넘어갑니다."; // 내용
+          
+          
+          try {
+              MimeMessage message = mailSender.createMimeMessage();
+              MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+                      true, "UTF-8");
+  
+              messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+              System.out.println("보낸사람: "+setfrom);
+              messageHelper.setTo(tomail); // 받는사람 이메일
+              System.out.println("받는사람: "+tomail);
+              messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+              System.out.println("제목: "+title);
+              messageHelper.setText(content); // 메일 내용
+              System.out.println(content);
+              
+              mailSender.send(message);
+              System.out.println("메시지: "+message);
+          } catch (Exception e) {
+              System.out.println(e);
+          }
+  
+          Map<String, String> rmap = new HashMap<String, String>();
+          rmap.put("result", "이메일이 발송되었습니다. 인증번호를 입력해주세요.");
+          rmap.put("dice", String.valueOf(dice));
+          return rmap;
+        
+    }
 
+	public ModelAndView mMember() {
+		ModelAndView mv=new ModelAndView();
+		String msg = null;//화면에 출력할 메시지
+		String view = null;//이동할 jsp 이름 저장 변수.
+		MemberDto m = (MemberDto)session.getAttribute("mb");
+		String nick=m.getM_nickname();
+		try {
+			List<MemberDto> mList =mDao.allmem(nick);
+			System.out.println(mList);
+			mv.addObject("mList", mList);
+			
+			view = "./mMember";
+		}catch(Exception e) {
+			view = "redirect:mDeal";
+		}
+		mv.setViewName(view);
+		
+		return mv;
+	}
+	
+	@Transactional
+	public String mdelete(String m_nickname, RedirectAttributes rttr) {
+		String msg = null;//화면에 출력할 메시지
+		String view = null;//이동할 jsp 이름 저장 변수.
+		try {
+			mDao.mdelete(m_nickname);
+			view="redirect:Member";
+			rttr.addFlashAttribute("msg","성공적으로 회원을 제명했습니다.");
+		}catch(Exception e){
+			view="redirect:Member";
+			rttr.addFlashAttribute("msg","회원 제명을 실패하였습니다.");
+		}
+		return view;
+	}
+
+	public ModelAndView dateSearch(MemberDto member,memsearchDto memsea) {
+		mv = new ModelAndView();
+		String view = null;//이동할 jsp 이름 저장 변수.
+		Map<String, String> lmap = new HashMap<String, String>();
+		MemberDto m = (MemberDto)session.getAttribute("mb");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	      int d = memsea.getReqDateend().getDate() + 1;
+	      memsea.getReqDateend().setDate(d);
+	      lmap.put("sDate", sdf.format(memsea.getReqDatestart()));
+	      lmap.put("eDate", sdf.format(memsea.getReqDateend()));
+	    List<MemberDto> mList = mDao.searchmem(lmap);
+	    mv.addObject("mList", mList);
+	    view = "./mMember";
+	    mv.setViewName(view);
+	      
+		return mv;
+	}
+	
 }

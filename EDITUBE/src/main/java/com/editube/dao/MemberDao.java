@@ -2,6 +2,7 @@ package com.editube.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.editube.dto.MemberDto;
@@ -30,4 +31,7 @@ public interface MemberDao {
 	public MemberDto pwfind(String mid);
 	public void pwch(HashMap<String, Object> rmap);
 	public MemberDto getMemIn(String mr);
+	public List<MemberDto> allmem(String nick);
+	public void mdelete(String m_nickname);
+	public List<MemberDto> searchmem(Map<String, String> lmap);
 }

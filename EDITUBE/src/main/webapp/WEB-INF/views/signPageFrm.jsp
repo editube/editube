@@ -79,8 +79,11 @@ $(document).ready(function(){
 </body>
 <script type="text/javascript">
 var dice
+var eid
 
 function emailSend(){
+	
+	if(eid==1){
 	
 	var email=$('#mid').val();
 		console.log(email);
@@ -99,6 +102,12 @@ function emailSend(){
 				alert('오류입니다. 잠시 후 다시 시도해주세요.');
 			}
 		});
+	}else if('#mid'==""){
+		alert('아이디를 입력해주세요.')
+	}
+	else{
+		alert('이메일 중복확인이 안됐습니다.')
+	}
 }
 
 function emailCertification(){
@@ -153,6 +162,7 @@ function idcheck(){
       success: function(data){
          if(data == "success"){
             alert('사용 가능한 ID입니다.');
+            eid=1;
          }
          else{
             alert('이미 등록된 ID입니다.');
