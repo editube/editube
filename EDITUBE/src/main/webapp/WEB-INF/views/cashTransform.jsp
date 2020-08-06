@@ -20,7 +20,7 @@
             	<input type="text" id="money" name="ca_outcash" required autofocus><label>전환할 캐쉬</label>
                 <div class="bar"></div>
             </div>
-            
+             
                  
             <div class="button-container">
             	<button type="submit" style="width: 240px">
