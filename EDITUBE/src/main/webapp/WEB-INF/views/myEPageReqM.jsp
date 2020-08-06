@@ -60,7 +60,7 @@
 								, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">취소</button>
 							</c:if>
 							<c:if test="${reqItem.rq_status == 3}">
-								<button type="button" class="btnIng1">1:1문의</button>
+								<button type="button" class="btnIng1" onclick="goChat('${reqItem.rq_targetnickname}')">1:1문의</button>
 								<button type="button" class="btnIng2"
 								onclick="statusChange('${reqItem.rq_targetnickname}', 4, ${reqItem.rq_num}
 								, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">취소</button>
@@ -161,7 +161,7 @@
 								, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">취소</button>
 							</c:if>
 							<c:if test="${reqItem.rq_targetstatus == 3}">
-								<button type="button" class="btnIng1">1:1문의</button>
+								<button type="button" class="btnIng1" onclick="goChat('${reqItem.rq_mnickname}')">1:1문의</button>
 								<button type="button" class="btnIng2"
 								onclick="statusChange('${reqItem.rq_targetnickname}', 4, ${reqItem.rq_num}
 								, '${mb.m_nickname}', '${reqItem.rq_mnickname}')">취소</button>
@@ -195,6 +195,9 @@
 		</div>
 	</div>
 	</div>
+	<div>
+		<jsp:include page="footer.jsp"></jsp:include>
+	</div>
 </body>
 <script type="text/javascript">
 $(':radio').change(function() {
@@ -207,7 +210,32 @@ function statusChange(rtnick,snum, rnum, mnick, rnick){
 	var targetNum=0;
 	
 	if(mnick==rnick){
-			
+		if(snum == 1){
+			myNum=3;
+			targetNum=3;
+			var stc = confirm(rnick+"님의 요청을 수락하시겠습니까");
+			if(stc == true){
+				alert("수락되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
+		}
+		
+		if(snum == 2){
+			myNum=8;
+			targetNum=8;
+			var stc = confirm(rnick+"님의 요청을 거절하시겠습니까");
+			if(stc == true){
+				alert("수락되었습니다.");
+				location.href='./statusChange?rnum=' + rnum + "&myNum=" + myNum + "&rnick=" + rnick +"&targetNum=" + targetNum;
+			}
+			else{
+				alert("취소되었습니다.");
+			}
+		}
+		
 		if(snum == 3){
 			myNum=8;
 			targetNum=8;
@@ -368,5 +396,11 @@ function statusChange(rtnick,snum, rnum, mnick, rnick){
 		}
 	}
 }
+
+function goChat(nick){
+	window.open("chating?nick="+nick, "chating", "width=500, height=650, left=100, top=50, location=no, resiznable=no"); 
+}
+
+
 </script>
 </html>

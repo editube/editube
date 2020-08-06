@@ -24,6 +24,7 @@ import com.editube.dao.MemberDao;
 import com.editube.dto.MemberDto;
 import com.editube.dto.RatingDto;
 import com.editube.dto.RequestDto;
+import com.editube.util.LoginUser;
 
 import lombok.extern.java.Log;
 
@@ -44,6 +45,8 @@ public class MemberService {
 	public ModelAndView loginProc(MemberDto member, 
 			RedirectAttributes rttr) {
 		mv = new ModelAndView();//화면으로 데이터 전송.
+		List<RequestDto> reqHList = null;
+		LoginUser login = new LoginUser();
 		
 		String view = null;//이동할 jsp 이름 저장 변수.
 		String msg = null;//화면에 출력할 메시지
@@ -54,6 +57,9 @@ public class MemberService {
 		BCryptPasswordEncoder pwdEncoder = 
 				new BCryptPasswordEncoder();
 		
+
+		
+		
 		//로그인 처리			
 		if(get_pw != null) {
 			//아이디 있음.
@@ -62,7 +68,15 @@ public class MemberService {
 				//세션에 로그인 성공한 회원 정보 저장
 				//로그인 한 회원의 정보를 가져오기.
 				member = mDao.getMemInfo(member.getM_id());
+				if(member.getM_usertype()==1) {
+					reqHList=mDao.getUReqList(member.getM_nickname());
+				}
+				else {
+					reqHList=mDao.getEReqList(member.getM_nickname());
+				}
+				login.setUserId(member.getM_id());
 				session.setAttribute("mb", member);
+				session.setAttribute("reqHList", reqHList);
 				//리다이렉트로 화면을 전환.
 				view = "redirect:/";
 			}
@@ -82,7 +96,7 @@ public class MemberService {
 		rttr.addFlashAttribute("msg", msg);
 		return mv;
 	}
-
+	
 	public ModelAndView memberInsert(MemberDto member, RedirectAttributes rttr) {
 		mv = new ModelAndView();
 		String view = null;
@@ -161,6 +175,38 @@ public class MemberService {
 
 		return result;
 	}
+	
+	@Transactional
+	public ModelAndView goReq(Integer bnum, String nick) {
+		mv = new ModelAndView();
+		RequestDto request = new RequestDto();
+		MemberDto member = (MemberDto)session.getAttribute("mb");
+		String view = null;
+		
+		request.setRq_mnickname(member.getM_id());
+		request.setRq_status(member.getM_usertype());
+		request.setRq_targetnickname(nick);
+		request.setRq_bnum(bnum);
+		
+		if(member.getM_usertype()==1) {
+			request.setRq_targetstatus(2);
+			request.setRq_type(1);
+		}
+		else {
+			request.setRq_targetstatus(1);
+			request.setRq_type(2);
+		}
+		
+		try {
+				mDao.goReq(request);
+				view= "redirect:utcontent?ubnum="+request.getRq_bnum();
+		}catch (Exception e) {
+			view= "redirect:utcontent?ubnum="+request.getRq_bnum();
+		}
+		
+		mv.setViewName(view);
+		return mv;
+	}
 
 	public ModelAndView getReqList(Integer status) {
 		mv = new ModelAndView();
@@ -192,7 +238,7 @@ public class MemberService {
 		else {		
 			reqList = mDao.getReqList(lmap);
 			for(int i=0; i<reqList.size();i++) {
-				request=reqList.get(i);
+				request=reqList.get(i); 
 				if(request.getRq_mnickname().equals(member.getM_nickname())) {
 					InsertMsg(request.getRq_status());
 					request.setRq_msg(request.getRq_targetnickname()+InsertMsg(request.getRq_status()));					
@@ -285,6 +331,50 @@ public class MemberService {
 		mv.setViewName(view);
 		return mv;
 	}
+
+	public ModelAndView getmDeal() {
+		mv= new ModelAndView();
+		List<RequestDto> rDto = null;
+		
+		try {
+			rDto = mDao.getmDeal(6);
+			mv.addObject("rMList",rDto);
+		} catch (Exception e) {
+			
+		}
+		
+		
+		
+		mv.setViewName("mDeal");
+		return mv;
+	}
+	
+	
+	@Transactional
+	public void cancelOk(Integer rnum, Integer conNum) {
+		//관리자 취소요청 메소드
+		RequestDto rDto = new RequestDto();
+	
+		if(conNum==1) {
+			//수락요청처리
+			rDto.setRq_num(rnum);
+			rDto.setRq_status(8);
+			rDto.setRq_targetstatus(8);
+		}else {
+			//거절요청처리
+			rDto.setRq_num(rnum);
+			rDto.setRq_status(3);
+			rDto.setRq_targetstatus(3);
+		}
+		
+		try {
+			mDao.statusChange(rDto);
+		} catch (Exception e) {
+			System.out.println("업데이트에 실패하였습니다.");
+		}
+	} //메소드끝
+
+
 	
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,32 +12,6 @@
 <link href="resources/css/mDealReason.css?after" rel="stylesheet">
 </head>
 <body>
-<dialog id="confirm-modal" class="modal">
-  <div class="modal-content">
-    <h4 class="modal-title">거래 취소 요청</h4>
-    <p>'위즈덤'님의 취소 요청입니다. </p>
-    <article class="modal-description">
-      <div class="container">
-        <p>거래 조건이 맞지 않아서 취소 요청합니다.</p>
-      </div>
-    </article>
-    <div class="modal-options">
-      <input type="button"
-        value="수락"
-       type="button"
-        onclick="document.querySelector('#confirm-modal').close()"
-      >
-      <input type="button"
-             value="거절"
-        onclick="document.querySelector('#confirm-modal').close()"
-      >
-      <input type="button"
-             value="취소"
-        onclick="document.querySelector('#confirm-modal').close()"
-      >
-    </div>
-  </div>
-</dialog>
 	<header>
 		<jsp:include page="header.jsp"></jsp:include>
 	</header>
@@ -62,26 +37,58 @@
 			<div class="contentMenu" style=width:400px;><p>내역</p></div>
 			<div class="statusMenu"><p>상태</p></div>
 		</div>
-		<div class="myEPageReqMIncontent">
-			<div class="inDate">
-			<p>2020-06-07</p>			
-			<p>2020-06-07</p>			
-			<p>2020-06-07</p>			
-			<p>2020-06-07</p>
+		<c:forEach var="mRItem" items="${rMList}">
+			<dialog id="confirm-modal" class="modal">
+			  <div class="modal-content">
+			    <h4 class="modal-title">거래 취소 요청</h4>
+			    <p>'위즈덤'님의 취소 요청입니다. </p>
+			    <article class="modal-description">
+			      <div class="container">
+			        <p>거래 조건이 맞지 않아서 취소 요청합니다.</p>
+			      </div>
+			    </article>
+			    <div class="modal-options">
+			      <input type="button"
+			        value="수락"
+			       type="button"
+			        onclick="cancelOk(${mRItem.rq_num},1)"
+			      >
+			      <input type="button"
+			             value="거절"
+			        onclick="cancelOk(${mRItem.rq_num},2)"
+			      >
+			      <input type="button"
+			             value="취소"
+			        onclick="document.querySelector('#confirm-modal').close()"
+			      >
+			    </div>
+			  </div>
+			</dialog>
+			<div class="myEPageReqMIncontent">
+				<div class="inDate">
+					<p>${mRItem.rq_date}</p>			
+				</div>
+				<div class="inContent" style=width:400px;>
+					<c:if test="${mRItem.rq_status == 6}">
+						<p>${mRItem.rq_mnickname}님과 ${mRItem.rq_targetnickname} 님간의 거래취소 요청이 도착했습니다. </p>
+						<div class="inBtn">
+							<input type="button" onclick="document.querySelector('#confirm-modal').showModal()" class="statusbtn" value="상세내역">
+						</div>
+					</c:if>
+					<c:if test="${mRItem.rq_status == 8}">
+						<p>${mRItem.rq_mnickname}님과 ${mRItem.rq_targetnickname} 님간의 거래가 취소되었습니다. </p>
+					</c:if>
+				</div>
 			</div>
-			<div class="inContent" style=width:400px;>
-			<p>'파리갬성PSG' 님의 거래 취소 요청</p>			
-			<p>'파리갬성PSG' 님의 입금 완료</p>			
-			<p>'파리갬성PSG' 님의 입금 완료</p>		
-			<p>'파리갬성PSG' 님의 입금 완료</p>
-			</div>
-			<div class="inStatus">
-			<input type="button" onclick="document.querySelector('#confirm-modal').showModal()" class="statusbtn" value="상세내역">
-			</div>
-		</div>
+		</c:forEach>
 	</div>
 </div>
 </div>
 
 </body>
+<script type="text/javascript">
+function cancelOk(rnum,conNum){
+	location.href="./cancelOk?rnum=" + rnum +"&conNum=" + conNum;
+}
+</script>
 </html>

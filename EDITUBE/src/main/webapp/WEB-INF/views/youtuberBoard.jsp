@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 
 <html>
 <head>
@@ -12,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>커뮤니티 보드</title>
+<title>Youtube 보드</title>
 
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
@@ -21,6 +20,7 @@
 <link href="resources/css/sideBar.css?after" rel="stylesheet">
 <link href="resources/css/commuBoard.css?after" rel="stylesheet">
 <link href="resources/css/headerstyle.css?after" rel="stylesheet">
+<link href="resources/css/footerStyle.css" rel="stylesheet">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="resources/js/sideBar.js"></script>
@@ -37,11 +37,17 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
-
+<script type="text/javascript">
+	$(document).ready(function() {
+		var sort = '${sort}';
+		console.log(sort);
+		$('#sort').html(sort);
+	});
+</script>
 </head>
 <body>
-<header>
-	<jsp:include page="header.jsp"></jsp:include>
+	<header>
+		<jsp:include page="header.jsp"></jsp:include>
 	</header>
 	<div class="all">
 		<jsp:include page="youtubeNav.jsp"></jsp:include>
@@ -51,22 +57,20 @@
 				<h2 class="yt">모집게시판</h2>
 				<!-- 나중에 입력받는걸로 바뀜 -->
 				<div class="yb">
-					<input class="tgl tgl-flip" id="cb5" type="checkbox" /><label
-						class="tgl-btn" data-tg-off="건별" data-tg-on="정기" for="cb5"></label>
+					<input class="tgl tgl-flip" id="cb5" name="status"
+						onclick="check()" type="checkbox" /><label class="tgl-btn"
+						data-tg-off="건별" data-tg-on="정기" for="cb5"></label> <input
+						type="hidden" name="ubstatus" id="ubstatus" value="건별편집">
 				</div>
 
-  <div class="dropdown">
-    <span class="selLabel">정렬</span>
-    <input type="hidden" name="cd-dropdown">
-    <ul class="dropdown-list">
-      <li data-value="1">
-        <span>작성일순</span>
-      </li>
-      <li data-value="2">
-        <span>마감일순</span>
-      </li>
-    </ul>
-  </div>
+				<div class="dropdown">
+					<span class="selLabel" id="sort">정렬</span> <input type="hidden"
+						name="cd-dropdown">
+					<ul class="dropdown-list">
+						<li data-value="1"><span onclick="timearry()">작성일순</span></li>
+						<li data-value="2"><span onclick="deadarry()">마감일순</span></li>
+					</ul>
+				</div>
 
 			</div>
 
@@ -78,16 +82,34 @@
 					<div class="u-resdate p-10">작성일</div>
 					<div class="u-findate p-10">마감일</div>
 				</div>
-
-				<c:forEach var="bitem" items="${ubList}">
+				<c:forEach var="bitem" items="${utList}">
 					<div class="data-row">
 						<div class="u-name p-15">${bitem.ubnickname}</div>
 						<div class="u-title p-50">
-							<a href="contents?bnum=${bitem.ubnum}"> ${bitem.ubcontent}</a>
+							<a href="utcontent?ubnum=${bitem.ubnum}"> ${bitem.ubtitle}</a>
 						</div>
 						<div class="u-price p-15">${bitem.ubcost}</div>
-						<div class="u-date p-10">${bitem.ubtimepart}</div>
-						<div class="u-date p-10"><fmt:formatDate value="${bitem.ubdeadline}" pattern="yyyy-MM-dd" /></div>
+						<div class="u-date p-10">
+							<fmt:formatDate value="${bitem.ubtimepart}" pattern="yyyy-MM-dd" />
+						</div>
+						<div class="u-date p-10">
+							<fmt:formatDate value="${bitem.ubdeadline}" pattern="yyyy-MM-dd" />
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="bitem" items="${udList}">
+					<div class="data-row">
+						<div class="u-name p-15">${bitem.ubnickname}</div>
+						<div class="u-title p-50">
+							<a href="udcontent?ubnum=${bitem.ubnum}"> ${bitem.ubtitle}</a>
+						</div>
+						<div class="u-price p-15">${bitem.ubcost}</div>
+						<div class="u-date p-10">
+							<fmt:formatDate value="${bitem.ubtimepart}" pattern="yyyy-MM-dd" />
+						</div>
+						<div class="u-date p-10">
+							<fmt:formatDate value="${bitem.ubdeadline}" pattern="yyyy-MM-dd" />
+						</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -97,7 +119,32 @@
 			</div>
 		</div>
 	</div>
-	<!-- Footer -->
+	<footer>
+		<jsp:include page="footer.jsp"></jsp:include>
+	</footer>
 
 </body>
+<script type="text/javascript">
+	function check() {
+		var cb10 = document.getElementById("cb10");
+		var a = '정기편집';
+		var b = '건별편집';
+		var status = $("#ch10").val();
+		$("#ubstatus").val(status);
+
+		if ($("input:checkbox[name=status]").is(":checked") == true) {
+			$("#ubstatus").val(a);
+		} else {
+			$("#ubstatus").val(b);
+		}
+	}
+
+	function timearry() {
+		location.href = './timearry';
+	}
+
+	function deadarry() {
+		location.href = './deadarry';
+	}
+</script>
 </html>

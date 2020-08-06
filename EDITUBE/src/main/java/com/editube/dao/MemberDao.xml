@@ -47,13 +47,13 @@
 	
 	<select id="getAllReqList" parameterType="String"
 		resultType="com.editube.dto.RequestDto">
-		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname} or rq_targetnickname= #{nickname} ORDER BY #{rq_date}
+		SELECT * FROM REQUEST WHERE rq_mnickname = #{nickname} or rq_targetnickname= #{nickname} ORDER BY rq_date
 	</select>
 	
 	<select id="getReqList" parameterType="HashMap"
 		resultType="com.editube.dto.RequestDto">
 		SELECT * FROM REQUEST WHERE rq_status = #{status} and (rq_mnickname =#{nickname} or rq_targetnickname=#{nickname})
-		ORDER BY #{rq_date}
+		ORDER BY rq_date
 	</select>
 	
 	<update id="statusChange" parameterType="com.editube.dto.RequestDto">
@@ -66,6 +66,27 @@
 		INSERT INTO RATING
 		VALUES(RATING_SEQ.NEXTVAL,#{m_nickname},#{ra_score},#{ra_content},#{ra_nickname})
 	</insert>
+	
+	<select id="getUReqList" parameterType="String"
+		resultType="com.editube.dto.RequestDto">
+		SELECT * FROM request WHERE (rq_mnickname = #{m_nickname} AND rq_type = 1) OR (rq_targetnickname = #{m_nickname} AND rq_type=2)
+	</select>
+	
+	<select id="getEReqList" parameterType="String"
+		resultType="com.editube.dto.RequestDto">
+		SELECT * FROM request WHERE (rq_mnickname = #{m_nickname} AND rq_type = 2) OR (rq_targetnickname = #{m_nickname} AND rq_type=1)
+	</select>
+	
+	<insert id="goReq" parameterType="com.editube.dto.RequestDto">
+		INSERT INTO request
+		VALUES (REQUEST_SEQ.nextval,#{rq_mnickname},#{rq_status},DEFAULT,#{rq_type},#{rq_targetnickname},#{rq_targetstatus},#{rq_bnum})
+	</insert>
+
+	<select id="getmDeal" parameterType="Integer"
+		resultType="com.editube.dto.RequestDto">
+		SELECT * FROM request WHERE rq_targetstatus = #{num}
+	</select>
+
 </mapper>
 
 

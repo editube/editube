@@ -62,6 +62,20 @@ public class HomeController {
 		return "uContent";
 	}
 	
+	@GetMapping("mDeal")
+	public ModelAndView mDeal() {
+		mv=mServ.getmDeal();
+		
+		return mv;
+	}
+	
+	@GetMapping("cancelOk")
+	public String cancelOk(Integer rnum, Integer conNum) {
+		mServ.cancelOk(rnum,conNum);
+		
+		return "mDeal";
+	}
+	
 	@GetMapping("myUPageCash")
 	public String myUPageCash() {
 		return "myUPageCash";
@@ -220,6 +234,13 @@ public class HomeController {
 	@GetMapping("myEPageReqM")
 	public ModelAndView myEPageReqM(Integer status) {
 		mv=mServ.getReqList(status);
+		
+		return mv;
+	}
+	
+	@GetMapping("goReq")
+	public ModelAndView goReq(Integer bnum, String nick) {
+		mv=mServ.goReq(bnum,nick);
 		
 		return mv;
 	}

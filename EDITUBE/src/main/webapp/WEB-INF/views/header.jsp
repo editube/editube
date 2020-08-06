@@ -123,12 +123,12 @@ $(document).ready(function(){
    			 <span id="badge2">1:1문의</span>
    	  </a>
     </div>
-  
+  <div id="ajaxWrap">
   	<div class="mesege">
-		<c:forEach var="reqItem" items="reqList">
+		<c:forEach var="reqHItem" items="${reqHList}">
 		    <ul class="shopping-cart-items">
 		      <li class="clearfix">
-		        <span class="item-name"></span>
+		        <span class="item-name">'${reqHItem.rq_targetnickname}'</span>
 		        <span class="item-price">님 으로부터 알림 도착</span>
 		       </li>
 		    </ul>
@@ -165,6 +165,7 @@ $(document).ready(function(){
     <a href="./myEPageReqM" class="button">전체보기</a>
     
    </div><!-- mesege end -->
+  </div>
    
   </div> <!--end shopping-cart -->
 </div> <!--end container -->

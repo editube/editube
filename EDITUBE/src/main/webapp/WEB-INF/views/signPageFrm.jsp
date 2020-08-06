@@ -69,7 +69,7 @@ $(document).ready(function(){
             <div class="input-container"><input type="text" name="m_phonenum" required/><label>휴대폰 번호</label>
                 <div class="bar"></div>
             </div>
-            <div class="button-container"><input id="join" class="buttons" type="submit" value="회원가입" disabled value="" style=width:240px;></div>    
+            <div class="button-container"><input id="join" class="buttons" type="submit" value="회원가입" style=width:240px;></div>    
         </form>
     </div>
 </div>

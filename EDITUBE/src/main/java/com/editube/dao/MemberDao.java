@@ -27,4 +27,13 @@ public interface MemberDao {
 	public void statusChange(RequestDto rDto);
 	//평점등록하기
 	public void InsertRatFrm(RatingDto raDto);
+	
+	public List<RequestDto> getUReqList(String m_nickname);
+	
+	public List<RequestDto> getEReqList(String m_nickname);
+	//요청문
+	public void goReq(RequestDto request);
+	//관리자 관리 리스트 메소드
+	public List<RequestDto> getmDeal(Integer num);
+
 }
